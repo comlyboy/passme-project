@@ -1,6 +1,6 @@
 <div class="container mt-5 p-3 d-flex justify-content-center">
 
-  <div class="card text-center mt-5" style="width: 30rem;">
+  <div class="card text-center mt-5 pas-shadow" style="width: 30rem;">
     <!-- <div class="card-header h5 my-design text-white">User signin</div> -->
 
     <div class="card-body px-5 bg-white text-muted">
@@ -38,11 +38,11 @@
         <button mat-raised-button class="btn btn-block btn-lg btn-success mt-2 py-1"
           type="submit" [disabled]="!loginForm.valid">Log In</button>
         <div class="d-flex align-items-end flex-column bd-highlight">
-          <a class="mt-1 mb-4 smallt" routerLink="/register">Forgot password?</a>
+          <a class="mt-1 mb-4 small text-success" routerLink="/register">Forgot password?</a>
 
         </div>
-        <p class="mt-5">Don't have an Account?</p>
-        <a class="lead green-text" routerLink="/register">Register</a>
+        <p class="mt-4">Don't have an Account?</p>
+        <a class="lead text-success mb-3" routerLink="/register">Register</a>
 
         <!-- <button mat-raised-button class="btn btn-block btn-lg btn-success mt-5 mb-4 py-1" type="submit"
           [disabled]="!loginForm.valid">Sign In</button>

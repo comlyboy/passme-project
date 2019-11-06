@@ -1,13 +1,12 @@
 <mat-drawer-container class="containerr" autosize>
-
-    <mat-toolbar class="my-toolbar bg-light container-fluid" *ngIf="!userIsAuthenticated">
+    <mat-toolbar class="my-toolbar bg-white container-fluid" *ngIf="!userIsAuthenticated">
         <a class="pointerr ml-4 text-muted" (click)="drawer.toggle()">
             <mat-icon>dehaze</mat-icon>
         </a>
         <!-- <p class="font-weight-bold mb-0 ml-5 h5">{{ title }}</p> -->
         <button class="btn btn-lg ml-auto text-muted py-0 mr-5" mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon>account_circle</mat-icon>
-            <mat-icon>arrow_drop_down</mat-icon>
+            <mat-icon>expand_more</mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
             <ng-template matMenuContent>
@@ -36,12 +35,12 @@
                     </a></li>
 
                 <li><a class="h6" routerLink="/banks" routerLinkActive="current">
-                        <mat-icon class="mr-2">Inventory</mat-icon>
+                        <mat-icon class="mr-2">storage</mat-icon>
                         Inventory
                     </a></li>
 
                 <li><a class="h6" routerLink="/customers" routerLinkActive="current">
-                        <mat-icon class="mr-2">supervisor_account</mat-icon>
+                        <mat-icon class="mr-2">payment</mat-icon>
                         Payroll
                     </a></li>
 
@@ -51,13 +50,18 @@
                     </a></li>
 
                 <li><a class="h6" routerLink="/interactions" routerLinkActive="current">
-                        <mat-icon class="mr-2">question_answer</mat-icon>
+                        <mat-icon class="mr-2">redeem</mat-icon>
                         Loans
                     </a></li>
 
                 <li><a class="h6" routerLink="/messages" routerLinkActive="current">
-                        <mat-icon class="mr-2">mail</mat-icon>
-                        Asset Management
+                        <mat-icon class="mr-2">location_city</mat-icon>
+                        Assets Management
+                    </a></li>
+
+                <li><a class="h6" routerLink="/messages" routerLinkActive="current">
+                        <mat-icon class="mr-2">trending_up</mat-icon>
+                        Reports
                     </a></li>
             </ul>
 

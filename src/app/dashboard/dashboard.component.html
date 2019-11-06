@@ -13,6 +13,18 @@
   <div class="row">
     <div class="col-12">
       <div class="card pas-shadow ">
+        <div class="card-header bg-transparent py-0 d-flex justify-content-end">
+
+          <div class="input-group my-1 mr-3" style="width: 10rem;">
+            <select class="form-control rounded-0 text-muted" (change)="onDeviceStatusFilter($event.target.value)">
+              <option selected value="week">7 days</option>
+              <option value="month">30 days</option>
+              <option value="two-month">60 days</option>
+              <option value="six-month">180 days</option>
+              <option value="year">1 Year</option>
+            </select>
+          </div>
+        </div>
         <div class="card-body">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum magnam ipsam id libero similique, quo
           ratione totam quaerat in a deleniti sequi, unde, beatae explicabo error non magni maxime iusto!

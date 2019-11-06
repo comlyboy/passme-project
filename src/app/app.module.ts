@@ -42,8 +42,62 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+import { ErrorInterceptor } from './error-interceptor';
 
+import { AccountingComponent } from './accounting/accounting.component';
+import { ChartsOfAccountsComponent } from './accounting/charts-of-accounts/charts-of-accounts.component';
+import { TransactionsComponent } from './accounting/transactions/transactions.component';
+import { TransationDetailComponent } from './accounting/transactions/transation-detail/transation-detail.component';
+import { JournalBalanceComponent } from './accounting/journal-balance/journal-balance.component';
+import { NewTransactionComponent } from './accounting/transactions/new-transaction/new-transaction.component';
+import { TransactionMapComponent } from './accounting/transaction-map/transaction-map.component';
+import { TransactionTypeComponent } from './accounting/transaction-type/transaction-type.component';
 
+import { NewBusinessComponent } from './pages/new-business/new-business.component';
+import { OnboardingComponent } from './pages/onboarding/onboarding.component';
+
+import { InventoryComponent } from './inventory/inventory.component';
+import { ProductComponent } from './inventory/product/product.component';
+import { NewProductComponent } from './inventory/product/new-product/new-product.component';
+import { NewSupplierComponent } from './inventory/supplier/new-supplier/new-supplier.component';
+import { SaleRegisterComponent } from './inventory/sale-register/sale-register.component';
+import { PurchaseRegisterComponent } from './inventory/purchase-register/purchase-register.component';
+import { NewPurchaseRegisterComponent } from './inventory/purchase-register/new-purchase-register/new-purchase-register.component';
+import { StockSheetComponent } from './inventory/stock-sheet/stock-sheet.component';
+import { SalesCreditComponent } from './inventory/sales-credit/sales-credit.component';
+import { SalesReturnComponent } from './inventory/sales-return/sales-return.component';
+
+import { EmployeeComponent } from './payroll/employee/employee.component';
+import { NewEmployeeComponent } from './payroll/employee/new-employee/new-employee.component';
+import { DepartmentComponent } from './payroll/department/department.component';
+import { PayrollComponent } from './payroll/payroll.component';
+import { NewDepartmentComponent } from './payroll/department/new-department/new-department.component';
+import { EmploymentTypeComponent } from './payroll/employment-type/employment-type.component';
+import { NewEmploymentTypeComponent } from './payroll/employment-type/new-employment-type/new-employment-type.component';
+import { EmployeeDeductionComponent } from './payroll/employee-deduction/employee-deduction.component';
+import { NewEmployeeDeductionComponent } from './payroll/employee-deduction/new-employee-deduction/new-employee-deduction.component';
+import { EmployeeEarningComponent } from './payroll/employee-earning/employee-earning.component';
+import { NewEmployeeEarningComponent } from './payroll/employee-earning/new-employee-earning/new-employee-earning.component';
+import { EmployeeGradeComponent } from './payroll/employee-grade/employee-grade.component';
+import { NewEmployeeGradeComponent } from './payroll/employee-grade/new-employee-grade/new-employee-grade.component';
+
+import { InvoiceComponent } from './invoice/invoice.component';
+import { CustomerComponent } from './invoice/customer/customer.component';
+import { NewCustomerComponent } from './invoice/customer/new-customer/new-customer.component';
+import { RecurringInvoiceComponent } from './invoice/recurring-invoice/recurring-invoice.component';
+import { NewInvoiceComponent } from './invoice/invoices/new-invoice/new-invoice.component';
+
+import { LoanUserComponent } from './loan/loan-user/loan-user.component';
+import { NewLoanComponent } from './loan/loan-user/new-loan/new-loan.component';
+import { LoanRequestComponent } from './loan/loan-request/loan-request.component';
+import { RequestLoanComponent } from './loan/loan-request/request-loan/request-loan.component';
+import { LoanRepayedComponent } from './loan/loan-repayed/loan-repayed.component';
+import { LoanComponent } from './loan/loan.component';
+
+import { AssetManagementComponent } from './asset-management/asset-management.component';
+import { AssetCategoryComponent } from './asset-management/asset-category/asset-category.component';
+import { NewAssetCategoryComponent } from './asset-management/asset-category/new-asset-category/new-asset-category.component';
+import { FixedAssetComponent } from './fixed-asset/fixed-asset.component';
 
 
 @NgModule({
@@ -57,6 +111,54 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
     SidenavComponent,
     HeaderComponent,
     ForgotPasswordComponent,
+    ChartsOfAccountsComponent,
+    TransactionsComponent,
+    TransationDetailComponent,
+    JournalBalanceComponent,
+    NewTransactionComponent,
+    TransactionMapComponent,
+    TransactionTypeComponent,
+    NewBusinessComponent,
+    OnboardingComponent,
+    AccountingComponent,
+    InventoryComponent,
+    ProductComponent,
+    NewProductComponent,
+    NewSupplierComponent,
+    SaleRegisterComponent,
+    PurchaseRegisterComponent,
+    NewPurchaseRegisterComponent,
+    StockSheetComponent,
+    SalesCreditComponent,
+    SalesReturnComponent,
+    EmployeeComponent,
+    NewEmployeeComponent,
+    DepartmentComponent,
+    PayrollComponent,
+    NewDepartmentComponent,
+    EmploymentTypeComponent,
+    NewEmploymentTypeComponent,
+    EmployeeDeductionComponent,
+    NewEmployeeDeductionComponent,
+    EmployeeEarningComponent,
+    NewEmployeeEarningComponent,
+    EmployeeGradeComponent,
+    NewEmployeeGradeComponent,
+    InvoiceComponent,
+    CustomerComponent,
+    NewCustomerComponent,
+    RecurringInvoiceComponent,
+    NewInvoiceComponent,
+    LoanUserComponent,
+    NewLoanComponent,
+    LoanRequestComponent,
+    RequestLoanComponent,
+    LoanRepayedComponent,
+    LoanComponent,
+    AssetManagementComponent,
+    AssetCategoryComponent,
+    NewAssetCategoryComponent,
+    FixedAssetComponent,
 
   ],
   imports: [
@@ -89,7 +191,7 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
