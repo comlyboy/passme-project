@@ -9,7 +9,16 @@ export class DashboardComponent implements OnInit {
 
   constructor() { }
 
+  onDashFilter(event) {
+    console.log(event)
+  }
+
+  initContent() {
+
+  }
+
   ngOnInit() {
+    this.initContent()
   }
 
 }

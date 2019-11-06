@@ -97,7 +97,7 @@ import { LoanComponent } from './loan/loan.component';
 import { AssetManagementComponent } from './asset-management/asset-management.component';
 import { AssetCategoryComponent } from './asset-management/asset-category/asset-category.component';
 import { NewAssetCategoryComponent } from './asset-management/asset-category/new-asset-category/new-asset-category.component';
-import { FixedAssetComponent } from './fixed-asset/fixed-asset.component';
+import { FixedAssetComponent } from './asset-management/fixed-asset/fixed-asset.component';
 
 
 @NgModule({
