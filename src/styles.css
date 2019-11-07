@@ -28,6 +28,16 @@ a:hover {
     box-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, 0.1);
 }
 
+.directory-card {
+    border-radius: 10px;
+    box-shadow: 0 0 35px 0 rgba(0, 0, 0, .11);
+}
+
+.directory-card:hover {
+    border-radius: 10px;
+    box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.176);
+}
+
 .form-control {
     background-color: #f7f9fc !important;
     border-color: #edf1f7 !important;

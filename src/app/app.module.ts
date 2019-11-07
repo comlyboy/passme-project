@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthInterceptor } from './auth/auth-interceptor';
 
 import { NgxChartsModule } from "@swimlane/ngx-charts";
+import { Angular4PaystackModule } from 'angular4-paystack';
 
 
 // Material
@@ -98,6 +99,7 @@ import { AssetManagementComponent } from './asset-management/asset-management.co
 import { AssetCategoryComponent } from './asset-management/asset-category/asset-category.component';
 import { NewAssetCategoryComponent } from './asset-management/asset-category/new-asset-category/new-asset-category.component';
 import { FixedAssetComponent } from './asset-management/fixed-asset/fixed-asset.component';
+import { IconComponent } from './components/icon/icon.component';
 
 
 @NgModule({
@@ -159,6 +161,7 @@ import { FixedAssetComponent } from './asset-management/fixed-asset/fixed-asset.
     AssetCategoryComponent,
     NewAssetCategoryComponent,
     FixedAssetComponent,
+    IconComponent,
 
   ],
   imports: [

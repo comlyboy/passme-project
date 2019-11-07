@@ -9,14 +9,24 @@ import { ReportsComponent } from './reports/reports.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './auth/auth-guard';
 import { AccountingComponent } from './accounting/accounting.component';
+import { InventoryComponent } from './inventory/inventory.component';
+import { PayrollComponent } from './payroll/payroll.component';
+import { InvoiceComponent } from './invoice/invoice.component';
+import { LoanComponent } from './loan/loan.component';
+import { AssetManagementComponent } from './asset-management/asset-management.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  
-  { path: 'dashboard', component: DashboardComponent},
+
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'accounting', component: AccountingComponent },
+  { path: 'inventory', component: InventoryComponent },
+  { path: 'payroll', component: PayrollComponent },
+  { path: 'invoice', component: InvoiceComponent },
+  { path: 'loan', component: LoanComponent },
+  { path: 'asset-management', component: AssetManagementComponent },
   { path: 'reports', component: ReportsComponent },
 
 ];

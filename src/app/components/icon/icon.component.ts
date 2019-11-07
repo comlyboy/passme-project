@@ -1,0 +1,23 @@
+import { Component, OnInit, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-icon',
+  templateUrl: './icon.component.html',
+  styleUrls: ['./icon.component.css']
+})
+export class IconComponent implements OnInit {
+  
+  @Input() name: string = "";
+
+  private assetBase = "assets/svg";
+
+  get urlFull() {
+    return `${this.assetBase}/${this.name}.svg`
+  }
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
