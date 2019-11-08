@@ -13,7 +13,7 @@ body {
     margin: 0;
     font-size: 14px !important;
     font-family: 'Lato', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, Nuni !important;
-    background-color: #edf1f7 !important;
+    background-color: #fdfdfd !important;
 }
 
 a:hover {
@@ -29,16 +29,28 @@ a:hover {
 }
 
 .directory-card {
+    border-left: solid #1ed199 3px;
     border-radius: 10px;
     box-shadow: 0 0 35px 0 rgba(0, 0, 0, .11);
+    cursor: pointer;
 }
 
 .directory-card:hover {
-    border-radius: 10px;
-    box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.176);
+    transform: scale(1.05) translateY(-3px);
+    box-shadow: 1px 15px 35px -10px rgba(0, 0, 0, 0.4);
+    transition: ease-in .3s;
 }
 
 .form-control {
     background-color: #f7f9fc !important;
-    border-color: #edf1f7 !important;
+    border-color: #b3ecd6 !important;
+    border-radius: 25px;
+}
+
+.btn {
+    border-radius: 30px !important;
+}
+
+.btn:hover {
+    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
 }

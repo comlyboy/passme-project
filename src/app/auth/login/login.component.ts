@@ -11,6 +11,7 @@ import { AuthService } from '../auth.service';
 export class LoginComponent implements OnInit {
   inputType: string = 'password';
   isShownPassword: boolean = false;
+  viewMode = 'login';
 
   constructor(
     private authService: AuthService

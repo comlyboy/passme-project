@@ -1,13 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { FormsModule } from '@angular/forms';
 
 import { AuthInterceptor } from './auth/auth-interceptor';
+import { ErrorInterceptor } from './error-interceptor';
 
 import { NgxChartsModule } from "@swimlane/ngx-charts";
 import { Angular4PaystackModule } from 'angular4-paystack';
@@ -35,15 +36,18 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 // auth
 import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ReportsComponent } from './reports/reports.component';
-import { HomeComponent } from './home/home.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderComponent } from './header/header.component';
-import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
-import { ErrorInterceptor } from './error-interceptor';
+import { HeaderComponent } from './pages/header/header.component';
+import { IconComponent } from './components/icon/icon.component';
+import { NewBusinessComponent } from './pages/new-business/new-business.component';
+import { OnboardingComponent } from './pages/onboarding/onboarding.component';
+
+import { HomeComponent } from './home/home.component';
+
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { AccountingComponent } from './accounting/accounting.component';
 import { ChartsOfAccountsComponent } from './accounting/charts-of-accounts/charts-of-accounts.component';
@@ -53,9 +57,8 @@ import { JournalBalanceComponent } from './accounting/journal-balance/journal-ba
 import { NewTransactionComponent } from './accounting/transactions/new-transaction/new-transaction.component';
 import { TransactionMapComponent } from './accounting/transaction-map/transaction-map.component';
 import { TransactionTypeComponent } from './accounting/transaction-type/transaction-type.component';
+import { AccountingReportComponent } from './reports/accounting-report/accounting-report.component';
 
-import { NewBusinessComponent } from './pages/new-business/new-business.component';
-import { OnboardingComponent } from './pages/onboarding/onboarding.component';
 
 import { InventoryComponent } from './inventory/inventory.component';
 import { ProductComponent } from './inventory/product/product.component';
@@ -99,7 +102,10 @@ import { AssetManagementComponent } from './asset-management/asset-management.co
 import { AssetCategoryComponent } from './asset-management/asset-category/asset-category.component';
 import { NewAssetCategoryComponent } from './asset-management/asset-category/new-asset-category/new-asset-category.component';
 import { FixedAssetComponent } from './asset-management/fixed-asset/fixed-asset.component';
-import { IconComponent } from './components/icon/icon.component';
+
+import { ReportsComponent } from './reports/reports.component';
+
+
 
 
 @NgModule({
@@ -113,16 +119,22 @@ import { IconComponent } from './components/icon/icon.component';
     SidenavComponent,
     HeaderComponent,
     ForgotPasswordComponent,
+
+    NewBusinessComponent,
+    OnboardingComponent,
+
+    // Acounting
+    AccountingReportComponent,
     ChartsOfAccountsComponent,
     TransactionsComponent,
     TransationDetailComponent,
-    JournalBalanceComponent,
+    // JournalBalanceComponent,
     NewTransactionComponent,
     TransactionMapComponent,
     TransactionTypeComponent,
-    NewBusinessComponent,
-    OnboardingComponent,
     AccountingComponent,
+
+    // Inventory
     InventoryComponent,
     ProductComponent,
     NewProductComponent,
@@ -133,6 +145,8 @@ import { IconComponent } from './components/icon/icon.component';
     StockSheetComponent,
     SalesCreditComponent,
     SalesReturnComponent,
+
+    // Payroll
     EmployeeComponent,
     NewEmployeeComponent,
     DepartmentComponent,
@@ -146,21 +160,29 @@ import { IconComponent } from './components/icon/icon.component';
     NewEmployeeEarningComponent,
     EmployeeGradeComponent,
     NewEmployeeGradeComponent,
+
+    // Invoice
     InvoiceComponent,
     CustomerComponent,
     NewCustomerComponent,
     RecurringInvoiceComponent,
     NewInvoiceComponent,
+
+    // Loan
     LoanUserComponent,
     NewLoanComponent,
     LoanRequestComponent,
     RequestLoanComponent,
     LoanRepayedComponent,
     LoanComponent,
+
+    // Asset manage
     AssetManagementComponent,
     AssetCategoryComponent,
     NewAssetCategoryComponent,
     FixedAssetComponent,
+
+
     IconComponent,
 
   ],

@@ -61,10 +61,7 @@ main {
 
 .current {
     color: #1ed199 !important;
-}
-
-.current:hover {
-    background-color: #b8c7ce !important;
+    border-right: #1ed199 solid 5px;
 }
 
 .sidebar a:hover {
