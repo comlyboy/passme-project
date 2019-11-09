@@ -29,7 +29,7 @@ a:hover {
 }
 
 .directory-card {
-    border-left: solid #1ed199 3px;
+    border-left: solid #1ed199 5px;
     border-radius: 10px;
     box-shadow: 0 0 35px 0 rgba(0, 0, 0, .11);
     cursor: pointer;

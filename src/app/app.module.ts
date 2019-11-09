@@ -136,15 +136,15 @@ import { ReportsComponent } from './reports/reports.component';
 
     // Inventory
     InventoryComponent,
-    ProductComponent,
-    NewProductComponent,
-    NewSupplierComponent,
-    SaleRegisterComponent,
-    PurchaseRegisterComponent,
-    NewPurchaseRegisterComponent,
-    StockSheetComponent,
-    SalesCreditComponent,
-    SalesReturnComponent,
+    // ProductComponent,
+    // NewProductComponent,
+    // NewSupplierComponent,
+    // SaleRegisterComponent,
+    // PurchaseRegisterComponent,
+    // NewPurchaseRegisterComponent,
+    // StockSheetComponent,
+    // SalesCreditComponent,
+    // SalesReturnComponent,
 
     // Payroll
     EmployeeComponent,

@@ -33,8 +33,17 @@ const routes: Routes = [
   //     )
   // },
 
+  {
+    path: "inventory",
+    // canActivate: [AuthGuard],
+    loadChildren: () =>
+      import("./inventory/inventory.module").then(
+        m => m.InventoryModule
+      )
+  },
+
   { path: 'accounting', component: AccountingComponent },
-  { path: 'inventory', component: InventoryComponent },
+  // { path: 'inventory', component: InventoryComponent },
   { path: 'payroll', component: PayrollComponent },
   { path: 'invoice', component: InvoiceComponent },
   { path: 'loan', component: LoanComponent },
