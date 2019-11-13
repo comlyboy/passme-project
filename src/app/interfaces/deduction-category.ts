@@ -1,5 +1,5 @@
 
-  export interface DeductionCategory {
+  export interface IDeductionCategory {
     id?: any;
     employee: number;
     description?: string;

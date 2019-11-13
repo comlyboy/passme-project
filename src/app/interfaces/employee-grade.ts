@@ -1,5 +1,5 @@
 
-export interface EmployeeGrade {
+export interface IEmployeeGrade {
     id?: any;
     employee: number;
     description?: string;

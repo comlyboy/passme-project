@@ -18,7 +18,8 @@ export class ErrorInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler) {
         return next.handle(req).pipe(
             catchError((error: HttpErrorResponse) => {
-                this.notificationsService.error(error.error.message);
+                // this.notificationsService.error(error.error.message);
+                console.log(`Found error: ${JSON.stringify(error)}`)
                 return throwError(error)
             })
         );

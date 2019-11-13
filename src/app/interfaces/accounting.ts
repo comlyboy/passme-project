@@ -1,11 +1,12 @@
-export interface ACCOUNT {
+export interface IAccount {
   name: string;
   description: string;
   sector: number;
   account_type: number;
   parent_account: number;
 }
-export interface TRANSACTION {
+
+export interface ITransaction {
   description: "string";
   txn_date: "string";
   amount: 0;

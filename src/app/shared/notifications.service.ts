@@ -39,7 +39,7 @@ export class NotificationsService {
   notAllowed(message) {
     const toast = Swal.mixin({
       toast: true,
-      position: 'top-end',
+      position: 'top',
       showConfirmButton: false,
       timer: 5000,
       grow: 'column'

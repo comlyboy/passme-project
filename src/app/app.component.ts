@@ -1,5 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
+
+
 import { AuthService } from './auth/auth.service';
 
 @Component({
@@ -8,29 +11,42 @@ import { AuthService } from './auth/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  businesses: any[] = [
+    {
+      "name": "Andela ltd"
+    },
+    {
+      "name": "Leviticus lab ltd"
+    },
+  ]
   title = 'passme';
 
-  userIsAuthenticated: boolean = false;
+  userIsAuthenticated: boolean = true;
+
   private authStatusListenerSub: Subscription;
+  router: string;
+
   constructor(
-    private authService: AuthService
-  ) { }
+    private authService: AuthService,
+  ) {
+  }
 
   onLogout() {
     this.authService.logout();
   }
 
   initContents() {
-    this.userIsAuthenticated = this.authService.getIsAuthenticated();
-    this.authStatusListenerSub = this.authService.getAuthenticationStatusListener().subscribe(isAuthenticated => {
-      this.userIsAuthenticated = isAuthenticated;
-    });
     this.authService.automaticAuthenticateUser();
-    console.log(this.userIsAuthenticated)
+    this.userIsAuthenticated = this.authService.getIsAuthenticated();
+    this.authStatusListenerSub = this.authService.getAuthenticationStatusListener()
+      .subscribe(isAuthenticated => {
+        this.userIsAuthenticated = isAuthenticated;
+      });
   }
 
   ngOnInit() {
-    this.initContents();
+    // this.initContents();
   }
 
   ngOnDestroy() {

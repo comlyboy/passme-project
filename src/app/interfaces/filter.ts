@@ -1,5 +1,4 @@
-
-export interface params {
+export interface IParams {
     sidx?: string;
     sord?: string;
     rows?: number;
@@ -9,7 +8,7 @@ export interface params {
     search?: string;
 }
 
-export class AppFilter implements params {
+export class IAppFilter implements IParams {
     sidx: string;
     sord?: string = "desc";
     rows?: number = 10;
@@ -17,7 +16,7 @@ export class AppFilter implements params {
     filters?: string;
     records?: string;
     search?: string;
-    constructor(instance?: params) {
+    constructor(instance?: IParams) {
         Object.assign(this, instance);
     }
 }

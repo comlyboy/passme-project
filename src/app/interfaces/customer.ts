@@ -1,4 +1,4 @@
-export interface Customer {
+export interface ICustomer {
   business: number;
   name: string;
   email: string;

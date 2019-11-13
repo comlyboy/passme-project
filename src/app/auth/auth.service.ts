@@ -2,24 +2,23 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-environment
+
+import { ISignup, ILogin, IUser } from '../interfaces/user';
+
 import { NotificationsService } from '../shared/notifications.service';
-import { ILogin } from "../interfaces/login";
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  API_URL_USER = environment.API_URL
+  API_URL = environment.API_URL
   tenant: string;
-  private authenticationStatusListener = new Subject<boolean>();
-  token: string;
-  isAuthenticated: boolean = false;
-  user: {};
-  // private userDataUpdateListener = new Subject<{
-  //   user: {};
-  // }>();
+  authenticationStatusListener = new Subject<boolean>();
+  private token: string;
+  private isAuthenticated: boolean = false;
+  private user: {};
+  onBoarding: string = "isOnBoarding";
 
   constructor(
     private http: HttpClient,
@@ -37,6 +36,10 @@ export class AuthService {
   getToken() {
     return this.token;
   }
+  // user authentication token
+  getTenent() {
+    return this.tenant;
+  }
 
   // getting if user is authenticated
   getIsAuthenticated() {
@@ -44,10 +47,31 @@ export class AuthService {
   }
 
 
+  // Adding new user
+  signupUser(email: string, password: string) {
+    const signupData: ISignup = {
+      email: email,
+      password: password,
+    };
+    this.http.post(`${this.API_URL}users/`, signupData)
+      .subscribe(response => {
+        localStorage.setItem('tenant', this.onBoarding);
+
+        console.log(response)
+        this.loginUser(email, password)
+        // this.router.navigate(['on-board']);
+      }, error => {
+        console.log(error)
+      });
+  }
+
+
+
   // logging in existing user
-  loginUser(username: string, password: string) {
+  loginUser(email: string, password: string) {
+    // console.log('login' + email, password)
     const loginData: ILogin = {
-      username: username,
+      email: email,
       password: password
     };
     console.log(loginData)
@@ -55,20 +79,10 @@ export class AuthService {
     this.http.post<{
       tenant: string,
       token: string,
-      user: {
-        email: string,
-        first_login: boolean
-        first_name: string
-        id: number
-        is_employee: boolean
-        is_owner: boolean
-        last_name: string
-        middle_name: string
-        username: string
-      }
-    }>(`${this.API_URL_USER}/users/login/`, loginData)
+      user: IUser
+    }>(`${this.API_URL}users/login/`, loginData)
       .subscribe(response => {
-        console.log(response.user)
+        console.log(response)
 
         const _token = response.token;
         this.token = _token;
@@ -79,9 +93,7 @@ export class AuthService {
           this.authenticationStatusListener.next(true);
           this.saveAuthenticationData(this.tenant, _token, this.user);
           this.notificationsService.success(`Welcome ${response.user.username}`);
-          this.router.navigate(['dashboard']);
-
-
+          this.router.navigate(['onboarding']);
         };
       }, error => {
         console.log(error)
@@ -100,26 +112,23 @@ export class AuthService {
     this.user = null;
     this.clearAuthenticationData();
     this.notificationsService.success('logged out Successfull');
-    this.router.navigate(['login']);
+    this.router.navigate(['auth']);
 
   }
 
 
-  // this saves the authentication datas to the browser
-  private saveAuthenticationData(tenant: string, token: string, user: any) {
-    localStorage.setItem('tenant', tenant);
-    localStorage.setItem('token', token);
-    localStorage.setItem('user', user);
-  }
+
 
   // this gets the user authentication data
   private getAuthenticationData() {
+    // console.count("Get Auth ")
+
     const tenant = localStorage.getItem('tenant');
     const token = localStorage.getItem('token');
     const user = localStorage.getItem('user');
+
     // checks availability
-    if (!token || !this.tenant) {
-      console.log(tenant, token)
+    if (!token || !tenant) {
       return;
     }
     return {
@@ -132,9 +141,8 @@ export class AuthService {
   // persists user authentication automatically
   automaticAuthenticateUser() {
     const authenticationInformation = this.getAuthenticationData();
-    console.log(authenticationInformation)
+    // console.log(authenticationInformation)
     if (!authenticationInformation) {
-
       return;
     } else {
       this.tenant = authenticationInformation.tenant;
@@ -145,7 +153,12 @@ export class AuthService {
     }
   }
 
-
+  // this saves the authentication datas to the browser
+  private saveAuthenticationData(tenant: string, token: string, user: any) {
+    localStorage.setItem('tenant', tenant);
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(user));
+  }
 
   // this removes authentication data from the browser
   // this is called during logout

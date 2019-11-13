@@ -31,6 +31,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 // auth
@@ -104,6 +105,7 @@ import { NewAssetCategoryComponent } from './asset-management/asset-category/new
 import { FixedAssetComponent } from './asset-management/fixed-asset/fixed-asset.component';
 
 import { ReportsComponent } from './reports/reports.component';
+import { InventoryRoutingModule } from './inventory/inventory-routing.module';
 
 
 
@@ -192,7 +194,7 @@ import { ReportsComponent } from './reports/reports.component';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-
+    InventoryRoutingModule,
     NgxChartsModule,
 
 
@@ -212,7 +214,8 @@ import { ReportsComponent } from './reports/reports.component';
     MatRippleModule,
     MatTabsModule,
     MatProgressBarModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatAutocompleteModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

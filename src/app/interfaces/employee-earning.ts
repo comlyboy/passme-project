@@ -1,5 +1,5 @@
 
-export interface EmployeeEarning {
+export interface IEmployeeEarning {
     id?: any;
     employee: number;
     amount: string;

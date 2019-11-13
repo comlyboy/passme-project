@@ -38,6 +38,18 @@ export class LoginComponent implements OnInit {
       );
   }
 
+  onSignup(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+
+    this.authService.signupUser
+      (
+        form.value.inputUserName,
+        form.value.inputPassword
+      );
+  }
+
 
 
   ngOnInit() {

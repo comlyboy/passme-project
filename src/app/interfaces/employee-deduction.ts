@@ -1,5 +1,5 @@
 
-export interface EmployeeDeduction {
+export interface IEmployeeDeduction {
     id?: any;
     employee: number;
     amount: string;

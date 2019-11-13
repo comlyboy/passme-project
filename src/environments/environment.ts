@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_URL: "https://api.primacyglobalng.com"
+  API_URL: "https://api.primacyglobalng.com/"
 };
 
 /*

@@ -1,3 +1,138 @@
-<p>
-  onboarding works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-5 col-lg-6 col-xl-6 bg-success min-vh-100 d-flex align-item-center">
+      <!-- <div class="card p-3">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus fugiat, animi quidem nisi culpa corrupti
+        expedita itaque natus ut, corporis quisquam accusantium repellendus maxime vel, possimus autem eos dolores
+        eveniet?
+      </div> -->
+    </div>
+    <div class="col-sm-12 col-md-7 col-lg-6 col-xl-6 p-0 d-flex align-item-center">
+      <div class="card p-5 text-muted">
+        Tell us abut your business
+        <div class="card-body">
+
+          <form (submit)="onSubmitBusiness(businessForm)" #businessForm="ngForm">
+
+
+            <div class="input-group mt-5">
+              <div class="input-group-prepend bg-light" *ngIf="businessName.touched && businessName.valid">
+                <span class="input-group-text bg-white">
+                  <mat-icon class="text-success">done_all</mat-icon>
+                </span>
+              </div>
+              <input type="text" class="form-control form-control-lg" name="inputBusinessName" ngModel minlength="3"
+                autocomplete="off" placeholder="Business name..." #businessName="ngModel" required>
+            </div>
+            <div class="alert alert-danger p-1 m-0" *ngIf="businessName.touched && !businessName.valid">
+              <div *ngIf="businessName.errors.required">
+                This field is required.
+              </div>
+              <div *ngIf="businessName.errors.minlength">
+                Minimum 3 characters needed.
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-6">
+                <div class="input-group mt-5">
+                  <div class="input-group-prepend bg-light" *ngIf="sector.touched && sector.valid">
+                    <span class="input-group-text bg-white">
+                      <mat-icon class="text-success">done_all</mat-icon>
+                    </span>
+                  </div>
+                  <select class="form-control form-control-lg" name="inputSector" ngModel required #sector="ngModel">
+                    <option selected value="">Sector...</option>
+                    <option value="Any sector">Any</option>
+                    <option *ngFor="let sector of sectors" selected [value]="sector.name">
+                      {{  sector.name }}
+                    </option>
+                  </select>
+                </div>
+                <div class="alert alert-danger p-1 m-0" *ngIf="sector.touched && !sector.valid">
+                  <div *ngIf="sector.errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="input-group mt-5">
+                  <div class="input-group-prepend bg-light" *ngIf="currency.touched && currency.valid">
+                    <span class="input-group-text bg-white">
+                      <mat-icon class="text-success">done_all</mat-icon>
+                    </span>
+                  </div>
+                  <select class="form-control form-control-lg" name="inputCurrency" ngModel required
+                    #currency="ngModel">
+                    <option selected value="">Currency...</option>
+                    <option value="Any currency">Any</option>
+                    <option *ngFor="let currency of currencies" selected [value]="currency.name">
+                      {{  currency.name }}
+                    </option>
+                  </select>
+                </div>
+                <div class="alert alert-danger p-1 m-0" *ngIf="currency.touched && !currency.valid">
+                  <div *ngIf="currency.errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="input-group mt-5">
+                  <div class="input-group-prepend bg-light" *ngIf="country.touched && country.valid">
+                    <span class="input-group-text bg-white">
+                      <mat-icon class="text-success">done_all</mat-icon>
+                    </span>
+                  </div>
+                  <select class="form-control form-control-lg" name="inputCountry" ngModel required #country="ngModel">
+                    <option selected value="">Country...</option>
+                    <option value="Any country">Any</option>
+                    <option *ngFor="let country of countries" selected [value]="country.name">
+                      {{  country.name }}
+                    </option>
+                  </select>
+                </div>
+                <div class="alert alert-danger p-1 m-0" *ngIf="country.touched && !country.valid">
+                  <div *ngIf="country.errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="input-group mt-5">
+                  <div class="input-group-prepend bg-light" *ngIf="businessType.touched && businessType.valid">
+                    <span class="input-group-text bg-white">
+                      <mat-icon class="text-success">done_all</mat-icon>
+                    </span>
+                  </div>
+                  <select class="form-control form-control-lg" name="inputBusinessType" ngModel required
+                    #businessType="ngModel">
+                    <option selected value="">Business Type...</option>
+                    <option value="Any businessType">Any</option>
+                    <option *ngFor="let businessType of businessTypes" selected [value]="businessType.name">
+                      {{  businessType.name }}
+                    </option>
+                  </select>
+                </div>
+                <div class="alert alert-danger p-1 m-0" *ngIf="businessType.touched && !businessType.valid">
+                  <div *ngIf="businessType.errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="d-flex justify-content-end">
+              <button mat-raised-button class="btn btn-lg btn-success mt-5 mr-4 py-1" type="submit"
+                [disabled]="!businessForm.valid">Submit</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

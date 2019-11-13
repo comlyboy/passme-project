@@ -1,4 +1,4 @@
-export interface Category {
+export interface ICategory {
     id?: any;
     name: string;
     description?: string;

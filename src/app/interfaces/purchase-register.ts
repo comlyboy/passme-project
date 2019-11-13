@@ -1,4 +1,3 @@
-
 export interface IPurchaseRegister {
     id?: any;
     purchase_date: string;

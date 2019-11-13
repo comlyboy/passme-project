@@ -28,6 +28,27 @@ a:hover {
     box-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, 0.1);
 }
 
+.text-green {
+    color: #1ed199;
+}
+
+.bg-green {
+    background-color: #1ed199;
+}
+
+.form-control {
+    background-color: #f7f9fc !important;
+    border-color: #b3ecd6 !important;
+}
+
+/* .btn {
+    border-radius: 30px !important;
+} */
+
+.btn:hover {
+    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+}
+
 .directory-card {
     border-left: solid #1ed199 5px;
     border-radius: 10px;
@@ -41,16 +62,6 @@ a:hover {
     transition: ease-in .3s;
 }
 
-.form-control {
-    background-color: #f7f9fc !important;
-    border-color: #b3ecd6 !important;
-    border-radius: 25px;
-}
-
-.btn {
-    border-radius: 30px !important;
-}
-
-.btn:hover {
-    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+.pas-card {
+    box-shadow: 0 0 35px 0 rgba(0, 0, 0, .11);
 }
