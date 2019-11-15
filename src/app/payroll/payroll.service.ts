@@ -27,7 +27,7 @@ export class PayrollService {
     public notificationsService: NotificationsService
   ) { }
 
-// ===========================
+  // ===========================
   private allEmployeesUpdated = new Subject<{
     allEmployees: IEmployee[];
   }>();
@@ -98,7 +98,31 @@ export class PayrollService {
       });
   }
 
-  addEmployee() {
+  addEmployee(
+    firstname: string,
+    lastname: string,
+    middlename: string,
+    phone: string,
+    gender: number,
+    dateofBirth: string,
+    country: string,
+    address: string,
+
+  ) {
+    const employeeData: IEmployee = {
+      firstname: firstname,
+      lastname: lastname,
+      middlename: middlename,
+      phone: phone,
+      gender: gender,
+      dateofBirth: dateofBirth,
+      country: country,
+      address: address
+    };
+    console.log(employeeData)
+
+
+
 
   }
 

@@ -19,5 +19,3 @@ export * from './accounting';
 export * from './customer';
 export * from './user';
 export * from './subscription';
-export * from './stock';
-export * from './stock';

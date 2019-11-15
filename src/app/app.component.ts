@@ -22,7 +22,7 @@ export class AppComponent {
   ]
   title = 'passme';
 
-  userIsAuthenticated: boolean = true;
+  userIsAuthenticated: boolean = false;
 
   private authStatusListenerSub: Subscription;
   router: string;
@@ -46,7 +46,7 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    // this.initContents();
+    this.initContents();
   }
 
   ngOnDestroy() {

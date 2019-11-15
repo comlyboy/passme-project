@@ -11,7 +11,6 @@
       <div class="card p-5 text-muted">
         Tell us abut your business
         <div class="card-body">
-
           <form (submit)="onSubmitBusiness(businessForm)" #businessForm="ngForm">
 
 
@@ -43,8 +42,7 @@
                   </div>
                   <select class="form-control form-control-lg" name="inputSector" ngModel required #sector="ngModel">
                     <option selected value="">Sector...</option>
-                    <option value="Any sector">Any</option>
-                    <option *ngFor="let sector of sectors" selected [value]="sector.name">
+                    <option *ngFor="let sector of businessSectors" [value]="sector.id">
                       {{  sector.name }}
                     </option>
                   </select>
@@ -66,10 +64,12 @@
                   <select class="form-control form-control-lg" name="inputCurrency" ngModel required
                     #currency="ngModel">
                     <option selected value="">Currency...</option>
-                    <option value="Any currency">Any</option>
-                    <option *ngFor="let currency of currencies" selected [value]="currency.name">
+                    <option value="NGN">Naira</option>
+                    <option value="USD">Dollar</option>
+                    <!-- <option value="">Any</option> -->
+                    <!-- <option *ngFor="let currency of currencies" selected [value]="currency.name">
                       {{  currency.name }}
-                    </option>
+                    </option> -->
                   </select>
                 </div>
                 <div class="alert alert-danger p-1 m-0" *ngIf="currency.touched && !currency.valid">
@@ -88,10 +88,13 @@
                   </div>
                   <select class="form-control form-control-lg" name="inputCountry" ngModel required #country="ngModel">
                     <option selected value="">Country...</option>
-                    <option value="Any country">Any</option>
-                    <option *ngFor="let country of countries" selected [value]="country.name">
-                      {{  country.name }}
-                    </option>
+                    <option value="NGA">Nigeria</option>
+                    <option value="GHA">Ghana</option>
+                    <option value="UK">UK</option>
+                    <option value="USA">USA</option>
+                    <!-- <option *ngFor="let country of businessCountries" selected [value]="country">
+                      {{  country }}
+                    </option> -->
                   </select>
                 </div>
                 <div class="alert alert-danger p-1 m-0" *ngIf="country.touched && !country.valid">
@@ -111,9 +114,8 @@
                   <select class="form-control form-control-lg" name="inputBusinessType" ngModel required
                     #businessType="ngModel">
                     <option selected value="">Business Type...</option>
-                    <option value="Any businessType">Any</option>
-                    <option *ngFor="let businessType of businessTypes" selected [value]="businessType.name">
-                      {{  businessType.name }}
+                    <option *ngFor="let bType of businessTypes" [value]="bType.id">
+                      {{  bType.name }}
                     </option>
                   </select>
                 </div>

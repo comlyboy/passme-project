@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 })
 export class OnboardingService {
   API_URL = environment.API_URL
-
+  API_URL2 = "https://restcountries.eu/rest/v2/all"
   currencies: any[] = []
   businessSectors: any[] = []
   businessCountries: any[] = []
@@ -56,28 +56,13 @@ export class OnboardingService {
 
   getAll() {
 
-    this.http.get<any>(
-      `${this.API_URL}organization/currencies/`
-    )
-      .subscribe(currencyData => {
-        console.log(currencyData)
-        this.currencies = currencyData;
-        this.allCurrencyUpdated.next({
-          allCurrencies: [...this.currencies]
-        });
-
-      }, error => {
-        console.log(error)
-
-      });
-
 
     this.http
       .get<any>(
         `${this.API_URL}organization/sectors/`
       )
       .subscribe(businessSectorsData => {
-        console.log(businessSectorsData)
+        // console.log(businessSectorsData)
         this.businessSectors = businessSectorsData;
         this.allBusinesSectorsUpdated.next({
           allBusinessSectors: [...this.businessSectors]
@@ -89,21 +74,37 @@ export class OnboardingService {
       });
 
 
-    this.http
-      .get<any>(
-        `${this.API_URL}organization/countries/`
-      )
-      .subscribe(businessCountriesData => {
-        console.log(businessCountriesData)
-        this.businessCountries = businessCountriesData;
-        this.allBusinessCountriesUpdated.next({
-          allBusinessCountries: [...this.businessCountries]
+    // this.http.get<any>(
+    //   `${this.API_URL}organization/currencies/`
+    // )
+    //   .subscribe(currencyData => {
+    //     // console.log(currencyData)
+    //     this.currencies = currencyData;
+    //     this.allCurrencyUpdated.next({
+    //       allCurrencies: [...this.currencies]
+    //     });
 
-        });
-      }, error => {
-        console.log(error)
+    //   }, error => {
+    //     console.log(error)
 
-      });
+    //   });
+
+    // this.http
+    //   .get<any>(
+    //     // this.API_URL2
+    //     `${this.API_URL}organization/countries/`
+    //   )
+    //   .subscribe(businessCountriesData => {
+    //     console.log(businessCountriesData)
+    //     this.businessCountries = businessCountriesData;
+    //     this.allBusinessCountriesUpdated.next({
+    //       allBusinessCountries: [...this.businessCountries]
+
+    //     });
+    //   }, error => {
+    //     console.log(error)
+
+    //   });
 
 
     this.http
@@ -111,7 +112,7 @@ export class OnboardingService {
         `${this.API_URL}organization/business_types/`
       )
       .subscribe(businessTypesData => {
-        console.log(businessTypesData)
+        // console.log(businessTypesData)
         this.businessTypes = businessTypesData;
         this.allBusinessTypesUpdated.next({
           allBusinessTypes: [...this.businessTypes]
@@ -126,23 +127,21 @@ export class OnboardingService {
 
 
   // Create Business
-  createBusiness(businessName: string, sectors: string, currency: string, country: string, businessType: string) {
+  createBusiness(businessName: string, sectors: number, currency: string, country: string, businessType: number) {
     const newBusinessData = {
-      businessName: businessName,
-      sectors: sectors,
-      currency: currency,
+      business_name: businessName,
+      sector: sectors,
+      primary_currency: currency,
       country: country,
-      businessType: businessType
+      business_type: businessType
     };
     console.log(newBusinessData)
+    this.http.post<any>(`${this.API_URL}organization/business/`, newBusinessData).subscribe(response => {
+      console.log(response.key)
+      this.router.navigate(['dashboard']);
+    }, error => {
 
-    // this.http.post<any>(`${this.API_URL}organization/business/`, newBusinessData).subscribe(response => {
-
-    // }, error => {
-    //   console.log(error)
-    //   this.router.navigate(['dashboard']);
-
-    // });
+    });
   }
 
   // // Edit Business

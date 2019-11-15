@@ -33,7 +33,8 @@ a:hover {
 }
 
 .bg-green {
-    background-color: #1ed199;
+    background-color: #1ed199 !important;
+    border-color: #1ed199 !important;
 }
 
 .form-control {

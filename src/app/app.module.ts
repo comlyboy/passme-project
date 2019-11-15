@@ -30,8 +30,12 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatRippleModule } from '@angular/material/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+// import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+// import { MatNativeDateModule } from '@angular/material/core';
+
+import { MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+
 
 
 // auth
@@ -108,6 +112,7 @@ import { ReportsComponent } from './reports/reports.component';
 import { InventoryRoutingModule } from './inventory/inventory-routing.module';
 
 
+import { EmployeeDetailsComponent } from './payroll/employee/employee-details/employee-details.component';
 
 
 @NgModule({
@@ -162,7 +167,7 @@ import { InventoryRoutingModule } from './inventory/inventory-routing.module';
     NewEmployeeEarningComponent,
     EmployeeGradeComponent,
     NewEmployeeGradeComponent,
-
+    EmployeeDetailsComponent,
     // Invoice
     InvoiceComponent,
     CustomerComponent,
@@ -218,6 +223,7 @@ import { InventoryRoutingModule } from './inventory/inventory-routing.module';
     MatAutocompleteModule
   ],
   providers: [
+    MatNativeDateModule, MatDatepickerModule, MatFormFieldModule,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificationsService } from '../shared/notifications.service';
 
 @Component({
   selector: 'app-payroll',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PayrollComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public notificationsService: NotificationsService
+  ) { }
 
   ngOnInit() {
   }

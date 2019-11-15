@@ -11,13 +11,16 @@ import { Subscription } from 'rxjs';
 })
 
 export class OnboardingComponent implements OnInit {
-  businessSector: any[] = []
+  businessSectors: any[] = []
   currencies: any[] = []
   businessCountries: any[] = []
-  businessType: any[] = []
+  businessTypes: any[] = []
 
-  
-  private boardingSub: Subscription;
+
+  private sectorSub: Subscription;
+  private currencySub: Subscription;
+  private countrySub: Subscription;
+  private businesstypeSub: Subscription;
 
   constructor(
     public onboardingService: OnboardingService,
@@ -40,11 +43,30 @@ export class OnboardingComponent implements OnInit {
 
 
   initContent() {
-    // this.onboardingService.getAll()
+    this.onboardingService.getAll()
 
-    this.boardingSub = this.onboardingService.getAllBusinessSectorsUpdateListener().subscribe(sectorData => {
+    this.sectorSub = this.onboardingService.getAllBusinessSectorsUpdateListener()
+      .subscribe(sectorData => {
+        console.log(sectorData)
+        this.businessSectors = sectorData.allBusinessSectors
+      })
 
-    })
+    this.currencySub = this.onboardingService.getAllCurrencyUpdateListener()
+      .subscribe(currencyData => {
+        console.log(currencyData)
+        this.currencies = currencyData.allCurrencies
+      })
+    this.countrySub = this.onboardingService.getAllbusinessCountriesUpdateListener()
+      .subscribe(countriesData => {
+        console.log(countriesData)
+        // this.businessCountries = sectorData.allBusinessCountries
+      })
+
+    this.businesstypeSub = this.onboardingService.getAllBusinessTypesUpdateListener()
+      .subscribe(businessTypesData => {
+        // console.log(businessTypesData)
+        this.businessTypes = businessTypesData.allBusinessTypes
+      })
 
   }
 

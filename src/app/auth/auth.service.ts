@@ -48,18 +48,18 @@ export class AuthService {
 
 
   // Adding new user
-  signupUser(email: string, password: string) {
+  async  signupUser(email: string, password: string) {
     const signupData: ISignup = {
       email: email,
       password: password,
     };
+    console.log(signupData)
     this.http.post(`${this.API_URL}users/`, signupData)
       .subscribe(response => {
-        localStorage.setItem('tenant', this.onBoarding);
+        // localStorage.setItem('tenant', this.onBoarding);
+        console.log(email, password)
 
-        console.log(response)
         this.loginUser(email, password)
-        // this.router.navigate(['on-board']);
       }, error => {
         console.log(error)
       });
@@ -158,6 +158,7 @@ export class AuthService {
     localStorage.setItem('tenant', tenant);
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
+    this.router.navigate(['onboarding']);
   }
 
   // this removes authentication data from the browser

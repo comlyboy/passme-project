@@ -1,3 +1,189 @@
-<p>
-  new-employee works!
-</p>
+<div class="container pt-4">
+  <div class="card mt-5">
+    <div class="card-header bg-white h5">
+      <a routerLink="/payroll/employee">
+        <mat-icon class="text-green">arrow_back</mat-icon>
+      </a>
+    </div>
+    <div class="card-body text-center">
+      <form (submit)="onSubmitEmployee(employeeForm)" #employeeForm="ngForm">
+        <div class="row text-muted">
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-6">
+            <div class="input-group mt-4">
+              <div class="input-group-prepend bg-light" *ngIf="firstname.touched && firstname.valid">
+                <span class="input-group-text bg-white">
+                  <mat-icon class="text-green">done_all</mat-icon>
+                </span>
+              </div>
+              <input type="text" class="form-control form-control-lg" name="inputFirstName" ngModel required
+                minlength="3" autocomplete="off" placeholder="First Name..." #firstname="ngModel" required>
+            </div>
+            <div class="alert alert-danger p-1 m-0" *ngIf="firstname.touched && !firstname.valid">
+              <div *ngIf="firstname.errors.required">
+                This field is required.
+              </div>
+              <div *ngIf="firstname.errors.minlength">
+                Minimum 3 characters needed.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-6">
+            <div class="input-group mt-4">
+              <div class="input-group-prepend bg-light" *ngIf="lastname.touched && lastname.valid">
+                <span class="input-group-text bg-white">
+                  <mat-icon class="text-green">done_all</mat-icon>
+                </span>
+              </div>
+              <input type="text" class="form-control form-control-lg" name="inputLastName" ngModel minlength="3"
+                autocomplete="off" placeholder="Last Name..." #lastname="ngModel" required>
+            </div>
+            <div class="alert alert-danger p-1 m-0" *ngIf="lastname.touched && !lastname.valid">
+              <div *ngIf="lastname.errors.required">
+                This field is required.
+              </div>
+              <div *ngIf="lastname.errors.minlength">
+                Minimum 3 characters needed.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-6">
+            <div class="input-group mt-4">
+              <div class="input-group-prepend bg-light" *ngIf="middlename.touched && middlename.valid">
+                <span class="input-group-text bg-white">
+                  <mat-icon class="text-green">done_all</mat-icon>
+                </span>
+              </div>
+              <input type="text" class="form-control form-control-lg" name="inputMiddleName" ngModel minlength="3"
+                autocomplete="off" placeholder="Middle Name..." #middlename="ngModel" required>
+            </div>
+            <div class="alert alert-danger p-1 m-0" *ngIf="middlename.touched && !middlename.valid">
+              <div *ngIf="middlename.errors.required">
+                This field is required.
+              </div>
+              <div *ngIf="middlename.errors.minlength">
+                Minimum 3 characters needed.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-6">
+            <div class="input-group mt-4">
+              <div class="input-group-prepend bg-light" *ngIf="dob.touched && dob.valid">
+                <span class="input-group-text bg-white">
+                  <mat-icon class="text-green">done_all</mat-icon>
+                </span>
+              </div>
+              <input type="date" class="form-control form-control-lg" name="inputDOB" ngModel required dob minlength="5"
+                autocomplete="off" placeholder="dob..." #dob="ngModel">
+            </div>
+            <div class="alert alert-danger p-1 m-0" *ngIf="dob.touched && !dob.valid">
+              <div *ngIf="dob.errors.required">
+                This field is required.
+              </div>
+              <div *ngIf="dob.errors.minlength">
+                Minimum 5 characters needed.
+              </div>
+              <div *ngIf="dob.errors.dob">
+                dob characters needed.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-6">
+            <div class="input-group mt-4">
+              <div class="input-group-prepend bg-light" *ngIf="phonenumber.touched && phonenumber.valid">
+                <span class="input-group-text bg-white">
+                  <mat-icon class="text-green">done_all</mat-icon>
+                </span>
+              </div>
+              <input type="text" class="form-control form-control-lg" name="inputPhoneNumber" ngModel required
+                minlength="7" autocomplete="off" placeholder="Phone Number..." #phonenumber="ngModel">
+            </div>
+            <div class="alert alert-danger p-1 m-0" *ngIf="phonenumber.touched && !phonenumber.valid">
+              <div *ngIf="phonenumber.errors.required">
+                This field is required.
+              </div>
+              <div *ngIf="phonenumber.errors.minlength">
+                Minimum 7 numbers needed.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-6">
+            <div class="input-group mt-4">
+              <div class="input-group-prepend bg-light" *ngIf="country.touched && country.valid">
+                <span class="input-group-text bg-white">
+                  <mat-icon class="text-green">done_all</mat-icon>
+                </span>
+              </div>
+              <select class="form-control form-control-lg" name="inputCountry" ngModel required #country="ngModel">
+                <option selected value="">Country...</option>
+                <option value="NGA">Nigeria</option>
+                <option value="GHA">Ghana</option>
+
+              </select>
+            </div>
+            <div class="alert alert-danger p-1 m-0" *ngIf="country.touched && !country.valid">
+              <div *ngIf="country.errors.required">
+                This field is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-6">
+            <div class="input-group mt-4">
+              <div class="input-group-prepend bg-light" *ngIf="gender.touched && gender.valid">
+                <span class="input-group-text bg-white">
+                  <mat-icon class="text-green">done_all</mat-icon>
+                </span>
+              </div>
+              <select class="form-control form-control-lg" name="inputGender" ngModel required #gender="ngModel">
+                <option selected value="">Gender...</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+
+              </select>
+            </div>
+            <div class="alert alert-danger p-1 m-0" *ngIf="gender.touched && !gender.valid">
+              <div *ngIf="gender.errors.required">
+                This field is required.
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-sm-12 col-md-6 col-lg-12 col-xl-12">
+            <div class="input-group mt-4">
+              <div class="input-group-prepend bg-light" *ngIf="address.touched && address.valid">
+                <span class="input-group-text bg-white">
+                  <mat-icon class="text-green">done_all</mat-icon>
+                </span>
+              </div>
+              <textarea class="form-control form-control-lg" name="inputAddress" ngModel required minlength="3"
+                autocomplete="off" placeholder="address..." #address="ngModel"></textarea>
+            </div>
+            <div class="alert alert-danger p-1 m-0" *ngIf="address.touched && !address.valid">
+              <div *ngIf="address.errors.required">
+                This field is required.
+              </div>
+              <div *ngIf="address.errors.minlength">
+                Minimum 3 characters needed.
+              </div>
+            </div>
+          </div>
+        </div><br>
+        <!-- <div class="lead text-danger font-italic" *ngIf="!employeeForm.valid">Input all customer details to
+                    unlock button</div> -->
+
+        <div class="modal-footer">
+          <button mat-raised-button class="btn btn-primary btn-lg bg-green  font-weight-bold py-1 mt-4" type="submit"
+            [disabled]="!employeeForm.valid">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
