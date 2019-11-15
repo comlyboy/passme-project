@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PayrollService } from '../../payroll.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-new-employee',
@@ -8,7 +9,8 @@ import { PayrollService } from '../../payroll.service';
   styleUrls: ['./new-employee.component.css']
 })
 export class NewEmployeeComponent implements OnInit {
-
+  private genderSub: Subscription;
+  genders: any[];
   constructor(
     public payrollService: PayrollService
   ) { }
@@ -34,6 +36,13 @@ export class NewEmployeeComponent implements OnInit {
 
 
   ngOnInit() {
+
+    this.payrollService.getGender()
+    this.genderSub = this.payrollService.getAllGendersUpdateListener()
+      .subscribe(genderData => {
+        console.log(genderData)
+        this.genders = genderData.allGenders
+      })
   }
 
 }

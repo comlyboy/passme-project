@@ -16,11 +16,11 @@
             </div>-->
             <ul class="list-inline ml-4">
                 <div class="input-group float-right">
-                    <select class="form-control" name="inputBusiness" ngModel #branch="ngModel">
-                        <option selected *ngFor="let business of businesses" [value]="business.name">
-                            {{  business.name }}
+                    <select class="form-control" (change)="onBusinessFilter($event.target.value)">
+                        <option selected value="">Business...</option>
+                        <option *ngFor=" let business of businesses" [value]="business.key">
+                            {{  business.business_name }}
                         </option>
-                        <!-- <option selected value="">Abc company</option> -->
 
                     </select>
                     <div class="input-group-append">
@@ -47,8 +47,7 @@
     </mat-toolbar>
     <!-- mode="side" -->
 
-    <mat-drawer #drawer class="sidebar lead font-weight-bold" mode="side"
-        [opened]="userIsAuthenticated">
+    <mat-drawer #drawer class="sidebar lead font-weight-bold" mode="side" [opened]="userIsAuthenticated">
 
         <div class="sidebar-content">
             <div class="text-center mt-2 p-0">

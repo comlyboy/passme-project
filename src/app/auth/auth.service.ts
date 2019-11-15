@@ -66,7 +66,6 @@ export class AuthService {
   }
 
 
-
   // logging in existing user
   loginUser(email: string, password: string) {
     // console.log('login' + email, password)

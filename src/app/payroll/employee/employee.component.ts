@@ -19,12 +19,20 @@ export class EmployeeComponent implements OnInit {
     public payrollService: PayrollService,
   ) { }
 
-  
-  initContent() {
 
+  initContent() {
+    this.payrollService.getEmployee()
+    this.employeeSub = this.payrollService.getAllEmployeesUpdateListener()
+      .subscribe(employeeData => {
+        console.log(employeeData)
+        this.employees = employeeData.allEmployees
+      })
   }
+
+
   ngOnInit() {
     this.initContent()
   }
+
 
 }

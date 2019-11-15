@@ -142,9 +142,9 @@
               </div>
               <select class="form-control form-control-lg" name="inputGender" ngModel required #gender="ngModel">
                 <option selected value="">Gender...</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-
+                <option *ngFor="let gender of genders" [value]="gender.id">
+                  {{  gender.name }}
+                </option>
               </select>
             </div>
             <div class="alert alert-danger p-1 m-0" *ngIf="gender.touched && !gender.valid">

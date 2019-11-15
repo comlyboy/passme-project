@@ -17,8 +17,8 @@
     <div class="col-sm-12 col-md-6 col-lg-3 col-xl-7">
       <form (submit)="onSearch(filterDeviceForm)" #filterDeviceForm="ngForm">
         <div class="input-group my-1">
-          <input type="text" class="form-control form-control-lg" name="filtersearch" ngModel
-            name="inputSearch" autocomplete="off" placeholder="Search employee...">
+          <input type="text" class="form-control form-control-lg" name="filtersearch" ngModel name="inputSearch"
+            autocomplete="off" placeholder="Search employee...">
           <div class="input-group-prepend">
             <button mat-button type="submit" class="btn btn-lg btn-success bg-green">
               <mat-icon>search</mat-icon>
@@ -49,32 +49,24 @@
             <th scope="col">Phone number</th>
             <th scope="col">Date of Birth</th>
             <th scope="col">Gender </th>
-            <th scope="col">Departments </th>
+            <!-- <th scope="col">Departments </th> -->
             <th scope="col">Address</th>
-            <th scope="col">Employee Type </th>
+            <!-- <th scope="col">Employee Type </th> -->
             <th scope="col">Employ date</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody id="employee-table-list" class="bg-white">
-          <tr>
-            <td class="pointerr">
-              jgfdgkshdj</td>
-            <td class="pointerr">
-              jgfdgkshdj</td>
-            <td class="pointerr">
-              jgfdgkshdj</td>
-            <td class="pointerr">
-              jgfdgkshdj</td>
-            <td class="pointerr">
-              jgfdgkshdj</td>
-            <td class="pointerr">
-              jgfdgkshdj</td>
-            <td class="pointerr">
-              jgfdgkshdj</td>
-            <td class="pointerr">
-              jgfdgkshdj</td>
-            <td class="text-truncate" style="max-width: 150px;"> tyrhngfffggnfgdfdfs</td>
+          <tr *ngFor="let employee of employees">
+            <td>{{ employee.id }}</td>
+            <td>{{ employee.firstname }} {{ employee.middlename | titlecase }} {{ employee.lastname }} </td>
+            <td>{{ employee.phone }}</td>
+            <td>{{ employee.dateofBirth }}</td>
+            <td>{{ employee.gender }}</td>
+            <td>{{ employee.address }}</td>
+            <td>{{ employee.date_created | date:'mediumDate' }}</td>
+
+            <!-- <td class="text-truncate" style="max-width: 150px;"> tyrhngfffggnfgdfdfs</td> -->
             <td class="p-0">
               <button type="button" matTooltip="Edit employee?" matTooltipPosition="left"
                 class="btn btn-sm btn-warning py-1 m-1 rounded-0">
@@ -87,40 +79,6 @@
             </td>
           </tr>
 
-          <tr *ngFor="let customer of employees">
-            <td>{{ customer.createdAt | date:'longDate' }}</td>
-            <td [routerLink]="['/customer', customer.firstName, customer._id]" class="my-ppointer">
-              {{ customer.firstName | titlecase }} {{ customer.lastName | titlecase }}</td>
-            <td [routerLink]="['/customer', customer.firstName, customer._id]" class="my-ppointer">
-              {{ customer.email }}</td>
-            <td [routerLink]="['/customer', customer.firstName, customer._id]" class="my-ppointer">
-              {{ customer.phoneNumber }}</td>
-            <td [routerLink]="['/customer', customer.firstName, customer._id]" class="my-ppointer">
-              {{ customer.deviceType }}</td>
-            <td [routerLink]="['/customer', customer.firstName, customer._id]" class="my-ppointer">
-              {{ customer.brandModel }}</td>
-            <td [routerLink]="['/customer', customer.firstName, customer._id]" class="my-ppointer">
-              {{ customer.imeiNumber }}</td>
-            <td [routerLink]="['/customer', customer.firstName, customer._id]" class="my-ppointer text-right">
-              {{ customer.amount | number }}</td>
-            <td [routerLink]="['/customer', customer.firstName, customer._id]" class="my-ppointer text-right">
-              {{ customer.advance | number }}</td>
-            <td [class.green-text]="customer.status == 'Repaired'" [class.text-danger]="customer.status == 'Unrepaired'"
-              [class.my-text]="customer.status == 'In progress'" [class.text-secondary]="customer.isDelivered == true"
-              [routerLink]="['/customer', customer.firstName, customer._id]" class="my-ppointer">
-              {{ customer.status }} <span *ngIf="customer.isDelivered == true && customer.status == 'Repaired'"><i
-                  class="fa fa-truck fa-flip-horizontal ml-2"></i>
-              </span></td>
-            <td class="text-truncate" style="max-width: 150px;"> {{ customer.description }}</td>
-            <td class="p-0">
-              <button type="button" [routerLink]="['/customer/edit', customer._id]" matTooltip="Edit customer?"
-                matTooltipPosition="left" class="btn btn-sm btn-warning py-1 m-1 rounded-0"><i
-                  class="fas fa-edit"></i></button>
-              <button type="button" class="btn btn-sm btn-danger py-1 m-1 rounded-0"
-                (click)="onDeleteDialog(customer._id)" matTooltip="Delete customer?" matTooltipPosition="left"><i
-                  class="fas fa-trash-alt"></i></button>
-            </td>
-          </tr>
         </tbody>
       </table>
       <div class="lead col-12 mt-4 text-muted font-italic d-flex align-items-center flex-column bd-highlight"

@@ -13,7 +13,6 @@ import { environment } from 'src/environments/environment';
 })
 export class OnboardingService {
   API_URL = environment.API_URL
-  API_URL2 = "https://restcountries.eu/rest/v2/all"
   currencies: any[] = []
   businessSectors: any[] = []
   businessCountries: any[] = []
@@ -137,7 +136,10 @@ export class OnboardingService {
     };
     console.log(newBusinessData)
     this.http.post<any>(`${this.API_URL}organization/business/`, newBusinessData).subscribe(response => {
-      console.log(response.key)
+      let key = response.key
+      console.log("key" + key)
+      localStorage.setItem('key', key);
+
       this.router.navigate(['dashboard']);
     }, error => {
 

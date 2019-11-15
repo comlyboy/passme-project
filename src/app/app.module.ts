@@ -113,6 +113,8 @@ import { InventoryRoutingModule } from './inventory/inventory-routing.module';
 
 
 import { EmployeeDetailsComponent } from './payroll/employee/employee-details/employee-details.component';
+import { GenderComponent } from './gender/gender.component';
+import { NewGenderComponent } from './gender/new-gender/new-gender.component';
 
 
 @NgModule({
@@ -191,6 +193,12 @@ import { EmployeeDetailsComponent } from './payroll/employee/employee-details/em
 
 
     IconComponent,
+
+
+    GenderComponent,
+
+
+    NewGenderComponent,
 
   ],
   imports: [

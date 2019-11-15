@@ -20,6 +20,7 @@ export class PayrollService {
   employeeEarning: IEmployeeEarning[] = []
   employeeGrade: IEmployeeGrade[] = []
   employeeType: IEmployeeType[] = []
+  genders: any;
 
   constructor(
     private http: HttpClient,
@@ -45,6 +46,11 @@ export class PayrollService {
   }>();
 
 
+  private allGenderUpdated = new Subject<{
+    allGenders: any[];
+  }>();
+
+
   // ===============================
   getAllEmployeesUpdateListener() {
     return this.allEmployeesUpdated.asObservable();
@@ -57,6 +63,11 @@ export class PayrollService {
   }
   getAllEmployeeEarningsUpdateListener() {
     return this.allDepartmentsUpdated.asObservable();
+  }
+
+
+  getAllGendersUpdateListener() {
+    return this.allGenderUpdated.asObservable();
   }
 
 
@@ -84,12 +95,14 @@ export class PayrollService {
   // employee =====================
 
   getEmployee() {
-    this.http.get<IEmployee>(
-      `${this.API_URL}organization/urrencies/`
+    const key = localStorage.getItem('key');
+
+    this.http.get<any>(
+      `${this.API_URL}payroll/${key}/employees/`
     )
       .subscribe(employeeData => {
         console.log(employeeData)
-        // this.employees = employeeData;
+        this.employees = employeeData
         this.allEmployeesUpdated.next({
           allEmployees: [...this.employees]
         });
@@ -109,6 +122,8 @@ export class PayrollService {
     address: string,
 
   ) {
+    const key = localStorage.getItem('key');
+
     const employeeData: IEmployee = {
       firstname: firstname,
       lastname: lastname,
@@ -120,10 +135,36 @@ export class PayrollService {
       address: address
     };
     console.log(employeeData)
+    this.http.post(`${this.API_URL}payroll/${key}/employees/`, employeeData)
+      .subscribe(response => {
+        console.log(response)
+        this.notificationsService.success("Employee added!!")
+      }, error => {
+        console.log(error)
+      });
+
+
+
+  }
 
 
 
 
+
+  getGender() {
+    const key = localStorage.getItem('key');
+
+    this.http.get<any>(
+      `${this.API_URL}/payroll/${key}/genders/`
+    )
+      .subscribe(genderData => {
+        this.genders = genderData
+        this.allGenderUpdated.next({
+          allGenders: [...this.genders]
+        });
+      }, error => {
+        console.log(error)
+      });
   }
 
 

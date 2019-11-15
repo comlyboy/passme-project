@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 
 import { AuthService } from './auth/auth.service';
+import { BusinessService } from './shared/business.service';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-root',
@@ -11,25 +13,25 @@ import { AuthService } from './auth/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
-  businesses: any[] = [
-    {
-      "name": "Andela ltd"
-    },
-    {
-      "name": "Leviticus lab ltd"
-    },
-  ]
   title = 'passme';
 
+  businesses: any[] = [];
+
+  businessKey: string = "";
   userIsAuthenticated: boolean = false;
 
   private authStatusListenerSub: Subscription;
-  router: string;
+  private businessSub: Subscription;
 
   constructor(
     private authService: AuthService,
+    private businessService: BusinessService
   ) {
+  }
+
+  onBusinessFilter(value) {
+    this.businessKey = value
+    localStorage.setItem('key', this.businessKey);
   }
 
   onLogout() {
@@ -43,6 +45,12 @@ export class AppComponent {
       .subscribe(isAuthenticated => {
         this.userIsAuthenticated = isAuthenticated;
       });
+
+    this.businessService.getUserBusiness()
+    this.businessSub = this.businessService.getAllBusinessUpdateListener()
+      .subscribe(businessData => {
+        this.businesses = businessData.allBusiness
+      })
   }
 
   ngOnInit() {

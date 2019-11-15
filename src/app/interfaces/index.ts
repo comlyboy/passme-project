@@ -19,3 +19,4 @@ export * from './accounting';
 export * from './customer';
 export * from './user';
 export * from './subscription';
+export * from './gender';
