@@ -134,11 +134,12 @@ export class PayrollService {
       country: country,
       address: address
     };
-    console.log(employeeData)
-    this.http.post(`${this.API_URL}payroll/${key}/employees/`, employeeData)
+    this.http.post<IEmployee>(`${this.API_URL}payroll/${key}/employees/`, employeeData)
       .subscribe(response => {
         console.log(response)
-        this.notificationsService.success("Employee added!!")
+        this.notificationsService.success(`${response.firstname} successfully added!!`)
+        this.router.navigate(['payroll/employee']);
+
       }, error => {
         console.log(error)
       });

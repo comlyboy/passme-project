@@ -9,7 +9,6 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  inputType: string = 'password';
   isShownPassword: boolean = false;
   viewMode = 'login';
 
@@ -17,14 +16,6 @@ export class LoginComponent implements OnInit {
     private authService: AuthService
   ) { }
 
-  revealPassword() {
-    if (this.isShownPassword) {
-      this.inputType = "password";
-    } else {
-      this.isShownPassword = true;
-      this.inputType = "text";
-    }
-  }
 
   onLogin(form: NgForm) {
     if (form.invalid) {
@@ -45,7 +36,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.signupUser
       (
-        form.value.inputUserName,
+        form.value.inputEmail,
         form.value.inputPassword
       );
   }

@@ -5,7 +5,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { AuthService } from './auth/auth.service';
 import { BusinessService } from './shared/business.service';
-import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-root',
@@ -38,6 +37,16 @@ export class AppComponent {
     this.authService.logout();
   }
 
+  onBusinessClick() {
+    if (this.userIsAuthenticated) {
+      this.businessService.getUserBusiness()
+      this.businessSub = this.businessService.getAllBusinessUpdateListener()
+        .subscribe(businessData => {
+          this.businesses = businessData.allBusiness
+        })
+    }
+  }
+
   initContents() {
     this.authService.automaticAuthenticateUser();
     this.userIsAuthenticated = this.authService.getIsAuthenticated();
@@ -45,12 +54,7 @@ export class AppComponent {
       .subscribe(isAuthenticated => {
         this.userIsAuthenticated = isAuthenticated;
       });
-
-    this.businessService.getUserBusiness()
-    this.businessSub = this.businessService.getAllBusinessUpdateListener()
-      .subscribe(businessData => {
-        this.businesses = businessData.allBusiness
-      })
+    this.onBusinessClick()
   }
 
   ngOnInit() {

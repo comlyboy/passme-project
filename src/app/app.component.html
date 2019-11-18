@@ -1,4 +1,5 @@
 <mat-drawer-container class="containerr" autosize>
+    <!-- <app-header *ngIf="userIsAuthenticated"></app-header> -->
     <mat-toolbar class="my-toolbar bg-white container-fluid" *ngIf="userIsAuthenticated">
 
         <div class="row mt-3">
@@ -16,12 +17,11 @@
             </div>-->
             <ul class="list-inline ml-4">
                 <div class="input-group float-right">
-                    <select class="form-control" (change)="onBusinessFilter($event.target.value)">
+                    <select class="form-control"  (click)="onBusinessClick()" (change)="onBusinessFilter($event.target.value)">
                         <option selected value="">Business...</option>
                         <option *ngFor=" let business of businesses" [value]="business.key">
                             {{  business.business_name }}
                         </option>
-
                     </select>
                     <div class="input-group-append">
                         <span class="input-group-text bg-green text-white">New</span>

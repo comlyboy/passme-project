@@ -1,11 +1,40 @@
-<mat-toolbar class="my-toolbar bg-white container-fluid" *ngIf="!userIsAuthenticated">
-  <a class="pointerr ml-4 text-muted" (click)="drawer.toggle()">
-    <mat-icon>dehaze</mat-icon>
-  </a>
+<mat-toolbar class="my-toolbar bg-white container-fluid">
+
+  <div class="row mt-3">
+    <a class="pointerr ml-5 text-muted" (click)="drawer.toggle()">
+      <mat-icon>reorder</mat-icon>
+    </a>
+    <!-- <div class="input-group">
+            <select class="form-control" name="inputBranch" ngModel #branch="ngModel">
+                <option selected value="">Branch...</option>
+                <option value="Any branch">Any</option>
+                <option *ngFor="let branch of branches" selected [value]="branch.name">
+                    {{  branch.name }}
+                </option>
+            </select>
+        </div>-->
+    <ul class="list-inline ml-4">
+      <div class="input-group float-right">
+        <select class="form-control" (change)="onBusinessFilter($event.target.value)">
+          <option selected value="">Business...</option>
+          <option *ngFor=" let business of businesses" [value]="business.key">
+            {{  business.business_name }}
+          </option>
+
+        </select>
+        <div class="input-group-append">
+          <span class="input-group-text bg-green text-white">New</span>
+        </div>
+      </div>
+
+    </ul>
+
+  </div>
+
   <!-- <p class="font-weight-bold mb-0 ml-5 h5">{{ title }}</p> -->
   <button class="btn btn-lg ml-auto text-muted py-0 mr-5" mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon>account_circle</mat-icon>
-    <mat-icon>arrow_drop_down</mat-icon>
+    <mat-icon>expand_more</mat-icon>
   </button>
   <mat-menu #menu="matMenu" xPosition="before">
     <ng-template matMenuContent>

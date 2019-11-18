@@ -17,7 +17,7 @@ export class AuthService {
   authenticationStatusListener = new Subject<boolean>();
   private token: string;
   private isAuthenticated: boolean = false;
-  private user: {};
+  private user;
   onBoarding: string = "isOnBoarding";
 
   constructor(
@@ -48,18 +48,19 @@ export class AuthService {
 
 
   // Adding new user
-  async  signupUser(email: string, password: string) {
+  signupUser(email: string, password: string) {
     const signupData: ISignup = {
       email: email,
       password: password,
     };
-    console.log(signupData)
-    this.http.post(`${this.API_URL}users/`, signupData)
+    this.http.post<{
+      tenant: string,
+      token: string,
+      user: IUser
+    }>(`${this.API_URL}users/`, signupData)
       .subscribe(response => {
-        // localStorage.setItem('tenant', this.onBoarding);
-        console.log(email, password)
-
         this.loginUser(email, password)
+
       }, error => {
         console.log(error)
       });
@@ -68,21 +69,17 @@ export class AuthService {
 
   // logging in existing user
   loginUser(email: string, password: string) {
-    // console.log('login' + email, password)
     const loginData: ILogin = {
       email: email,
       password: password
     };
     console.log(loginData)
-
     this.http.post<{
       tenant: string,
       token: string,
       user: IUser
     }>(`${this.API_URL}users/login/`, loginData)
       .subscribe(response => {
-        console.log(response)
-
         const _token = response.token;
         this.token = _token;
         if (_token) {
@@ -91,8 +88,14 @@ export class AuthService {
           this.user = response.user;
           this.authenticationStatusListener.next(true);
           this.saveAuthenticationData(this.tenant, _token, this.user);
+          // console.log(this.user.first_login)
           this.notificationsService.success(`Welcome ${response.user.username}`);
-          this.router.navigate(['onboarding']);
+          if (this.user.first_login) {
+            this.router.navigate(['onboarding']);
+
+          } else {
+            this.router.navigate(['dashboard']);
+          }
         };
       }, error => {
         console.log(error)
@@ -112,7 +115,6 @@ export class AuthService {
     this.clearAuthenticationData();
     this.notificationsService.success('logged out Successfull');
     this.router.navigate(['auth']);
-
   }
 
 
@@ -120,8 +122,6 @@ export class AuthService {
 
   // this gets the user authentication data
   private getAuthenticationData() {
-    // console.count("Get Auth ")
-
     const tenant = localStorage.getItem('tenant');
     const token = localStorage.getItem('token');
     const user = localStorage.getItem('user');
@@ -149,6 +149,7 @@ export class AuthService {
       this.isAuthenticated = true;
       this.user = authenticationInformation.user;
       this.authenticationStatusListener.next(true);
+      console.log(this.user)
     }
   }
 
@@ -157,7 +158,7 @@ export class AuthService {
     localStorage.setItem('tenant', tenant);
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
-    this.router.navigate(['onboarding']);
+    // this.router.navigate(['onboarding']);
   }
 
   // this removes authentication data from the browser
@@ -166,6 +167,7 @@ export class AuthService {
     localStorage.removeItem('tenant');
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('key');
   }
 
 

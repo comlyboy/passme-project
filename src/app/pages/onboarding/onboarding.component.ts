@@ -47,18 +47,15 @@ export class OnboardingComponent implements OnInit {
 
     this.sectorSub = this.onboardingService.getAllBusinessSectorsUpdateListener()
       .subscribe(sectorData => {
-        console.log(sectorData)
         this.businessSectors = sectorData.allBusinessSectors
       })
 
     this.currencySub = this.onboardingService.getAllCurrencyUpdateListener()
       .subscribe(currencyData => {
-        console.log(currencyData)
         this.currencies = currencyData.allCurrencies
       })
     this.countrySub = this.onboardingService.getAllbusinessCountriesUpdateListener()
       .subscribe(countriesData => {
-        console.log(countriesData)
         // this.businessCountries = sectorData.allBusinessCountries
       })
 
@@ -70,8 +67,12 @@ export class OnboardingComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.initContent()
+
+  }
+
+  ngOnInit() {
 
   }
 

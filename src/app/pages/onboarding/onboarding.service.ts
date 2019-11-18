@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 
 import { NotificationsService } from 'src/app/shared/notifications.service';
 import { environment } from 'src/environments/environment';
-
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,7 @@ export class OnboardingService {
   constructor(
     private http: HttpClient,
     private router: Router,
+    private authService: AuthService,
     public notificationsService: NotificationsService
   ) { }
 
@@ -139,7 +140,7 @@ export class OnboardingService {
       let key = response.key
       console.log("key" + key)
       localStorage.setItem('key', key);
-
+      this.notificationsService.success("Welcome!");
       this.router.navigate(['dashboard']);
     }, error => {
 
