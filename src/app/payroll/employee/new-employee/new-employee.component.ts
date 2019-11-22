@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./new-employee.component.css']
 })
 export class NewEmployeeComponent implements OnInit {
+  viewMode = "employee"
   private genderSub: Subscription;
   genders: any[];
   constructor(
@@ -30,19 +31,39 @@ export class NewEmployeeComponent implements OnInit {
         form.value.inputGender,
         form.value.inputDOB,
         form.value.inputCountry,
-        form.value.inputAddress
+        form.value.inputAddress,
+
+        form.value.inputNokName,
+        form.value.inputNokPhoneNumber,
+        form.value.inputNokEmail
       );
+
   }
 
 
-  ngOnInit() {
+  // onSubmitNOK(form: NgForm) {
+  //   if (form.invalid) {
+  //     return;
+  //   }
 
-    this.payrollService.getGender()
+  //   this.payrollService.addEmployeeNok
+  //     (
+  //       form.value.inputNokName,
+  //       form.value.inputNokPhoneNumber,
+  //       form.value.inputNokEmail,
+  //     );
+  // }
+
+  initContent() {
     this.genderSub = this.payrollService.getAllGendersUpdateListener()
       .subscribe(genderData => {
-        console.log(genderData)
         this.genders = genderData.allGenders
       })
+  }
+  
+  ngOnInit() {
+    this.initContent();
+    this.payrollService.getGender()
   }
 
 }

@@ -1,16 +1,27 @@
-<div class="container pt-4">
-  <div class="card mt-5">
+<div class="container-fluid px-5">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-transparent my-4 row py-1">
+      <li class="breadcrumb-item h5 text-green"><a class="text-green" routerLink="/payroll/employee">
+          Employees
+        </a></li>
+      <li class="breadcrumb-item active h5" aria-current="page">New Employee
+      </li>
+    </ol>
+  </nav>
+</div>
+
+<div class="container">
+  <div class="card mt-3 text-muted">
     <div class="card-header bg-white h5">
-      <a routerLink="/payroll/employee">
-        <mat-icon class="text-green">arrow_back</mat-icon>
-      </a>
+      <div class="h5 mb-0 text-center">Basic data</div>
     </div>
     <div class="card-body text-center">
       <form (submit)="onSubmitEmployee(employeeForm)" #employeeForm="ngForm">
         <div class="row text-muted">
 
-          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-6">
-            <div class="input-group mt-4">
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="h6 text-left mt-4 mb-1">First Name</div>
+            <div class="input-group">
               <div class="input-group-prepend bg-light" *ngIf="firstname.touched && firstname.valid">
                 <span class="input-group-text bg-white">
                   <mat-icon class="text-green">done_all</mat-icon>
@@ -29,8 +40,9 @@
             </div>
           </div>
 
-          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-6">
-            <div class="input-group mt-4">
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="h6 text-left mt-4 mb-1">Last Name</div>
+            <div class="input-group">
               <div class="input-group-prepend bg-light" *ngIf="lastname.touched && lastname.valid">
                 <span class="input-group-text bg-white">
                   <mat-icon class="text-green">done_all</mat-icon>
@@ -49,8 +61,9 @@
             </div>
           </div>
 
-          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-6">
-            <div class="input-group mt-4">
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="h6 text-left mt-4 mb-1">Middle Name</div>
+            <div class="input-group">
               <div class="input-group-prepend bg-light" *ngIf="middlename.touched && middlename.valid">
                 <span class="input-group-text bg-white">
                   <mat-icon class="text-green">done_all</mat-icon>
@@ -69,8 +82,9 @@
             </div>
           </div>
 
-          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-6">
-            <div class="input-group mt-4">
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <div class="h6 text-left mt-4 mb-1">Date of Birth</div>
+            <div class="input-group">
               <div class="input-group-prepend bg-light" *ngIf="dob.touched && dob.valid">
                 <span class="input-group-text bg-white">
                   <mat-icon class="text-green">done_all</mat-icon>
@@ -92,14 +106,15 @@
             </div>
           </div>
 
-          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-6">
-            <div class="input-group mt-4">
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <div class="h6 text-left mt-4 mb-1">Phone Number</div>
+            <div class="input-group">
               <div class="input-group-prepend bg-light" *ngIf="phonenumber.touched && phonenumber.valid">
                 <span class="input-group-text bg-white">
                   <mat-icon class="text-green">done_all</mat-icon>
                 </span>
               </div>
-              <input type="text" class="form-control form-control-lg" name="inputPhoneNumber" ngModel required
+              <input type="number" class="form-control form-control-lg" name="inputPhoneNumber" ngModel required
                 minlength="7" autocomplete="off" placeholder="Phone Number..." #phonenumber="ngModel">
             </div>
             <div class="alert alert-danger p-1 m-0" *ngIf="phonenumber.touched && !phonenumber.valid">
@@ -112,8 +127,9 @@
             </div>
           </div>
 
-          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-6">
-            <div class="input-group mt-4">
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <div class="h6 text-left mt-4 mb-1">Country</div>
+            <div class="input-group">
               <div class="input-group-prepend bg-light" *ngIf="country.touched && country.valid">
                 <span class="input-group-text bg-white">
                   <mat-icon class="text-green">done_all</mat-icon>
@@ -133,8 +149,9 @@
             </div>
           </div>
 
-          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-6">
-            <div class="input-group mt-4">
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <div class="h6 text-left mt-4 mb-1">Gender</div>
+            <div class="input-group">
               <div class="input-group-prepend bg-light" *ngIf="gender.touched && gender.valid">
                 <span class="input-group-text bg-white">
                   <mat-icon class="text-green">done_all</mat-icon>
@@ -154,10 +171,9 @@
             </div>
           </div>
 
-
-
           <div class="col-sm-12 col-md-6 col-lg-12 col-xl-12">
-            <div class="input-group mt-4">
+            <div class="h6 text-left mt-4 mb-1">Address</div>
+            <div class="input-group">
               <div class="input-group-prepend bg-light" *ngIf="address.touched && address.valid">
                 <span class="input-group-text bg-white">
                   <mat-icon class="text-green">done_all</mat-icon>
@@ -175,12 +191,153 @@
               </div>
             </div>
           </div>
-        </div><br>
-        <!-- <div class="lead text-danger font-italic" *ngIf="!employeeForm.valid">Input all customer details to
-                    unlock button</div> -->
+        </div>
+        <hr>
 
-        <div class="modal-footer">
-          <button mat-raised-button class="btn btn-primary btn-lg bg-green  font-weight-bold py-1 mt-4" type="submit"
+
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <div class="h5 mt-4">Qualifications</div>
+        <div class="row text-muted">
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="h6 text-left mt-4 mb-1">Full Name</div>
+            <div class="input-group">
+              <div class="input-group-prepend bg-light" *ngIf="name.touched && name.valid">
+                <span class="input-group-text bg-white">
+                  <mat-icon class="text-green">done_all</mat-icon>
+                </span>
+              </div>
+              <input type="text" class="form-control form-control-lg" name="inputNokName" ngModel required minlength="3"
+                autocomplete="off" placeholder="Full Name..." #name="ngModel" required>
+            </div>
+            <div class="alert alert-danger p-1 m-0" *ngIf="name.touched && !name.valid">
+              <div *ngIf="name.errors.required">
+                This field is required.
+              </div>
+              <div *ngIf="name.errors.minlength">
+                Minimum 3 characters needed.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="h6 text-left mt-4 mb-1">Phone Number</div>
+            <div class="input-group">
+              <div class="input-group-prepend bg-light" *ngIf="phoneNumber.touched && phoneNumber.valid">
+                <span class="input-group-text bg-white">
+                  <mat-icon class="text-green">done_all</mat-icon>
+                </span>
+              </div>
+              <input type="number" class="form-control form-control-lg" name="inputNokPhoneNumber" ngModel required
+                minlength="7" autocomplete="off" placeholder="Phone Number..." #phoneNumber="ngModel">
+            </div>
+            <div class="alert alert-danger p-1 m-0" *ngIf="phoneNumber.touched && !phoneNumber.valid">
+              <div *ngIf="phoneNumber.errors.required">
+                This field is required.
+              </div>
+              <div *ngIf="phoneNumber.errors.minlength">
+                Minimum 7 numbers needed.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="h6 text-left mt-4 mb-1">Email</div>
+            <div class="input-group">
+              <div class="input-group-prepend bg-light" *ngIf="email.touched && email.valid">
+                <span class="input-group-text bg-white">
+                  <mat-icon class="text-green">done_all</mat-icon>
+                </span>
+              </div>
+              <input type="email" class="form-control form-control-lg" name="inputNokEmail" ngModel minlength="5" email
+                autocomplete="off" placeholder="Email..." #email="ngModel" required>
+            </div>
+            <div class="alert alert-danger p-1 m-0" *ngIf="email.touched && !email.valid">
+              <div *ngIf="email.errors.required">
+                This field is required.
+              </div>
+              <div *ngIf="email.errors.minlength">
+                Minimum 7 numbers needed.
+              </div>
+              <div *ngIf="email.errors.email">
+                Email characters needed.
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <hr>
+        <div class="h5 mt-4">Next of Kins</div>
+        <div class="row text-muted">
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="h6 text-left mt-4 mb-1">Full Name</div>
+            <div class="input-group">
+              <div class="input-group-prepend bg-light" *ngIf="name.touched && name.valid">
+                <span class="input-group-text bg-white">
+                  <mat-icon class="text-green">done_all</mat-icon>
+                </span>
+              </div>
+              <input type="text" class="form-control form-control-lg" name="inputNokName" ngModel required minlength="3"
+                autocomplete="off" placeholder="Full Name..." #name="ngModel" required>
+            </div>
+            <div class="alert alert-danger p-1 m-0" *ngIf="name.touched && !name.valid">
+              <div *ngIf="name.errors.required">
+                This field is required.
+              </div>
+              <div *ngIf="name.errors.minlength">
+                Minimum 3 characters needed.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="h6 text-left mt-4 mb-1">Phone Number</div>
+            <div class="input-group">
+              <div class="input-group-prepend bg-light" *ngIf="phoneNumber.touched && phoneNumber.valid">
+                <span class="input-group-text bg-white">
+                  <mat-icon class="text-green">done_all</mat-icon>
+                </span>
+              </div>
+              <input type="number" class="form-control form-control-lg" name="inputNokPhoneNumber" ngModel required
+                minlength="7" autocomplete="off" placeholder="Phone Number..." #phoneNumber="ngModel">
+            </div>
+            <div class="alert alert-danger p-1 m-0" *ngIf="phoneNumber.touched && !phoneNumber.valid">
+              <div *ngIf="phoneNumber.errors.required">
+                This field is required.
+              </div>
+              <div *ngIf="phoneNumber.errors.minlength">
+                Minimum 7 numbers needed.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="h6 text-left mt-4 mb-1">Email</div>
+            <div class="input-group">
+              <div class="input-group-prepend bg-light" *ngIf="email.touched && email.valid">
+                <span class="input-group-text bg-white">
+                  <mat-icon class="text-green">done_all</mat-icon>
+                </span>
+              </div>
+              <input type="email" class="form-control form-control-lg" name="inputNokEmail" ngModel minlength="5" email
+                autocomplete="off" placeholder="Email..." #email="ngModel" required>
+            </div>
+            <div class="alert alert-danger p-1 m-0" *ngIf="email.touched && !email.valid">
+              <div *ngIf="email.errors.required">
+                This field is required.
+              </div>
+              <div *ngIf="email.errors.minlength">
+                Minimum 7 numbers needed.
+              </div>
+              <div *ngIf="email.errors.email">
+                Email characters needed.
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="modal-footer mt-4">
+          <button mat-raised-button class="btn btn-primary btn-lg bg-green  font-weight-bold py-1 mt-2" type="submit"
             [disabled]="!employeeForm.valid">Submit</button>
         </div>
       </form>

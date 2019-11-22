@@ -30,6 +30,7 @@ const routes: Routes = [
   { path: 'auth', component: LoginComponent },
 
   { path: 'onboarding', component: OnboardingComponent },
+  
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
 
   // {
@@ -41,17 +42,17 @@ const routes: Routes = [
   //     )
   // },
 
-  {
-    path: "inventory",
-    // canActivate: [AuthGuard],
-    loadChildren: () =>
-      import("./inventory/inventory.module").then(
-        m => m.InventoryModule
-      )
-  },
+  // {
+  //   path: "inventory",
+  //   // canActivate: [AuthGuard],
+  //   loadChildren: () =>
+  //     import("./inventory/inventory.module").then(
+  //       m => m.InventoryModule
+  //     )
+  // },
 
   { path: 'accounting', component: AccountingComponent },
-  // { path: 'inventory', component: InventoryComponent },
+  { path: 'inventory', component: InventoryComponent },
 
   { path: 'payroll', component: PayrollComponent, canActivate: [AuthGuard] },
   { path: 'payroll/department', component: DepartmentComponent, canActivate: [AuthGuard] },
@@ -64,10 +65,10 @@ const routes: Routes = [
 
 
 
-  { path: 'invoice', component: InvoiceComponent },
-  { path: 'loan', component: LoanComponent },
-  { path: 'asset-management', component: AssetManagementComponent },
-  { path: 'reports', component: ReportsComponent },
+  { path: 'invoice', component: InvoiceComponent, canActivate: [AuthGuard] },
+  { path: 'loan', component: LoanComponent, canActivate: [AuthGuard] },
+  { path: 'asset-management', component: AssetManagementComponent, canActivate: [AuthGuard] },
+  { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard] },
 
 ];
 

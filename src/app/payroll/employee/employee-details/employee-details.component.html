@@ -1,1 +1,197 @@
-<p>employee-details works!</p>
+<div class="container-fluid px-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-transparent my-4 row py-1">
+            <li class="breadcrumb-item h5 text-green"><a class="text-green" routerLink="/payroll/employee">
+                    Employees
+                </a></li>
+            <li class="breadcrumb-item active h5" aria-current="page">{{ employee?.firstname | titlecase }}
+                {{ employee?.middlename | titlecase }}
+                {{ employee?.lastname | titlecase }}
+            </li>
+        </ol>
+    </nav>
+</div>
+
+
+<div class="container-fluid mt-3" *ngIf='!loading'>
+    <div class="row">
+
+        <div class="col-sm-12 col-md-4 col-lg-3 col-xl-2">
+            <div class="card text-muted pas-card my-2">
+                <img src="https://via.placeholder.com/150" alt="engineer_img">
+
+                <!-- <mat-icon class="text-info ml-auto mr-2" mat-icon-button matTooltip="Actions" matTooltipPosition="left"
+                    [matMenuTriggerFor]="menu">expand_more</mat-icon>
+                <mat-menu #menu="matMenu" xPosition="before">
+                    <div class="font-weight-bold">
+                        <ul class="list-group list-group-flush">
+                            <li class="text-muted"
+                                matTooltip="By making him an admin, he will have the same authority as you"
+                                matTooltipPosition="before" mat-menu-item [routerLink]="['/admin/engineers']">
+                                <mat-icon>how_to_reg</mat-icon>Make admin
+                            </li>
+                            <li class="list-group-item my-ppointer text-muted"
+                                matTooltip="By restricting this user, he will not be able to perform any task in his account"
+                                matTooltipPosition="before" mat-menu-item>
+                                <mat-icon>not_interested</mat-icon>
+                                Restrict
+                            </li>
+                        </ul>
+                    </div>
+                </mat-menu> -->
+
+                <div class="card-body text-muted py-2">
+                    <p class="h5 mt-2 text-center">{{ employee?.firstname | titlecase }}
+                        {{ employee?.middlename | titlecase }}
+                        {{ employee?.lastname | titlecase }}</p>
+                    <p class="mb-1">{{employee?.dateofBirth}}</p>
+                    <p class="mb-1">Date employed: {{ employee?.date_created | date:'mediumDate' }}</p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item pt-3 px-0">
+                            <p class="small font-weight-bold mt-1 mb-0">CONTACTS</p>
+                            <p class="mb-1">{{employee?.phone}}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-sm-12 col-md-8 col-lg-9 col-xl-10">
+            <div class="row">
+
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8">
+                    <div class="card my-2 pas-card">
+                        <div class="card-header bg-white text-muted px-4 h5">Transaction Trend
+                        </div>
+                        <div class="card-body">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-12 col-lg-5 col-xl-4">
+                    <div class="card my-shadow-design my-2">
+                        <div class="card-header bg-white text-muted px-4 h5">
+                            Income
+                        </div>
+                        <div class="card-body">
+                            <p> Balance: {{totalEngineerIncome}}</p>
+
+                            <p> Actual money: {{totalEngineerActual}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-12 col-lg-7 col-xl-5">
+                    <div class="card my-shadow-design my-2">
+                        <div class="card-header text-muted bg-white px-4 h5">
+                            Device status domination
+                        </div>
+                        <div class="card-body text-center">
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-12 col-md-12 col-lg-5 col-xl-2">
+                    <div class="card my-shadow-design my-2">
+                        <div class="card-header bg-white text-muted px-4 h5">Latest
+                        </div>
+                        <div class="card-body p-2">
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-12 col-md-12 col-lg-7 col-xl-5">
+                    <div class="card my-shadow-design my-2">
+                        <div class="card-header text-muted bg-white px-4 h5">
+                            Device type domination
+                        </div>
+                        <div class="card-body">
+                            <dl class="row">
+
+                                <dt class="col-3 pr-0 mb-2">Android</dt>
+                                <dd class="col-5 pt-2 px-0">
+                                    <mat-progress-bar class="android" mode="determinate" [value]="androidPercent">
+                                    </mat-progress-bar>
+                                </dd>
+                                <div class="col-2 pr-0">
+                                    <p class="small">{{ androidPercent }}%</p>
+                                </div>
+                                <div class="col-2 pr-0">
+                                    <p class="small font-weight-bold">{{ androidCount }}</p>
+                                </div>
+
+                                <dt class="col-3 pr-0 mb-2">IOS</dt>
+                                <dd class="col-5 pt-2 px-0">
+                                    <mat-progress-bar class="ios" mode="determinate" [value]="iosPercent">
+                                    </mat-progress-bar>
+                                </dd>
+                                <div class="col-2 pr-0">
+                                    <p class="small">{{ iosPercent }}%</p>
+                                </div>
+                                <div class="col-2 pr-0">
+                                    <p class="small font-weight-bold">{{ iosCount }}</p>
+                                </div>
+
+                                <dt class="col-3 pr-0 mb-2">Computer</dt>
+                                <dd class="col-5 pt-2 px-0">
+                                    <mat-progress-bar class="computer" mode="determinate" [value]="computersPercent">
+                                    </mat-progress-bar>
+                                </dd>
+                                <div class="col-2 pr-0">
+                                    <p class="small">{{ computersPercent }}%</p>
+                                </div>
+                                <div class="col-2 pr-0">
+                                    <p class="small font-weight-bold">{{ computersCount }}</p>
+                                </div>
+
+                                <dt class="col-3 mb-2">Windows phone</dt>
+                                <dd class="col-5 pt-2 px-0">
+                                    <mat-progress-bar class="window" mode="determinate" [value]="windowsPhonePercent">
+                                    </mat-progress-bar>
+                                </dd>
+                                <div class="col-2 pr-0">
+                                    <p class="small">{{ windowsPhonePercent }}%</p>
+                                </div>
+                                <div class="col-2 pr-0">
+                                    <p class="small font-weight-bold">{{ windowsPhoneCount }}</p>
+                                </div>
+
+                                <dt class="col-3 pr-0 mb-2">Electronics</dt>
+                                <dd class="col-5 pt-2 px-0">
+                                    <mat-progress-bar class="electronics" mode="determinate"
+                                        [value]="electronicsPercent">
+                                    </mat-progress-bar>
+                                </dd>
+                                <div class="col-2 pr-0">
+                                    <p class="small">{{ electronicsPercent }}%</p>
+                                </div>
+                                <div class="col-2 pr-0">
+                                    <p class="small font-weight-bold">{{ electronicsCount }}</p>
+                                </div>
+
+                                <dt class="col-3 pr-0 mb-0">Others</dt>
+                                <dd class="col-5 pt-2 px-0 mb-0">
+                                    <mat-progress-bar class="others" mode="determinate" [value]="othersPercent">
+                                    </mat-progress-bar>
+                                </dd>
+                                <div class="col-2 pr-0 mb-0">
+                                    <p class="small mb-0">{{ othersPercent }}%</p>
+                                </div>
+                                <div class="col-2 pr-0 mb-0">
+                                    <p class="small font-weight-bold mb-0">{{ othersCount }}</p>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

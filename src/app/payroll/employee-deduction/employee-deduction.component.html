@@ -1,3 +1,111 @@
-<p>
-  employee-deduction works!
-</p>
+<div class="container-fluid px-5">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-transparent my-4 row py-1">
+      <li class="breadcrumb-item h5"><a class="text-green" routerLink="/payroll">
+          Payroll
+        </a></li>
+      <li class="breadcrumb-item active h5" aria-current="page">Employee deduction
+      </li>
+    </ol>
+  </nav>
+</div>
+
+
+<div [ngSwitch]="viewMode" *ngIf="!loading">
+  <div *ngSwitchCase="'dept'">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-12">
+
+          <button (click)="viewMode = 'newDept'" mat-raised-button
+            class="btn float-right btn-sm btn-success bg-green mb-3">New Employee Deduction </button>
+
+          <table class="table my-table-design table-hover table-responsive-md table-bordered">
+            <thead class="bg-green text-white text-center">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="department-table-list" class="bg-white">
+              <tr>
+                <td>
+                  2</td>
+                <td>
+                  jgfdgkshdj</td>
+                <td class="text-truncate" style="max-width: 150px;"> tyrhngfffggnfgdfdfs</td>
+                <td class="p-0">
+                  <button type="button" matTooltip="Edit?" matTooltipPosition="left"
+                    class="btn btn-sm btn-warning py-1 m-1 rounded-0">
+                    <mat-icon>create</mat-icon>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-danger py-1 m-1 rounded-0" matTooltip="Delete?"
+                    matTooltipPosition="left">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngSwitchCase="'newDept'">
+
+    <div class="container d-flex justify-content-center">
+
+      <div class="card text-center pas-shadow" style=" width: 30rem;">
+        <div class="card-header bg-green text-white h6">New Employee Deduction
+          <!-- <span class="float-right">
+                <mat-icon>cancel</mat-icon>
+              </span> -->
+        </div>
+        <div class="card-body bg-white text-muted">
+          <form (submit)="onSubmit(add_form)" #add_form="ngForm">
+            <div class="h6 text-left mb-1">Name</div>
+            <input type="text" class="form-control form-control-lg" name="inputName" ngModel minlength="3"
+              autocomplete="off" placeholder="Name..." #name="ngModel" required>
+            <div class="alert alert-danger p-1 m-0" *ngIf="name.touched && !name.valid">
+              <div *ngIf="name.errors.required">
+                This field is required.
+              </div>
+              <div *ngIf="name.errors.minlength">
+                Minimum 3 characters needed.
+              </div>
+            </div>
+
+            <div class="h6 text-left mt-4 mb-1">Description</div>
+            <div class="input-group mt-2">
+              <textarea class="form-control form-control-lg" name="inputDescription" ngModel required minlength="3"
+                autocomplete="off" placeholder="Description..." #description="ngModel"></textarea>
+            </div>
+            <div class="alert alert-danger p-1 m-0" *ngIf="description.touched && !description.valid">
+              <div *ngIf="description.errors.required">
+                This field is required.
+              </div>
+              <div *ngIf="description.errors.minlength">
+                Minimum 3 characters needed.
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end mt-3">
+              <button mat-raised-button (click)="viewMode = 'dept'" class="btn btn-sm btn-danger mr-4"
+                type="button">Cancel</button>
+
+              <button mat-raised-button class="btn btn-sm btn-success bg-green mr-4" type="submit"
+                [disabled]="!add_form.valid">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

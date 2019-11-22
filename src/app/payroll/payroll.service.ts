@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 
 import { NotificationsService } from 'src/app/shared/notifications.service';
 import { environment } from 'src/environments/environment';
-import { IEmployee, IDepartment, IEmployeeDeduction, IEmployeeEarning, IEmployeeGrade, IEmployeeType } from '../interfaces';
+import { IEmployee, IDepartment, IEmployeeDeduction, IEmployeeEarning, IEmployeeGrade, IEmployeeType, IEmployeeNok } from '../interfaces';
 
 
 
@@ -65,7 +65,6 @@ export class PayrollService {
     return this.allDepartmentsUpdated.asObservable();
   }
 
-
   getAllGendersUpdateListener() {
     return this.allGenderUpdated.asObservable();
   }
@@ -88,8 +87,20 @@ export class PayrollService {
       });
   }
 
-  addDepartment() {
+  addDepartment(name: string, description: string) {
+    const key = localStorage.getItem('key');
 
+    const deptData = {
+      name: name,
+      description: description
+    };
+    this.http.post(`${this.API_URL}payroll/${key}/employees/`, deptData)
+      .subscribe(response => {
+
+
+      }, error => {
+        console.log(error)
+      });
   }
 
   // employee =====================
@@ -101,7 +112,6 @@ export class PayrollService {
       `${this.API_URL}payroll/${key}/employees/`
     )
       .subscribe(employeeData => {
-        console.log(employeeData)
         this.employees = employeeData
         this.allEmployeesUpdated.next({
           allEmployees: [...this.employees]
@@ -110,6 +120,12 @@ export class PayrollService {
         console.log(error)
       });
   }
+
+  getEmployeeDetails(id: string) {
+    const key = localStorage.getItem('key');
+    return this.http.get<any>(`${this.API_URL}payroll/${key}/employees/${id}`);
+  }
+
 
   addEmployee(
     firstname: string,
@@ -120,6 +136,10 @@ export class PayrollService {
     dateofBirth: string,
     country: string,
     address: string,
+
+    nokName: string,
+    nokPhoneNumber: string,
+    nokEmail: string
 
   ) {
     const key = localStorage.getItem('key');
@@ -136,8 +156,38 @@ export class PayrollService {
     };
     this.http.post<IEmployee>(`${this.API_URL}payroll/${key}/employees/`, employeeData)
       .subscribe(response => {
+        let empId = response.id
+        if (nokName && nokPhoneNumber && nokEmail) {
+          this.addEmployeeNok(nokName, nokPhoneNumber, nokEmail, empId)
+        } else {
+          this.notificationsService.success(`${response.firstname} successfully added!!`)
+          this.router.navigate(['payroll/employee']);
+        }
+
+
+      }, error => {
+        console.log(error)
+      });
+  }
+
+  addEmployeeNok(
+    name: string,
+    number: string,
+    email: string,
+    empId: string
+
+  ) {
+    const key = localStorage.getItem('key');
+    const employeeNokData: IEmployeeNok = {
+      name: name,
+      contact_number: number,
+      contact_email: email,
+    };
+    console.log(employeeNokData)
+    this.http.post<IEmployeeNok>(`${this.API_URL}payroll/${key}/next_of_kin/${empId}/`, employeeNokData)
+      .subscribe(response => {
         console.log(response)
-        this.notificationsService.success(`${response.firstname} successfully added!!`)
+        this.notificationsService.success("Success!!!")
         this.router.navigate(['payroll/employee']);
 
       }, error => {
@@ -148,9 +198,8 @@ export class PayrollService {
 
   }
 
-
-
-
+  // ++++++++++++++++++++++++++++
+  // Gender
 
   getGender() {
     const key = localStorage.getItem('key');
@@ -167,6 +216,46 @@ export class PayrollService {
         console.log(error)
       });
   }
+
+
+  // +++++++++++++++++++++++++++
+  // Employee deduction
+
+  getEmployeeDecution() {
+    this.http.get<IEmployeeDeduction>(
+      `${this.API_URL}organization/urrencies/`
+    )
+      .subscribe(data => {
+        console.log(data)
+        // this.departments = data;
+        // this.allDepartmentsUpdated.next({
+        //   allDepartments: [...this.departments]
+        // });
+      }, error => {
+        console.log(error)
+      });
+  }
+
+  addEmployeeDeduction(name: string, description: string) {
+    const key = localStorage.getItem('key');
+
+    const data = {
+      name: name,
+      description: description
+    };
+    this.http.post(`${this.API_URL}payroll/${key}/employees/`, data)
+      .subscribe(response => {
+
+      }, error => {
+        console.log(error)
+      });
+  }
+
+  deleteDeduction(id:string) {
+
+  }
+
+
 
 
 }

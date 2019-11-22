@@ -11,7 +11,8 @@
 
           <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
 
-            <input type="text" class="form-control form-control-lg mt-5" name="inputUserName" ngModel minlength="3"
+            <div class="h6 text-left mt-5 mb-1">Username</div>
+            <input type="text" class="form-control form-control-lg" name="inputUserName" ngModel minlength="3"
               autocomplete="off" placeholder="Email..." #userName="ngModel" required>
             <div class="alert alert-danger p-1 m-0" *ngIf="userName.touched && !userName.valid">
               <div *ngIf="userName.errors.required">
@@ -21,8 +22,9 @@
                 Minimum 3 characters needed.
               </div>
             </div>
-
-            <input [type]="inputType" class="form-control form-control-lg mt-4" name="inputPassword" ngModel
+            
+            <div class="h6 text-left mt-5 mb-1">Password</div>
+            <input type="password" class="form-control form-control-lg" name="inputPassword" ngModel
               minlength="6" placeholder="Password..." #password="ngModel" required>
             <div class="alert alert-danger p-1 m-0" *ngIf="password.touched && !password.valid">
               <div *ngIf="password.errors.required">
@@ -70,8 +72,8 @@
 
 
           <form (submit)="onSignup(signupForm)" #signupForm="ngForm">
-
-            <input type="email" class="form-control form-control-lg mt-5" name="inputEmail" ngModel minlength="5" email
+            <div class="h6 text-left mt-5 mb-1">Username</div>
+            <input type="email" class="form-control form-control-lg" name="inputEmail" ngModel minlength="5" email
               autocomplete="off" placeholder="Email..." #email="ngModel" required>
             <div class="alert alert-danger p-1 m-0" *ngIf="email.touched && !email.valid">
               <div *ngIf="email.errors.required">
@@ -85,7 +87,8 @@
               </div>
             </div>
 
-            <input type="password" class="form-control form-control-lg mt-4" name="inputPassword" ngModel minlength="6"
+            <div class="h6 text-left mt-5 mb-1">Username</div>
+            <input type="password" class="form-control form-control-lg" name="inputPassword" ngModel minlength="6"
               placeholder="Password..." #password="ngModel" required>
             <div class="alert alert-danger p-1 m-0" *ngIf="password.touched && !password.valid">
               <div *ngIf="password.errors.required">

@@ -53,6 +53,7 @@ export class AuthService {
       email: email,
       password: password,
     };
+    console.log(signupData)
     this.http.post<{
       tenant: string,
       token: string,
@@ -73,7 +74,6 @@ export class AuthService {
       email: email,
       password: password
     };
-    console.log(loginData)
     this.http.post<{
       tenant: string,
       token: string,
@@ -149,7 +149,6 @@ export class AuthService {
       this.isAuthenticated = true;
       this.user = authenticationInformation.user;
       this.authenticationStatusListener.next(true);
-      console.log(this.user)
     }
   }
 

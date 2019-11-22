@@ -33,8 +33,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 // import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 // import { MatNativeDateModule } from '@angular/material/core';
+import { MatStepperModule } from '@angular/material/stepper';
 
-import { MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 
 
 
@@ -228,7 +229,8 @@ import { NewGenderComponent } from './gender/new-gender/new-gender.component';
     MatTabsModule,
     MatProgressBarModule,
     MatDatepickerModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatStepperModule
   ],
   providers: [
     MatNativeDateModule, MatDatepickerModule, MatFormFieldModule,
