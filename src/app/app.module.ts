@@ -30,12 +30,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatRippleModule } from '@angular/material/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-// import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-// import { MatNativeDateModule } from '@angular/material/core';
 import { MatStepperModule } from '@angular/material/stepper';
-
-import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 
 
 
@@ -44,7 +40,6 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 
-import { SidenavComponent } from './sidenav/sidenav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './pages/header/header.component';
 import { IconComponent } from './components/icon/icon.component';
@@ -77,19 +72,10 @@ import { StockSheetComponent } from './inventory/stock-sheet/stock-sheet.compone
 import { SalesCreditComponent } from './inventory/sales-credit/sales-credit.component';
 import { SalesReturnComponent } from './inventory/sales-return/sales-return.component';
 
+
+import { PayrollComponent } from './payroll/payroll.component';
 import { EmployeeComponent } from './payroll/employee/employee.component';
 import { NewEmployeeComponent } from './payroll/employee/new-employee/new-employee.component';
-import { DepartmentComponent } from './payroll/department/department.component';
-import { PayrollComponent } from './payroll/payroll.component';
-import { NewDepartmentComponent } from './payroll/department/new-department/new-department.component';
-import { EmploymentTypeComponent } from './payroll/employment-type/employment-type.component';
-import { NewEmploymentTypeComponent } from './payroll/employment-type/new-employment-type/new-employment-type.component';
-import { EmployeeDeductionComponent } from './payroll/employee-deduction/employee-deduction.component';
-import { NewEmployeeDeductionComponent } from './payroll/employee-deduction/new-employee-deduction/new-employee-deduction.component';
-import { EmployeeEarningComponent } from './payroll/employee-earning/employee-earning.component';
-import { NewEmployeeEarningComponent } from './payroll/employee-earning/new-employee-earning/new-employee-earning.component';
-import { EmployeeGradeComponent } from './payroll/employee-grade/employee-grade.component';
-import { NewEmployeeGradeComponent } from './payroll/employee-grade/new-employee-grade/new-employee-grade.component';
 
 import { InvoiceComponent } from './invoice/invoice.component';
 import { CustomerComponent } from './invoice/customer/customer.component';
@@ -126,7 +112,6 @@ import { NewGenderComponent } from './gender/new-gender/new-gender.component';
     DashboardComponent,
     ReportsComponent,
     HomeComponent,
-    SidenavComponent,
     HeaderComponent,
     ForgotPasswordComponent,
 
@@ -157,20 +142,11 @@ import { NewGenderComponent } from './gender/new-gender/new-gender.component';
     // SalesReturnComponent,
 
     // Payroll
+    PayrollComponent,
     EmployeeComponent,
     NewEmployeeComponent,
-    DepartmentComponent,
-    PayrollComponent,
-    NewDepartmentComponent,
-    EmploymentTypeComponent,
-    NewEmploymentTypeComponent,
-    EmployeeDeductionComponent,
-    NewEmployeeDeductionComponent,
-    EmployeeEarningComponent,
-    NewEmployeeEarningComponent,
-    EmployeeGradeComponent,
-    NewEmployeeGradeComponent,
     EmployeeDetailsComponent,
+
     // Invoice
     InvoiceComponent,
     CustomerComponent,
@@ -194,11 +170,7 @@ import { NewGenderComponent } from './gender/new-gender/new-gender.component';
 
 
     IconComponent,
-
-
     GenderComponent,
-
-
     NewGenderComponent,
 
   ],
@@ -228,12 +200,11 @@ import { NewGenderComponent } from './gender/new-gender/new-gender.component';
     MatRippleModule,
     MatTabsModule,
     MatProgressBarModule,
-    MatDatepickerModule,
     MatAutocompleteModule,
     MatStepperModule
   ],
   providers: [
-    MatNativeDateModule, MatDatepickerModule, MatFormFieldModule,
+  
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PayrollService } from '../../payroll.service';
 import { Subscription } from 'rxjs';
+import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-new-employee',
@@ -9,20 +10,27 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./new-employee.component.css']
 })
 export class NewEmployeeComponent implements OnInit {
-  viewMode = "employee"
+  viewMode = "add"
   private genderSub: Subscription;
   genders: any[];
   constructor(
-    public payrollService: PayrollService
+    public employeeService: EmployeeService
   ) { }
 
 
+  onSubmitGender(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+    form.value.inputGender
+    console.log(form.value.inputGender)
+  }
   onSubmitEmployee(form: NgForm) {
     if (form.invalid) {
       return;
     }
 
-    this.payrollService.addEmployee
+    this.employeeService.addEmployee
       (
         form.value.inputFirstName,
         form.value.inputLastName,
@@ -40,30 +48,17 @@ export class NewEmployeeComponent implements OnInit {
 
   }
 
-
-  // onSubmitNOK(form: NgForm) {
-  //   if (form.invalid) {
-  //     return;
-  //   }
-
-  //   this.payrollService.addEmployeeNok
-  //     (
-  //       form.value.inputNokName,
-  //       form.value.inputNokPhoneNumber,
-  //       form.value.inputNokEmail,
-  //     );
-  // }
-
   initContent() {
-    this.genderSub = this.payrollService.getAllGendersUpdateListener()
+    this.employeeService.getGender()
+    this.genderSub = this.employeeService.getAllGenderUpdateListener()
       .subscribe(genderData => {
+        console.log(genderData)
         this.genders = genderData.allGenders
       })
   }
-  
+
   ngOnInit() {
     this.initContent();
-    this.payrollService.getGender()
   }
 
 }

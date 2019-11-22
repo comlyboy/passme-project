@@ -17,9 +17,7 @@ import { HomeComponent } from './home/home.component';
 import { AccountingComponent } from './accounting/accounting.component';
 import { OnboardingComponent } from './pages/onboarding/onboarding.component';
 
-import { DepartmentComponent } from './payroll/department/department.component';
 import { EmployeeComponent } from './payroll/employee/employee.component';
-import { NewDepartmentComponent } from './payroll/department/new-department/new-department.component';
 import { NewEmployeeComponent } from './payroll/employee/new-employee/new-employee.component';
 import { EmployeeDetailsComponent } from './payroll/employee/employee-details/employee-details.component';
 
@@ -55,8 +53,6 @@ const routes: Routes = [
   { path: 'inventory', component: InventoryComponent },
 
   { path: 'payroll', component: PayrollComponent, canActivate: [AuthGuard] },
-  { path: 'payroll/department', component: DepartmentComponent, canActivate: [AuthGuard] },
-  { path: 'payroll/department/new', component: NewDepartmentComponent, canActivate: [AuthGuard] },
   { path: 'payroll/employee', component: EmployeeComponent, canActivate: [AuthGuard] },
   { path: 'payroll/employee/new', component: NewEmployeeComponent, canActivate: [AuthGuard] },
   { path: 'payroll/employee/:employeeId', component: EmployeeDetailsComponent, canActivate: [AuthGuard] },

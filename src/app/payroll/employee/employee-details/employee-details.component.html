@@ -49,7 +49,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item pt-3 px-0">
                             <p class="small font-weight-bold mt-1 mb-0">CONTACTS</p>
-                            <p class="mb-1">{{employee?.phone}}</p>
+                            <p class="mb-1">0{{employee?.phone}}</p>
                         </li>
                     </ul>
                 </div>
@@ -60,133 +60,39 @@
         <div class="col-sm-12 col-md-8 col-lg-9 col-xl-10">
             <div class="row">
 
-                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6">
                     <div class="card my-2 pas-card">
-                        <div class="card-header bg-white text-muted px-4 h5">Transaction Trend
+                        <div class="card-header bg-white text-muted px-4 h5">Next of Kins
                         </div>
                         <div class="card-body">
 
                         </div>
                     </div>
                 </div>
-
-                <div class="col-sm-12 col-md-12 col-lg-5 col-xl-4">
-                    <div class="card my-shadow-design my-2">
-                        <div class="card-header bg-white text-muted px-4 h5">
-                            Income
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6">
+                    <div class="card my-2 pas-card">
+                        <div class="card-header bg-white text-muted px-4 h5">Payment
                         </div>
                         <div class="card-body">
-                            <p> Balance: {{totalEngineerIncome}}</p>
-
-                            <p> Actual money: {{totalEngineerActual}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-12 col-md-12 col-lg-7 col-xl-5">
-                    <div class="card my-shadow-design my-2">
-                        <div class="card-header text-muted bg-white px-4 h5">
-                            Device status domination
-                        </div>
-                        <div class="card-body text-center">
 
                         </div>
                     </div>
                 </div>
-
-
-                <div class="col-sm-12 col-md-12 col-lg-5 col-xl-2">
-                    <div class="card my-shadow-design my-2">
-                        <div class="card-header bg-white text-muted px-4 h5">Latest
-                        </div>
-                        <div class="card-body p-2">
-
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-sm-12 col-md-12 col-lg-7 col-xl-5">
-                    <div class="card my-shadow-design my-2">
-                        <div class="card-header text-muted bg-white px-4 h5">
-                            Device type domination
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <div class="card my-2 pas-card">
+                        <div class="card-header bg-white text-muted px-4 h5">Qualifications
                         </div>
                         <div class="card-body">
-                            <dl class="row">
 
-                                <dt class="col-3 pr-0 mb-2">Android</dt>
-                                <dd class="col-5 pt-2 px-0">
-                                    <mat-progress-bar class="android" mode="determinate" [value]="androidPercent">
-                                    </mat-progress-bar>
-                                </dd>
-                                <div class="col-2 pr-0">
-                                    <p class="small">{{ androidPercent }}%</p>
-                                </div>
-                                <div class="col-2 pr-0">
-                                    <p class="small font-weight-bold">{{ androidCount }}</p>
-                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <div class="card my-2 pas-card">
+                        <div class="card-header bg-white text-muted px-4 h5">Work Experience
+                        </div>
+                        <div class="card-body">
 
-                                <dt class="col-3 pr-0 mb-2">IOS</dt>
-                                <dd class="col-5 pt-2 px-0">
-                                    <mat-progress-bar class="ios" mode="determinate" [value]="iosPercent">
-                                    </mat-progress-bar>
-                                </dd>
-                                <div class="col-2 pr-0">
-                                    <p class="small">{{ iosPercent }}%</p>
-                                </div>
-                                <div class="col-2 pr-0">
-                                    <p class="small font-weight-bold">{{ iosCount }}</p>
-                                </div>
-
-                                <dt class="col-3 pr-0 mb-2">Computer</dt>
-                                <dd class="col-5 pt-2 px-0">
-                                    <mat-progress-bar class="computer" mode="determinate" [value]="computersPercent">
-                                    </mat-progress-bar>
-                                </dd>
-                                <div class="col-2 pr-0">
-                                    <p class="small">{{ computersPercent }}%</p>
-                                </div>
-                                <div class="col-2 pr-0">
-                                    <p class="small font-weight-bold">{{ computersCount }}</p>
-                                </div>
-
-                                <dt class="col-3 mb-2">Windows phone</dt>
-                                <dd class="col-5 pt-2 px-0">
-                                    <mat-progress-bar class="window" mode="determinate" [value]="windowsPhonePercent">
-                                    </mat-progress-bar>
-                                </dd>
-                                <div class="col-2 pr-0">
-                                    <p class="small">{{ windowsPhonePercent }}%</p>
-                                </div>
-                                <div class="col-2 pr-0">
-                                    <p class="small font-weight-bold">{{ windowsPhoneCount }}</p>
-                                </div>
-
-                                <dt class="col-3 pr-0 mb-2">Electronics</dt>
-                                <dd class="col-5 pt-2 px-0">
-                                    <mat-progress-bar class="electronics" mode="determinate"
-                                        [value]="electronicsPercent">
-                                    </mat-progress-bar>
-                                </dd>
-                                <div class="col-2 pr-0">
-                                    <p class="small">{{ electronicsPercent }}%</p>
-                                </div>
-                                <div class="col-2 pr-0">
-                                    <p class="small font-weight-bold">{{ electronicsCount }}</p>
-                                </div>
-
-                                <dt class="col-3 pr-0 mb-0">Others</dt>
-                                <dd class="col-5 pt-2 px-0 mb-0">
-                                    <mat-progress-bar class="others" mode="determinate" [value]="othersPercent">
-                                    </mat-progress-bar>
-                                </dd>
-                                <div class="col-2 pr-0 mb-0">
-                                    <p class="small mb-0">{{ othersPercent }}%</p>
-                                </div>
-                                <div class="col-2 pr-0 mb-0">
-                                    <p class="small font-weight-bold mb-0">{{ othersCount }}</p>
-                                </div>
-                            </dl>
                         </div>
                     </div>
                 </div>

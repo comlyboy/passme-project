@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 import { NotificationsService } from 'src/app/shared/notifications.service';
 import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/auth/auth.service';
+import { BusinessService } from 'src/app/shared/business.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,8 @@ export class OnboardingService {
     private http: HttpClient,
     private router: Router,
     private authService: AuthService,
-    public notificationsService: NotificationsService
+    public notificationsService: NotificationsService,
+    public businessService: BusinessService
   ) { }
 
   private allCurrencyUpdated = new Subject<{
@@ -142,6 +144,7 @@ export class OnboardingService {
       localStorage.setItem('key', key);
       this.notificationsService.success("Welcome!");
       this.router.navigate(['dashboard']);
+      this.businessService.getAllBusinessUpdateListener()
     }, error => {
 
     });

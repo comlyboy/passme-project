@@ -1,6 +1,6 @@
 <div class="container-fluid px-5">
   <nav aria-label="breadcrumb">
-    <ol class="breadcrumb bg-transparent mt-4 mb-0 row py-1">
+    <ol class="breadcrumb bg-transparent mt-4 mb-3 row py-1">
       <li class="breadcrumb-item h5"><a class="text-green" routerLink="/payroll">
           Payroll
         </a></li>
@@ -10,200 +10,74 @@
   </nav>
 </div>
 
+<div class="container-fluid" *ngIf="!loading">
+  <div class="row d-flex justify-content-around">
 
-<div class="container-fluid">
-  <mat-tab-group mat-align-tabs="center">
-    <mat-tab label="First">
-      <mat-icon class="example-tab-icon">thumb_up</mat-icon>
-
-      <ng-template matTabContent>
-        <div class="card pas-card">
-
-          <form (submit)="onSearch(filterDeviceForm)" #filterDeviceForm="ngForm">
-            <div class="input-group my-1">
-              <input type="text" class="form-control form-control-lg" name="filtersearch" ngModel name="inputSearch"
-                autocomplete="off" placeholder="Search employee...">
-              <div class="input-group-prepend">
-                <button mat-button type="submit" class="btn btn-lg btn-success bg-green">
-                  <mat-icon>search</mat-icon>
-                </button>
-              </div>
-            </div>
-          </form>
-          <div>
-            <button matRipple routerLink="/payroll/employee/new"
-              class="btn ml-auto btn-lg btn-success bg-green my-1 w-100">
-              <mat-icon>person_add</mat-icon> Add Employee
+    <div class="col-sm-12 col-md-6 col-lg-3 col-xl-6">
+      <form (submit)="onSearch(filterDeviceForm)" #filterDeviceForm="ngForm">
+        <div class="input-group my-1">
+          <input type="text" class="bg-white form-control form-control-lg rounded-0" name="filtersearch" ngModel
+            name="inputSearch" placeholder="Search employee...">
+          <div class="input-group-prepend">
+            <button mat-button type="submit" class="btn btn-lg btn-success bg-green">
+              <mat-icon>search</mat-icon>
             </button>
           </div>
-          <table class="table mt-2 my-table-design table-hover table-responsive-md table-bordered">
-            <thead class="bg-green text-white text-center">
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Full Name</th>
-                <th scope="col">Phone number</th>
-                <th scope="col">Date of Birth</th>
-                <th scope="col">Gender </th>
-                <!-- <th scope="col">Departments </th> -->
-                <!-- <th scope="col">Employee Type </th> -->
-                <th scope="col">Employ date</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody id="employee-table-list" class="bg-white">
-              <tr *ngFor="let employee of employees" [routerLink]="['/payroll/employee', employee.id]">
-                <td>{{ employee.id }}</td>
-                <td>{{ employee.firstname }} {{ employee.middlename | titlecase }} {{ employee.lastname }} </td>
-                <td>{{ employee.phone }}</td>
-                <td>{{ employee.dateofBirth }}</td>
-                <td>{{ employee.gender }}</td>
-                <td>{{ employee.date_created | date:'mediumDate' }}</td>
-
-                <!-- <td class="text-truncate" style="max-width: 150px;"> tyrhngfffggnfgdfdfs</td> -->
-                <td class="p-0">
-                  <button type="button" matTooltip="Edit employee?" matTooltipPosition="left"
-                    class="btn btn-sm btn-warning py-1 m-1 rounded-0">
-                    <mat-icon>create</mat-icon>
-                  </button>
-                  <button (click)="onDeleteDialog(employee.id)" type="button"
-                    class="btn btn-sm btn-danger py-1 m-1 rounded-0" matTooltip="Delete employee?"
-                    matTooltipPosition="left">
-                    <mat-icon>delete</mat-icon>
-                  </button>
-                </td>
-              </tr>
-
-              <tr>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-              </tr>
-
-              <tr>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-              </tr>
-
-              <tr>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-              </tr>
-
-              <tr>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-              </tr>
-
-              <tr>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-              </tr>
-
-              <tr>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-              </tr>
-
-              <tr>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-              </tr>
-
-              <tr>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-              </tr>
-
-              <tr>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-              </tr>
-
-              <tr>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-              </tr>
-
-              <tr>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-              </tr>
-
-              <tr>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-                <td>kjhjgjhkjkhg</td>
-              </tr>
-            </tbody>
-          </table>
         </div>
+      </form>
+    </div>
+    <!-- <div class="col-4"></div> -->
+    <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3">
+      <button matRipple routerLink="/payroll/employee/new" class="btn ml-auto btn-lg btn-success bg-green my-1 w-100">
+        <mat-icon>person_add</mat-icon> Add Employee
+      </button>
+    </div>
+  </div>
+</div>
 
-        <div class="lead col-12 mt-4 text-muted font-italic d-flex align-items-center flex-column bd-highlight"
-          *ngIf="employees.length <= 0">No employee added yet</div>
-      </ng-template>
-    </mat-tab>
-    <mat-tab label="Second">
-      <ng-template matTabContent>
-        The Second Content
-      </ng-template>
-    </mat-tab>
-  </mat-tab-group>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <table class="table mt-2 table-hover table-responsive-md table-bordered">
+        <thead class="bg-green text-white text-center">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Phone number</th>
+            <th scope="col">Date of Birth</th>
+            <th scope="col">Gender </th>
+            <!-- <th scope="col">Departments </th> -->
+            <!-- <th scope="col">Employee Type </th> -->
+            <th scope="col">Employ date</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="employee-table-list" class="bg-white">
+          <tr *ngFor="let employee of employees" [routerLink]="['/payroll/employee', employee.id]">
+            <td>{{ employee.id }}</td>
+            <td>{{ employee.firstname }} {{ employee.middlename | titlecase }} {{ employee.lastname }} </td>
+            <td>{{ employee.phone }}</td>
+            <td>{{ employee.dateofBirth }}</td>
+            <td>{{ employee.gender }}</td>
+            <td>{{ employee.date_created | date:'mediumDate' }}</td>
+
+            <!-- <td class="text-truncate" style="max-width: 150px;"> tyrhngfffggnfgdfdfs</td> -->
+            <td class="p-0">
+              <button type="button" matTooltip="Edit employee?" matTooltipPosition="left"
+                class="btn btn-sm btn-warning py-1 m-1 rounded-0">
+                <mat-icon>create</mat-icon>
+              </button>
+              <button (click)="onDeleteDialog(employee.id)" type="button"
+                class="btn btn-sm btn-danger py-1 m-1 rounded-0" matTooltip="Delete employee?"
+                matTooltipPosition="left">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="lead col-12 mt-3 text-muted font-italic d-flex align-items-center flex-column bd-highlight"
+      *ngIf="employees.length <= 0">No employee added yet</div>
+  </div>
 </div>

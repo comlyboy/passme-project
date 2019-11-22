@@ -24,6 +24,10 @@ a:hover {
     cursor: pointer;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 .pas-shadow {
     box-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, 0.1);
 }
@@ -65,4 +69,9 @@ a:hover {
 
 .pas-card {
     box-shadow: 0 0 35px 0 rgba(0, 0, 0, .11);
+}
+
+.no_outlline:hover, .no_outlline:active, .no_outlline:focus {
+    outline: none;
+    border-style: none;
 }

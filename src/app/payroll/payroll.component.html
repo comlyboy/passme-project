@@ -11,42 +11,41 @@
 
 <div class="container">
   <div class="row">
-
     <div class="col-sm-12 col-md-4 col-lg-5 col-xl-3 my-4">
-      <div routerLink="/payroll/department" class="card directory-card text-muted text-center">
-        <div class="card-body">
-          <app-icon name="employee_department"></app-icon>
-          <p class="h5 mt-3 text-dark font-weight-bold font-weight-bold">Department</p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm-12 col-md-4 col-lg-5 col-xl-3 my-4">
-      <div routerLink="/payroll/employee" class="card directory-card text-muted text-center">
-        <div class="card-body">
+      <div class="card directory-card text-muted text-center">
+        <a routerLink="/payroll/employee" class="card-body text-muted">
           <app-icon name="employee"></app-icon>
-          <p class="h5 mt-3 text-dark font-weight-bold">Employee</p>
+          <p class="h5 mt-3 text-dark font-weight-bold">Employees</p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+        </a>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-md-4 col-lg-5 col-xl-3 my-4">
+      <div class="card directory-card text-center">
+        <a routerLink="/payroll/compensation" class="card-body text-muted">
+          <app-icon name="compensation"></app-icon>
+          <p class="h5 mt-3 text-dark font-weight-bold font-weight-bold">Compensation</p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+        </a>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-md-4 col-lg-5 col-xl-3 my-4">
+      <div class="card directory-card text-center">
+        <div class="card-body text-muted" routerLink="/payroll">
+          <app-icon name="loan"></app-icon>
+          <p class="h5 mt-3 text-dark font-weight-bold">Loans</p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit.
         </div>
       </div>
     </div>
 
     <div class="col-sm-12 col-md-4 col-lg-5 col-xl-3 my-4">
-      <div routerLink="/payroll/employee-type" class="card directory-card text-muted text-center">
-        <div class="card-body">
-          <app-icon name="employee_type"></app-icon>
-          <p class="h5 mt-3 text-dark font-weight-bold">Employee Type</p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm-12 col-md-4 col-lg-5 col-xl-3 my-4">
-      <div routerLink="/payroll/employee-deduction" class="card directory-card text-muted text-center">
-        <div class="card-body">
+      <div class="card directory-card text-muted text-center">
+        <div routerLink="/payroll/employee-deduction" class="card-body text-muted">
           <app-icon name="employee_deduction"></app-icon>
-          <p class="h5 mt-3 text-dark font-weight-bold">Employee Deduction</p>
+          <p class="h5 mt-3 text-dark font-weight-bold">Permissions</p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit.
         </div>
       </div>
@@ -54,19 +53,29 @@
 
     <div class="col-sm-12 col-md-4 col-lg-5 col-xl-3 my-4">
       <div routerLink="/payroll/employee-earnings" class="card directory-card text-muted text-center">
-        <div class="card-body">
-          <app-icon name="employee_earnings"></app-icon>
-          <p class="h5 mt-3 text-dark font-weight-bold">Employee Earnings</p>
+        <div class="card-body text-muted">
+          <app-icon name="accounting"></app-icon>
+          <p class="h5 mt-3 text-dark font-weight-bold">Accounting</p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit.
         </div>
       </div>
     </div>
 
     <div class="col-sm-12 col-md-4 col-lg-5 col-xl-3 my-4">
-      <div routerLink="/payroll/employee-grade" class="card directory-card text-muted text-center">
-        <div class="card-body">
+      <div class="card directory-card text-muted text-center">
+        <div routerLink="/payroll/employee-grade" class="card-body text-muted">
           <app-icon name="employee_grade"></app-icon>
-          <p class="h5 mt-3 text-dark font-weight-bold">Employee Grade</p>
+          <p class="h5 mt-3 text-dark font-weight-bold">Payslip</p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-md-4 col-lg-5 col-xl-3 my-4">
+      <div class="card directory-card text-muted text-center">
+        <div routerLink="/payroll/employee-grade" class="card-body text-muted">
+          <app-icon name="report"></app-icon>
+          <p class="h5 mt-3 text-dark font-weight-bold">Reports</p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit.
         </div>
       </div>

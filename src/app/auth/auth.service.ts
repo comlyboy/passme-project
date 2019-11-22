@@ -7,6 +7,7 @@ import { ISignup, ILogin, IUser } from '../interfaces/user';
 
 import { NotificationsService } from '../shared/notifications.service';
 import { environment } from 'src/environments/environment';
+import { BusinessService } from '../shared/business.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
+    public businessService: BusinessService,
     public notificationsService: NotificationsService
   ) { }
 
@@ -95,6 +97,7 @@ export class AuthService {
 
           } else {
             this.router.navigate(['dashboard']);
+            this.businessService.getUserBusiness()
           }
         };
       }, error => {
@@ -110,14 +113,13 @@ export class AuthService {
     this.tenant = null;
     this.token = null;
     this.isAuthenticated = false;
-    this.authenticationStatusListener.next(false);
     this.user = null;
+    this.authenticationStatusListener.next(false);
     this.clearAuthenticationData();
-    this.notificationsService.success('logged out Successfull');
+    this.getAuthenticationStatusListener()
     this.router.navigate(['auth']);
+    this.notificationsService.success('logged out Successfull');
   }
-
-
 
 
   // this gets the user authentication data
@@ -166,7 +168,7 @@ export class AuthService {
     localStorage.removeItem('tenant');
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    localStorage.removeItem('key');
+    // localStorage.removeItem('key');
   }
 
 

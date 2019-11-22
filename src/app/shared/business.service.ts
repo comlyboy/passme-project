@@ -33,8 +33,6 @@ export class BusinessService {
 
 
   getUserBusiness() {
-
-
     this.http
       .get<any>(
         `${this.API_URL}organization/business/`
