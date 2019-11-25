@@ -11,13 +11,18 @@
 </div>
 
 <div class="container">
-  <div class="card mt-3 text-muted">
-    <div class="card-header bg-white h5">
-      <div class="h5 mb-0 text-center">Bio data</div>
-    </div>
-    <div class="card-body text-center">
-      <form (submit)="onSubmitEmployee(employeeForm)" #employeeForm="ngForm">
+  <form (submit)="onSubmitEmployee(employeeForm)" #employeeForm="ngForm">
+
+    <!-- Bio data -->
+    <div class="card text-muted">
+      <div class="card-header bg-white h5">
+        <div class="h5 mb-0 text-center">Bio data</div>
+      </div>
+
+      <!-- Bio data -->
+      <div class="card-body">
         <div class="row text-muted">
+
 
           <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
             <div class="h6 text-left mt-4 mb-1">First Name</div>
@@ -40,6 +45,7 @@
             </div>
           </div>
 
+
           <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
             <div class="h6 text-left mt-4 mb-1">Last Name</div>
             <div class="input-group">
@@ -60,6 +66,7 @@
               </div>
             </div>
           </div>
+
 
           <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
             <div class="h6 text-left mt-4 mb-1">Middle Name</div>
@@ -82,16 +89,17 @@
             </div>
           </div>
 
-          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="h6 text-left mt-4 mb-1">Date of Birth</div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="h6 text-left mt-4 mb-0">Date of Birth</div>
             <div class="input-group">
               <div class="input-group-prepend bg-light" *ngIf="dob.touched && dob.valid">
                 <span class="input-group-text bg-white">
                   <mat-icon class="text-green">done_all</mat-icon>
                 </span>
               </div>
-              <input type="date" class="form-control form-control-lg" name="inputDOB" ngModel required dob minlength="5"
-                autocomplete="off" placeholder="dob..." #dob="ngModel">
+              <input type="date" class="form-control form-control-lg" name="inputDOB" ngModel required minlength="5"
+                autocomplete="off" #dob="ngModel">
             </div>
             <div class="alert alert-danger p-1 m-0" *ngIf="dob.touched && !dob.valid">
               <div *ngIf="dob.errors.required">
@@ -106,8 +114,9 @@
             </div>
           </div>
 
-          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="h6 text-left mt-4 mb-1">Phone Number</div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="h6 text-left mt-4 mb-0">Phone Number</div>
             <div class="input-group">
               <div class="input-group-prepend bg-light" *ngIf="phonenumber.touched && phonenumber.valid">
                 <span class="input-group-text bg-white">
@@ -127,8 +136,9 @@
             </div>
           </div>
 
-          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="h6 text-left mt-4 mb-1">Country</div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="h6 text-left mt-4 mb-0">Country</div>
             <div class="input-group">
               <div class="input-group-prepend bg-light" *ngIf="country.touched && country.valid">
                 <span class="input-group-text bg-white">
@@ -139,7 +149,6 @@
                 <option selected value="">Country...</option>
                 <option value="NGA">Nigeria</option>
                 <option value="GHA">Ghana</option>
-
               </select>
             </div>
             <div class="alert alert-danger p-1 m-0" *ngIf="country.touched && !country.valid">
@@ -149,7 +158,60 @@
             </div>
           </div>
 
-          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-6">
+            <div [ngSwitch]="maritalMode" *ngIf="!loading">
+              <div *ngSwitchCase="'add'">
+
+                <div class="h6 text-left mt-4 mb-0">Marital status<span (click)="maritalMode = 'new'"
+                    class="small text-green float-right pointer mb-0" matTooltip="Add marital status"
+                    matTooltipPosition="above">
+                    <mat-icon class="text-green h6 mb-0">add</mat-icon>New status
+                  </span>
+                </div>
+                <div class="input-group mt-0">
+                  <div class="input-group-prepend bg-light" *ngIf="marital_status.touched && marital_status.valid">
+                    <span class="input-group-text bg-white" matTooltipPosition="above">
+                      <mat-icon class="text-green">done_all</mat-icon>
+                    </span>
+                  </div>
+                  <select class="form-control form-control-lg" name="inputMaritalStatus" ngModel required
+                    #marital_status="ngModel">
+                    <option selected value="">Marital status...</option>
+                    <option *ngFor="let marital_status of marital_statuses" [value]="marital_status.id">
+                      {{  marital_status.name }}
+                    </option>
+                  </select>
+                </div>
+                <div class="alert alert-danger p-1 m-0" *ngIf="marital_status.touched && !marital_status.valid">
+                  <div *ngIf="marital_status.errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+
+              <div *ngSwitchCase="'new'">
+                <div class="h6 text-left mt-4 mb-0">Marital status<span (click)="maritalMode = 'add'"
+                    class="small text-green float-right pointer mb-0" matTooltip="Cancel" matTooltipPosition="above">
+                    <mat-icon class="text-green h6 mb-0">clear</mat-icon>Cancel
+                  </span>
+                </div>
+                <form (submit)="onSubmitMarital(maritalForm)" #maritalForm="ngForm">
+                  <div class="input-group float-right">
+                    <input type="text" class="form-control form-control-lg" name="inputMarital_status" ngModel required
+                      minlength="3" autocomplete="off" placeholder="Enter marital status..." #marital_status="ngModel">
+                    <div class="input-group-append">
+                      <button type="submit" class="btn bg-green text-white"
+                        [disabled]="!marital_status.valid">Add</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-6">
             <div [ngSwitch]="viewMode" *ngIf="!loading">
               <div *ngSwitchCase="'add'">
 
@@ -161,7 +223,7 @@
                 </div>
                 <div class="input-group mt-0">
                   <div class="input-group-prepend bg-light" *ngIf="gender.touched && gender.valid">
-                    <span class="input-group-text bg-white" matTooltip="rgdfdsf" matTooltipPosition="above">
+                    <span class="input-group-text bg-white" matTooltipPosition="above">
                       <mat-icon class="text-green">done_all</mat-icon>
                     </span>
                   </div>
@@ -187,10 +249,160 @@
                 </div>
                 <form (submit)="onSubmitGender(genderForm)" #genderForm="ngForm">
                   <div class="input-group float-right">
-                    <input type="text" class="form-control no_outlline form-control-lg" name="inputGender" ngModel
-                      required minlength="3" autocomplete="off" placeholder="Create gender here..." #gender="ngModel">
+                    <input type="text" class="form-control form-control-lg" name="input_gender" ngModel required
+                      minlength="3" autocomplete="off" placeholder="Enter gender..." #gender="ngModel">
                     <div class="input-group-append">
-                      <button type="submit" class="btn bg-green no_outlline text-white">Add</button>
+                      <button type="submit" class="btn bg-green text-white" [disabled]="!genderForm.valid">Add</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-sm-12 col-md-6 col-lg-12 col-xl-12">
+            <div class="h6 text-left mt-4 mb-0">Address</div>
+            <div class="input-group">
+              <div class="input-group-prepend bg-light" *ngIf="address.touched && address.valid">
+                <span class="input-group-text bg-white">
+                  <mat-icon class="text-green">done_all</mat-icon>
+                </span>
+              </div>
+              <textarea class="form-control form-control-lg" name="inputAddress" ngModel required minlength="3"
+                autocomplete="off" placeholder="Address..." #address="ngModel"></textarea>
+            </div>
+            <div class="alert alert-danger p-1 m-0" *ngIf="address.touched && !address.valid">
+              <div *ngIf="address.errors.required">
+                This field is required.
+              </div>
+              <div *ngIf="address.errors.minlength">
+                Minimum 3 characters needed.
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- Next of Kin -->
+          <div class="col-12">
+            <div class="h5 mt-4 font-weight-bold">
+              Next of Kin
+            </div>
+          </div>
+
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-6">
+            <div class="h6 text-left mt-2 mb-1">Full Name</div>
+            <div class="input-group">
+              <div class="input-group-prepend bg-light" *ngIf="name.touched && name.valid">
+                <span class="input-group-text bg-white">
+                  <mat-icon class="text-green">done_all</mat-icon>
+                </span>
+              </div>
+              <input type="text" class="form-control form-control-lg" name="inputNokName" ngModel required minlength="3"
+                autocomplete="off" placeholder="Full Name..." #name="ngModel" required>
+            </div>
+            <div class="alert alert-danger p-1 m-0" *ngIf="name.touched && !name.valid">
+              <div *ngIf="name.errors.required">
+                This field is required.
+              </div>
+              <div *ngIf="name.errors.minlength">
+                Minimum 3 characters needed.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-6">
+            <div class="h6 text-left mt-2 mb-1">Phone Number</div>
+            <div class="input-group">
+              <div class="input-group-prepend bg-light" *ngIf="phoneNumber.touched && phoneNumber.valid">
+                <span class="input-group-text bg-white">
+                  <mat-icon class="text-green">done_all</mat-icon>
+                </span>
+              </div>
+              <input type="number" class="form-control form-control-lg" name="inputNokPhoneNumber" ngModel required
+                minlength="7" autocomplete="off" placeholder="Phone Number..." #phoneNumber="ngModel">
+            </div>
+            <div class="alert alert-danger p-1 m-0" *ngIf="phoneNumber.touched && !phoneNumber.valid">
+              <div *ngIf="phoneNumber.errors.required">
+                This field is required.
+              </div>
+              <div *ngIf="phoneNumber.errors.minlength">
+                Minimum 7 numbers needed.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-6">
+            <div class="h6 text-left mt-4 mb-1">Email</div>
+            <div class="input-group">
+              <div class="input-group-prepend bg-light" *ngIf="email.touched && email.valid">
+                <span class="input-group-text bg-white">
+                  <mat-icon class="text-green">done_all</mat-icon>
+                </span>
+              </div>
+              <input type="email" class="form-control form-control-lg" name="inputNokEmail" ngModel minlength="5" email
+                autocomplete="off" placeholder="Email..." #email="ngModel" required>
+            </div>
+            <div class="alert alert-danger p-1 m-0" *ngIf="email.touched && !email.valid">
+              <div *ngIf="email.errors.required">
+                This field is required.
+              </div>
+              <div *ngIf="email.errors.minlength">
+                Minimum 7 numbers needed.
+              </div>
+              <div *ngIf="email.errors.email">
+                Email characters needed.
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-6">
+            <div [ngSwitch]="relatnMode" *ngIf="!loading">
+              <div *ngSwitchCase="'add'">
+
+                <div class="h6 text-left mt-4 mb-0">Relationship <span (click)="relatnMode = 'new'"
+                    class="small text-green float-right pointer mb-0" matTooltip="Add Relationship"
+                    matTooltipPosition="above">
+                    <mat-icon class="text-green h6 mb-0">add</mat-icon>Add Relationship
+                  </span>
+                </div>
+                <div class="input-group mt-0">
+                  <div class="input-group-prepend bg-light" *ngIf="relationship.touched && relationship.valid">
+                    <span class="input-group-text bg-white" matTooltipPosition="above">
+                      <mat-icon class="text-green">done_all</mat-icon>
+                    </span>
+                  </div>
+                  <select class="form-control form-control-lg" name="inputNokRelationship" ngModel required
+                    #relationship="ngModel">
+                    <option selected value="">Relationship type...</option>
+                    <option *ngFor="let relationship of relationship_types" [value]="relationship.id">
+                      {{  relationship.name }}
+                    </option>
+                  </select>
+                </div>
+                <div class="alert alert-danger p-1 m-0" *ngIf="relationship.touched && !relationship.valid">
+                  <div *ngIf="relationship.errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+
+              <div *ngSwitchCase="'new'">
+                <div class="h6 text-left mt-4 mb-0">Qualification <span (click)="relatnMode = 'add'"
+                    class="small text-green float-right pointer mb-0" matTooltip="Cancel" matTooltipPosition="above">
+                    <mat-icon class="text-green h6 mb-0">clear</mat-icon>Cancel
+                  </span>
+                </div>
+                <form (submit)="onSubmitRelation(relatnForm)" #relatnForm="ngForm">
+                  <div class="input-group float-right">
+                    <input type="text" class="form-control form-control-lg" name="input_relationship" ngModel required
+                      minlength="3" autocomplete="off" placeholder="Enter relationship..." #relationship="ngModel">
+                    <div class="input-group-append">
+                      <button type="submit" class="btn bg-green text-white" [disabled]="!relatnForm.valid">Add</button>
                     </div>
                   </div>
                 </form>
@@ -202,173 +414,256 @@
           <div class="col-sm-12 col-md-6 col-lg-12 col-xl-12">
             <div class="h6 text-left mt-4 mb-1">Address</div>
             <div class="input-group">
-              <div class="input-group-prepend bg-light" *ngIf="address.touched && address.valid">
+              <div class="input-group-prepend bg-light" *ngIf="addressNok.touched && addressNok.valid">
                 <span class="input-group-text bg-white">
                   <mat-icon class="text-green">done_all</mat-icon>
                 </span>
               </div>
-              <textarea class="form-control form-control-lg" name="inputAddress" ngModel required minlength="3"
-                autocomplete="off" placeholder="address..." #address="ngModel"></textarea>
+              <textarea class="form-control form-control-lg" name="inputNokAddress" ngModel required minlength="3"
+                autocomplete="off" placeholder="Address..." #addressNok="ngModel"></textarea>
             </div>
-            <div class="alert alert-danger p-1 m-0" *ngIf="address.touched && !address.valid">
-              <div *ngIf="address.errors.required">
+            <div class="alert alert-danger p-1 m-0" *ngIf="addressNok.touched && !addressNok.valid">
+              <div *ngIf="addressNok.errors.required">
                 This field is required.
               </div>
-              <div *ngIf="address.errors.minlength">
+              <div *ngIf="addressNok.errors.minlength">
                 Minimum 3 characters needed.
               </div>
             </div>
           </div>
+
+
         </div>
-        <hr>
+      </div>
+    </div>
 
 
-        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-        <!-- <div class="h5 mt-4">Qualifications</div>
+
+    <!-- Qualifications -->
+
+    <div class="card text-muted my-5">
+      <div class="card-header bg-white h5">
+        <div class="h5 mb-0 text-center">Qualification</div>
+      </div>
+      <div class="card-body">
         <div class="row text-muted">
+
+
           <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
-            <div class="h6 text-left mt-4 mb-1">Full Name</div>
+            <div class="h6 text-left mt-4 mb-1">Institution Attended</div>
             <div class="input-group">
-              <div class="input-group-prepend bg-light" *ngIf="name.touched && name.valid">
+              <div class="input-group-prepend bg-light" *ngIf="instituteName.touched && instituteName.valid">
                 <span class="input-group-text bg-white">
                   <mat-icon class="text-green">done_all</mat-icon>
                 </span>
               </div>
-              <input type="text" class="form-control form-control-lg" name="inputNokName" ngModel required minlength="3"
-                autocomplete="off" placeholder="Full Name..." #name="ngModel" required>
+              <input type="text" class="form-control form-control-lg" name="inputInstitutionName" ngModel required
+                minlength="3" autocomplete="off" placeholder="Institution Name..." #instituteName="ngModel" required>
             </div>
-            <div class="alert alert-danger p-1 m-0" *ngIf="name.touched && !name.valid">
-              <div *ngIf="name.errors.required">
+            <div class="alert alert-danger p-1 m-0" *ngIf="instituteName.touched && !instituteName.valid">
+              <div *ngIf="instituteName.errors.required">
                 This field is required.
               </div>
-              <div *ngIf="name.errors.minlength">
+              <div *ngIf="instituteName.errors.minlength">
                 Minimum 3 characters needed.
               </div>
             </div>
           </div>
 
+
           <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
-            <div class="h6 text-left mt-4 mb-1">Phone Number</div>
+            <div class="h6 text-left mt-4 mb-1">Year of Graduation</div>
             <div class="input-group">
-              <div class="input-group-prepend bg-light" *ngIf="phoneNumber.touched && phoneNumber.valid">
+              <div class="input-group-prepend bg-light" *ngIf="graduateYear.touched && graduateYear.valid">
                 <span class="input-group-text bg-white">
                   <mat-icon class="text-green">done_all</mat-icon>
                 </span>
               </div>
-              <input type="number" class="form-control form-control-lg" name="inputNokPhoneNumber" ngModel required
-                minlength="7" autocomplete="off" placeholder="Phone Number..." #phoneNumber="ngModel">
+              <input type="number" class="form-control form-control-lg" name="inputGraduationYear" ngModel required
+                minlength="7" autocomplete="off" placeholder="Year of Graduation..." #graduateYear="ngModel">
             </div>
-            <div class="alert alert-danger p-1 m-0" *ngIf="phoneNumber.touched && !phoneNumber.valid">
-              <div *ngIf="phoneNumber.errors.required">
+            <div class="alert alert-danger p-1 m-0" *ngIf="graduateYear.touched && !graduateYear.valid">
+              <div *ngIf="graduateYear.errors.required">
                 This field is required.
               </div>
-              <div *ngIf="phoneNumber.errors.minlength">
+              <div *ngIf="graduateYear.errors.minlength">
                 Minimum 7 numbers needed.
               </div>
             </div>
           </div>
 
+
           <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
-            <div class="h6 text-left mt-4 mb-1">Email</div>
-            <div class="input-group">
-              <div class="input-group-prepend bg-light" *ngIf="email.touched && email.valid">
-                <span class="input-group-text bg-white">
-                  <mat-icon class="text-green">done_all</mat-icon>
-                </span>
+            <div [ngSwitch]="qualificationMode" *ngIf="!loading">
+              <div *ngSwitchCase="'add'">
+
+                <div class="h6 text-left mt-4 mb-0">Qualification <span (click)="qualificationMode = 'new'"
+                    class="small text-green float-right pointer mb-0" matTooltip="Add qualification"
+                    matTooltipPosition="above">
+                    <mat-icon class="text-green h6 mb-0">add</mat-icon>Add Qualification
+                  </span>
+                </div>
+                <div class="input-group mt-0">
+                  <div class="input-group-prepend bg-light" *ngIf="quaType.touched && quaType.valid">
+                    <span class="input-group-text bg-white" matTooltipPosition="above">
+                      <mat-icon class="text-green">done_all</mat-icon>
+                    </span>
+                  </div>
+                  <select class="form-control form-control-lg" name="inputQualificationType" ngModel required
+                    #quaType="ngModel">
+                    <option selected value="">Qualification type...</option>
+                    <option *ngFor="let qualification_type of qualification_types" [value]="qualification_type.id">
+                      {{  qualification_type.name }}
+                    </option>
+                  </select>
+                </div>
+                <div class="alert alert-danger p-1 m-0" *ngIf="quaType.touched && !quaType.valid">
+                  <div *ngIf="quaType.errors.required">
+                    This field is required.
+                  </div>
+                </div>
               </div>
-              <input type="email" class="form-control form-control-lg" name="inputNokEmail" ngModel minlength="5" email
-                autocomplete="off" placeholder="Email..." #email="ngModel" required>
-            </div>
-            <div class="alert alert-danger p-1 m-0" *ngIf="email.touched && !email.valid">
-              <div *ngIf="email.errors.required">
-                This field is required.
-              </div>
-              <div *ngIf="email.errors.minlength">
-                Minimum 7 numbers needed.
-              </div>
-              <div *ngIf="email.errors.email">
-                Email characters needed.
+
+              <div *ngSwitchCase="'new'">
+                <div class="h6 text-left mt-4 mb-0">Qualification <span (click)="qualificationMode = 'add'"
+                    class="small text-green float-right pointer mb-0" matTooltip="Cancel" matTooltipPosition="above">
+                    <mat-icon class="text-green h6 mb-0">clear</mat-icon>Cancel
+                  </span>
+                </div>
+                <form (submit)="onSubmitQualificationType(quaForm)" #quaForm="ngForm">
+                  <div class="input-group float-right">
+                    <input type="text" class="form-control form-control-lg" name="inputQualification_type" ngModel
+                      required minlength="3" autocomplete="off" placeholder="Enter qualification..." #quaType="ngModel">
+                    <div class="input-group-append">
+                      <button type="submit" class="btn bg-green btn-success" [disabled]="!quaForm.valid">Add</button>
+                    </div>
+                  </div>
+                </form>
+
               </div>
             </div>
           </div>
 
-        </div> -->
-        <!-- <hr> -->
-        <div class="h5 mt-4">Next of Kins</div>
-        <div class="row text-muted">
-          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
-            <div class="h6 text-left mt-4 mb-1">Full Name</div>
-            <div class="input-group">
-              <div class="input-group-prepend bg-light" *ngIf="name.touched && name.valid">
-                <span class="input-group-text bg-white">
-                  <mat-icon class="text-green">done_all</mat-icon>
-                </span>
-              </div>
-              <input type="text" class="form-control form-control-lg" name="inputNokName" ngModel required minlength="3"
-                autocomplete="off" placeholder="Full Name..." #name="ngModel" required>
-            </div>
-            <div class="alert alert-danger p-1 m-0" *ngIf="name.touched && !name.valid">
-              <div *ngIf="name.errors.required">
-                This field is required.
-              </div>
-              <div *ngIf="name.errors.minlength">
-                Minimum 3 characters needed.
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
-            <div class="h6 text-left mt-4 mb-1">Phone Number</div>
-            <div class="input-group">
-              <div class="input-group-prepend bg-light" *ngIf="phoneNumber.touched && phoneNumber.valid">
-                <span class="input-group-text bg-white">
-                  <mat-icon class="text-green">done_all</mat-icon>
-                </span>
-              </div>
-              <input type="number" class="form-control form-control-lg" name="inputNokPhoneNumber" ngModel required
-                minlength="7" autocomplete="off" placeholder="Phone Number..." #phoneNumber="ngModel">
-            </div>
-            <div class="alert alert-danger p-1 m-0" *ngIf="phoneNumber.touched && !phoneNumber.valid">
-              <div *ngIf="phoneNumber.errors.required">
-                This field is required.
-              </div>
-              <div *ngIf="phoneNumber.errors.minlength">
-                Minimum 7 numbers needed.
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
-            <div class="h6 text-left mt-4 mb-1">Email</div>
-            <div class="input-group">
-              <div class="input-group-prepend bg-light" *ngIf="email.touched && email.valid">
-                <span class="input-group-text bg-white">
-                  <mat-icon class="text-green">done_all</mat-icon>
-                </span>
-              </div>
-              <input type="email" class="form-control form-control-lg" name="inputNokEmail" ngModel minlength="5" email
-                autocomplete="off" placeholder="Email..." #email="ngModel" required>
-            </div>
-            <div class="alert alert-danger p-1 m-0" *ngIf="email.touched && !email.valid">
-              <div *ngIf="email.errors.required">
-                This field is required.
-              </div>
-              <div *ngIf="email.errors.minlength">
-                Minimum 7 numbers needed.
-              </div>
-              <div *ngIf="email.errors.email">
-                Email characters needed.
-              </div>
-            </div>
-          </div>
         </div>
+      </div>
+    </div>
 
 
-        <div class="modal-footer mt-4">
-          <button mat-raised-button class="btn btn-primary btn-lg bg-green  font-weight-bold py-1 mt-2" type="submit"
+
+    <!-- Account details -->
+
+    <div class="card text-muted my-5">
+      <div class="card-header bg-white h5">
+        <div class="h5 mb-0 text-center">Payment details</div>
+      </div>
+      <div class="card-body">
+        <div class="row text-muted">
+
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="h6 text-left mt-4 mb-1">Account Name</div>
+            <div class="input-group">
+              <div class="input-group-prepend bg-light" *ngIf="accountName.touched && accountName.valid">
+                <span class="input-group-text bg-white">
+                  <mat-icon class="text-green">done_all</mat-icon>
+                </span>
+              </div>
+              <input type="text" class="form-control form-control-lg" name="inputAccountName" ngModel required
+                minlength="3" autocomplete="off" placeholder="Full Name..." #accountName="ngModel" required>
+            </div>
+            <div class="alert alert-danger p-1 m-0" *ngIf="accountName.touched && !accountName.valid">
+              <div *ngIf="accountName.errors.required">
+                This field is required.
+              </div>
+              <div *ngIf="accountName.errors.minlength">
+                Minimum 3 characters needed.
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="h6 text-left mt-4 mb-1">Account Number</div>
+            <div class="input-group">
+              <div class="input-group-prepend bg-light" *ngIf="accountNumber.touched && accountNumber.valid">
+                <span class="input-group-text bg-white">
+                  <mat-icon class="text-green">done_all</mat-icon>
+                </span>
+              </div>
+              <input type="text" class="form-control form-control-lg" name="inputAccountNumber" ngModel required
+                minlength="7" autocomplete="off" placeholder="Account Number..." #accountNumber="ngModel">
+            </div>
+            <div class="alert alert-danger p-1 m-0" *ngIf="accountNumber.touched && !accountNumber.valid">
+              <div *ngIf="accountNumber.errors.required">
+                This field is required.
+              </div>
+              <div *ngIf="accountNumber.errors.minlength">
+                Minimum 7 numbers needed.
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div [ngSwitch]="paymentMode" *ngIf="!loading">
+              <div *ngSwitchCase="'add'">
+
+                <div class="h6 text-left mt-4 mb-0">Bank Name <span (click)="paymentMode = 'new'"
+                    class="small text-green float-right pointer mb-0" matTooltip="Add bank" matTooltipPosition="above">
+                    <mat-icon class="text-green h6 mb-0">add</mat-icon>Add Bank
+                  </span>
+                </div>
+                <div class="input-group mt-0">
+                  <div class="input-group-prepend bg-light" *ngIf="bank.touched && bank.valid">
+                    <span class="input-group-text bg-white" matTooltipPosition="above">
+                      <mat-icon class="text-green">done_all</mat-icon>
+                    </span>
+                  </div>
+                  <select class="form-control form-control-lg" name="inputBankName" ngModel required #bank="ngModel">
+                    <option selected value="">Bank type...</option>
+                    <option *ngFor="let bank of bank_types" [value]="bank.id">
+                      {{  bank.name }}
+                    </option>
+                  </select>
+                </div>
+                <div class="alert alert-danger p-1 m-0" *ngIf="bank.touched && !bank.valid">
+                  <div *ngIf="bank.errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+
+              <div *ngSwitchCase="'new'">
+                <div class="h6 text-left mt-4 mb-0">Bank Name <span (click)="paymentMode = 'add'"
+                    class="small text-green float-right pointer mb-0" matTooltip="Cancel" matTooltipPosition="above">
+                    <mat-icon class="text-green h6 mb-0">clear</mat-icon>Cancel
+                  </span>
+                </div>
+                <form (submit)="onSubmitBank(bankForm)" #bankForm="ngForm">
+                  <div class="input-group float-right">
+                    <input type="text" class="form-control form-control-lg" name="inputBank_name" ngModel required
+                      minlength="3" autocomplete="off" placeholder="Enter bank name..." #bank="ngModel">
+                    <div class="input-group-append">
+                      <button type="submit" class="btn bg-green btn-primary" [disabled]="!bankForm.valid">Add</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="modal-footer mt-2 px-5">
+          <button mat-raised-button class="btn btn-lg btn-success font-weight-bold bg-green mt-2" type="submit"
             [disabled]="!employeeForm.valid">Submit</button>
         </div>
-      </form>
+      </div>
+
     </div>
-  </div>
+
+
+
+  </form>
+
 </div>

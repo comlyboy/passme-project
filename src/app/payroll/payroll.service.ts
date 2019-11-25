@@ -144,7 +144,7 @@ export class PayrollService {
   ) {
     const key = localStorage.getItem('key');
 
-    const employeeData: IEmployee = {
+    const employeeData = {
       firstname: firstname,
       lastname: lastname,
       middlename: middlename,
@@ -222,7 +222,7 @@ export class PayrollService {
   // Employee deduction
 
   getEmployeeDecution() {
-    this.http.get<IEmployeeDeduction>(
+    this.http.get<any>(
       `${this.API_URL}organization/urrencies/`
     )
       .subscribe(data => {

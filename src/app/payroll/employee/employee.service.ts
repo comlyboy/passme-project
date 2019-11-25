@@ -12,6 +12,7 @@ import { IEmployee, IDepartment, IEmployeeDeduction, IEmployeeEarning, IEmployee
   providedIn: 'root'
 })
 export class EmployeeService {
+  key = localStorage.getItem('key');
 
   API_URL = environment.API_URL
   employees: IEmployee[] = []
@@ -20,7 +21,16 @@ export class EmployeeService {
   employeeEarning: IEmployeeEarning[] = []
   employeeGrade: IEmployeeGrade[] = []
   employeeType: IEmployeeType[] = []
-  genders: any;
+
+
+  genders: any[] = [];
+  marital_statuses: any[] = []
+  qualifications_types: any[] = []
+  relationships_types: any[] = []
+  bank_types: any[] = []
+
+
+
 
   constructor(
     private http: HttpClient,
@@ -82,13 +92,11 @@ export class EmployeeService {
   }
 
   addDepartment(name: string, description: string) {
-    const key = localStorage.getItem('key');
-
     const deptData = {
       name: name,
       description: description
     };
-    this.http.post(`${this.API_URL}payroll/${key}/employees/`, deptData)
+    this.http.post(`${this.API_URL}payroll/${this.key}/employees/`, deptData)
       .subscribe(response => {
 
 
@@ -97,13 +105,13 @@ export class EmployeeService {
       });
   }
 
-  // employee =====================
+
+  // +++++++++++++++++++++++++
+  // employee
 
   getEmployee() {
-    const key = localStorage.getItem('key');
-
     this.http.get<any>(
-      `${this.API_URL}payroll/${key}/employees/`
+      `${this.API_URL}payroll/${this.key}/employees/`
     )
       .subscribe(employeeData => {
         this.employees = employeeData
@@ -116,8 +124,7 @@ export class EmployeeService {
   }
 
   getEmployeeDetails(id: string) {
-    const key = localStorage.getItem('key');
-    return this.http.get<any>(`${this.API_URL}payroll/${key}/employees/${id}`);
+    return this.http.get<any>(`${this.API_URL}payroll/${this.key}/employees/${id}`);
   }
 
 
@@ -125,88 +132,174 @@ export class EmployeeService {
     firstname: string,
     lastname: string,
     middlename: string,
-    phone: string,
-    gender: number,
     dateofBirth: string,
+    phone: string,
     country: string,
+    marital_status: number,
+    gender: number,
     address: string,
 
     nokName: string,
     nokPhoneNumber: string,
-    nokEmail: string
+    nokEmail: string,
+    nokRelationship: number,
+    nokAddress: string,
+
+    institutionName: string,
+    graduateYear: string,
+    qualificationType: number,
+
+    accountName: string,
+    accountNumber: string,
+    bankName: number,
+
 
   ) {
-    const key = localStorage.getItem('key');
-
     const employeeData: IEmployee = {
       firstname: firstname,
       lastname: lastname,
       middlename: middlename,
-      phone: phone,
-      gender: gender,
       dateofBirth: dateofBirth,
+      phone: phone,
       country: country,
-      address: address
+      marital_status: marital_status,
+      gender: gender,
+      address: address,
     };
-    this.http.post<IEmployee>(`${this.API_URL}payroll/${key}/employees/`, employeeData)
+
+
+    console.log(employeeData)
+
+    this.http.post<IEmployee>(`${this.API_URL}payroll/${this.key}/employees/`, employeeData)
       .subscribe(response => {
-        let empId = response.id
-        if (nokName && nokPhoneNumber && nokEmail) {
-          this.addEmployeeNok(nokName, nokPhoneNumber, nokEmail, empId)
+        let employeeId = response.id
+        if (nokName && nokPhoneNumber && nokEmail && institutionName && graduateYear && qualificationType && accountName && accountNumber && bankName) {
+
+          this.addEmployeeNok(nokName, nokPhoneNumber, nokEmail, nokRelationship, nokAddress, employeeId)
+
+          this.addEmployeeQualification(institutionName, graduateYear, qualificationType, employeeId)
+
+          this.addPaymentDetails(accountName, accountNumber, bankName, employeeId)
         } else {
+          console.log("parameters missing")
           this.notificationsService.success(`${response.firstname} successfully added!!`)
-          this.router.navigate(['payroll/employee']);
+          // this.router.navigate(['payroll/employee']);
         }
 
-
       }, error => {
         console.log(error)
       });
   }
+
+
 
   addEmployeeNok(
-    name: string,
-    number: string,
-    email: string,
-    empId: string
-
+    nokName: string,
+    nokPhoneNumber: string,
+    nokEmail: string,
+    nokRelationship: number,
+    nokAddress: string,
+    employeeId: string
   ) {
-    const key = localStorage.getItem('key');
-    const employeeNokData: IEmployeeNok = {
-      name: name,
-      contact_number: number,
-      contact_email: email,
+    const nokData: IEmployeeNok = {
+      name: nokName,
+      contact_number: nokPhoneNumber,
+      contact_email: nokEmail,
+      relationship_type: nokRelationship,
+      address: nokAddress
+
     };
-    console.log(employeeNokData)
-    this.http.post<IEmployeeNok>(`${this.API_URL}payroll/${key}/next_of_kin/${empId}/`, employeeNokData)
+    console.log(nokData)
+    this.http.post(`${this.API_URL}payroll/${this.key}/next_of_kin/${employeeId}/`, nokData)
       .subscribe(response => {
+        console.log("Next of Kin")
         console.log(response)
-        this.notificationsService.success("Success!!!")
-        this.router.navigate(['payroll/employee']);
+        console.log("=======")
+        this.notificationsService.full()
 
       }, error => {
         console.log(error)
       });
-
-
-
   }
+
+
+
+  addEmployeeQualification(
+    institutionName: string,
+    graduateYear: string,
+    qualificationType: number,
+    employeeId: string
+  ) {
+    const qualificationData = {
+      institution_attended: institutionName,
+      year_of_graduation: graduateYear,
+      qualification_type: qualificationType
+    };
+    console.log(qualificationData)
+    this.http.post(`${this.API_URL}payroll/${this.key}/qualifications/${employeeId}/`, qualificationData)
+      .subscribe(response => {
+        console.log("Qualifications")
+        console.log(response)
+        console.log("=======")
+        this.notificationsService.full()
+        // this.router.navigate(['payroll/employee']);
+
+      }, error => {
+        console.log(error)
+      });
+  }
+
+
+  addPaymentDetails(
+    accountName: string,
+    accountNumber: string,
+    bankName: number,
+    employeeId: string
+  ) {
+    const paymentData = {
+      account_name: accountName,
+      account_number: accountNumber,
+      bank: bankName
+    };
+    console.log(paymentData)
+    this.http.post(`${this.API_URL}payroll/${this.key}/salary_account_info/${employeeId}/`, paymentData)
+      .subscribe(response => {
+        console.log("Payment details")
+        console.log(response)
+        console.log("=======")
+        this.notificationsService.full()
+        // this.router.navigate(['payroll/employee']);
+
+      }, error => {
+        console.log(error)
+      });
+  }
+
+
+
+
+
+
+
+
+
+
+
+
 
   // ++++++++++++++++++++++++++++
   // Gender
   private allGenderUpdated = new Subject<{
     allGenders: any[];
   }>();
-  
+
   getAllGenderUpdateListener() {
     return this.allGenderUpdated.asObservable();
   }
 
-  getGender() {
-    const key = localStorage.getItem('key');
-
+  getGenders() {
     this.http.get<any>(
-      `${this.API_URL}/payroll/${key}/genders/`
+      `${this.API_URL}payroll/${this.key}/genders/`
     )
       .subscribe(genderData => {
         this.genders = genderData
@@ -219,16 +312,95 @@ export class EmployeeService {
   }
 
   addGender(name: string) {
-    const key = localStorage.getItem('key');
-
     const newGenderData = {
       name: name
     };
     this.http.post<any>(
-      `${this.API_URL}/payroll/${key}/genders/`, newGenderData
+      `${this.API_URL}payroll/${this.key}/genders/`, newGenderData
     )
       .subscribe(response => {
-        this.notificationsService.success('Gender added!!');
+        this.notificationsService.bigSuccess(`${response.name} added!!!`);
+        this.getGenders()
+      }, error => {
+        console.log(error)
+      });
+  }
+
+
+  // +++++++++++++++++++++++++++
+  // marital statuses
+  private allMaritalStatusUpdated = new Subject<{
+    allMaritals: any[];
+  }>();
+
+  getAllMaritalStatusUpdateListener() {
+    return this.allMaritalStatusUpdated.asObservable();
+  }
+
+  getMaritalStatus() {
+    this.http.get<any>(
+      `${this.API_URL}payroll/${this.key}/marital_status/`
+    )
+      .subscribe(maritalData => {
+        this.marital_statuses = maritalData
+        this.allMaritalStatusUpdated.next({
+          allMaritals: [...this.marital_statuses]
+        });
+      }, error => {
+        console.log(error)
+      });
+  }
+
+  addMaritalStatus(name: string) {
+    const newMaritalData = {
+      name: name
+    };
+    this.http.post<any>(
+      `${this.API_URL}payroll/${this.key}/marital_status/`, newMaritalData
+    )
+      .subscribe(response => {
+        this.notificationsService.bigSuccess(`${response.name} added!!!`);
+        this.getMaritalStatus()
+      }, error => {
+        console.log(error)
+      });
+  }
+
+
+  // +++++++++++++++++++++++++++
+  // Relationship
+  private allRelationshipStatusUpdated = new Subject<{
+    allRelationship: any[];
+  }>();
+
+  getAllRelationshipStatusUpdateListener() {
+    return this.allRelationshipStatusUpdated.asObservable();
+  }
+
+  getRelationships() {
+    this.http.get<any>(
+      `${this.API_URL}payroll/${this.key}/relationship_types/`
+    )
+      .subscribe(relatnData => {
+        this.relationships_types = relatnData
+        this.allRelationshipStatusUpdated.next({
+          allRelationship: [...this.relationships_types]
+        });
+      }, error => {
+        console.log(error)
+      });
+  }
+
+  addRelationship(name: string) {
+    const newRelatnData = {
+      name: name
+    };
+    this.http.post<any>(
+      `${this.API_URL}payroll/${this.key}/relationship_types/`, newRelatnData
+    )
+      .subscribe(response => {
+        this.notificationsService.bigSuccess(`${response.name} added!!!`);
+        this.getRelationships()
       }, error => {
         console.log(error)
       });
@@ -237,7 +409,85 @@ export class EmployeeService {
 
 
   // +++++++++++++++++++++++++++
-  // Employee deduction
+  // Qualification
+  private allQualificationStatusUpdated = new Subject<{
+    allQualifications: any[];
+  }>();
+
+  getAllQualificationStatusUpdateListener() {
+    return this.allQualificationStatusUpdated.asObservable();
+  }
+
+  getQualifications() {
+    this.http.get<any>(
+      `${this.API_URL}payroll/${this.key}/qualification_types/`
+    )
+      .subscribe(qualData => {
+        this.qualifications_types = qualData
+        this.allQualificationStatusUpdated.next({
+          allQualifications: [...this.qualifications_types]
+        });
+      }, error => {
+        console.log(error)
+      });
+  }
+
+  addQualification(name: string) {
+    const newQualData = {
+      name: name
+    };
+    this.http.post<any>(
+      `${this.API_URL}payroll/${this.key}/qualification_types/`, newQualData
+    )
+      .subscribe(response => {
+        this.notificationsService.bigSuccess(`${response.name} added!!!`);
+        this.getQualifications()
+      }, error => {
+        console.log(error)
+      });
+  }
+
+
+
+  // +++++++++++++++++++++++++++
+  // Banks
+  private allBankStatusUpdated = new Subject<{
+    allBanks: any[];
+  }>();
+
+  getAllBankStatusUpdateListener() {
+    return this.allBankStatusUpdated.asObservable();
+  }
+
+  getBanks() {
+    this.http.get<any>(
+      `${this.API_URL}organization/${this.key}/banks/`
+    )
+      .subscribe(bankData => {
+        this.bank_types = bankData
+        this.allBankStatusUpdated.next({
+          allBanks: [...this.bank_types]
+        });
+      }, error => {
+        console.log(error)
+      });
+  }
+
+  addBank(name: string) {
+    const newBankData = {
+      name: name
+    };
+    this.http.post<any>(
+      `${this.API_URL}organization/${this.key}/banks/`, newBankData
+    )
+      .subscribe(response => {
+        this.notificationsService.bigSuccess(`${response.name} added!!!`);
+        this.getBanks()
+      }, error => {
+        console.log(error)
+      });
+  }
+
 
 
 }

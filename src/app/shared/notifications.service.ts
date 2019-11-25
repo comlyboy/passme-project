@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import Swal from 'sweetalert2'
+import cheers from 'cheers-alert';
+import 'cheers-alert/src/cheers-alert.css'; //load style
+import 'font-awesome/css/font-awesome.min.css'; //load font-awesome
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +12,40 @@ export class NotificationsService {
   constructor() { }
 
 
+
+  topRight(message) {
+    const toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 5000,
+      grow: 'column'
+    })
+
+    toast.fire({
+      icon: 'success',
+      title: message
+    })
+  }
+
+  bigSuccess(message) {
+    Swal.fire({
+      icon: 'success',
+      title: 'Success!',
+      text: message,
+      timer: 3000,
+      showConfirmButton: false,
+    })
+  }
+
+  full() {
+    Swal.fire({
+      icon: 'success',
+      title: 'Success!',
+      timer: 3000,
+      showConfirmButton: false,
+    })
+  }
 
   success(message) {
     const toast = Swal.mixin({
@@ -132,5 +169,15 @@ export class NotificationsService {
   //   // }
   // }
 
+  notify(message) {
+    cheers.success({
+      title: 'Warning',
+      message: message,
+      alert: 'slideleft',
+      icon: 'fa-tick',
+      duration: 5,
+      callback: () => { }
+    });
+  }
 
 }
