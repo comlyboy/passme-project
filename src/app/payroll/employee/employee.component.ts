@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { IEmployee } from 'src/app/interfaces';
 
 import { Subscription } from 'rxjs';
-import { PayrollService } from '../payroll.service';
+import { DialogService } from 'src/app/shared/dialog.service';
+import { EmployeeService } from './employee.service';
 
 @Component({
   selector: 'app-employee',
@@ -16,15 +17,21 @@ export class EmployeeComponent implements OnInit {
   private employeeSub: Subscription;
 
   constructor(
-    public payrollService: PayrollService,
+    public employeeService: EmployeeService,
+    public dialogService: DialogService,
   ) { }
 
 
+  onDeleteDialog(id: number) {
+    this.dialogService.confirmDeleteDialog(id)
+  }
+
+
+
   initContent() {
-    this.payrollService.getEmployee()
-    this.employeeSub = this.payrollService.getAllEmployeesUpdateListener()
+    this.employeeService.getEmployee()
+    this.employeeSub = this.employeeService.getAllEmployeesUpdateListener()
       .subscribe(employeeData => {
-        console.log(employeeData)
         this.employees = employeeData.allEmployees
       })
   }

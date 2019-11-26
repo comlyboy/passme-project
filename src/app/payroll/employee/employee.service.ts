@@ -39,9 +39,7 @@ export class EmployeeService {
   ) { }
 
   // ===========================
-  private allEmployeesUpdated = new Subject<{
-    allEmployees: IEmployee[];
-  }>();
+
   private allDepartmentsUpdated = new Subject<{
     allDepartments: IDepartment[];
   }>();
@@ -59,9 +57,7 @@ export class EmployeeService {
 
 
   // ===============================
-  getAllEmployeesUpdateListener() {
-    return this.allEmployeesUpdated.asObservable();
-  }
+
   getAllDepartmentsUpdateListener() {
     return this.allDepartmentsUpdated.asObservable();
   }
@@ -108,7 +104,13 @@ export class EmployeeService {
 
   // +++++++++++++++++++++++++
   // employee
+  private allEmployeesUpdated = new Subject<{
+    allEmployees: IEmployee[];
+  }>();
 
+  getAllEmployeesUpdateListener() {
+    return this.allEmployeesUpdated.asObservable();
+  }
   getEmployee() {
     this.http.get<any>(
       `${this.API_URL}payroll/${this.key}/employees/`
@@ -127,11 +129,16 @@ export class EmployeeService {
     return this.http.get<any>(`${this.API_URL}payroll/${this.key}/employees/${id}`);
   }
 
+  deleteEmployee(id: number) {
+    return this.http.delete(`${this.API_URL}payroll/${this.key}/employees/${id}`);
+  }
+
 
   addEmployee(
     firstname: string,
     lastname: string,
     middlename: string,
+    email: string,
     dateofBirth: string,
     phone: string,
     country: string,
@@ -153,12 +160,12 @@ export class EmployeeService {
     accountNumber: string,
     bankName: number,
 
-
   ) {
     const employeeData: IEmployee = {
       firstname: firstname,
       lastname: lastname,
       middlename: middlename,
+      email: email,
       dateofBirth: dateofBirth,
       phone: phone,
       country: country,
@@ -212,18 +219,14 @@ export class EmployeeService {
     console.log(nokData)
     this.http.post(`${this.API_URL}payroll/${this.key}/next_of_kin/${employeeId}/`, nokData)
       .subscribe(response => {
-        console.log("Next of Kin")
-        console.log(response)
-        console.log("=======")
-        this.notificationsService.full()
-
+        
       }, error => {
         console.log(error)
       });
   }
 
 
-
+  // ++++++++++++++++++++++++
   addEmployeeQualification(
     institutionName: string,
     graduateYear: string,
@@ -238,11 +241,6 @@ export class EmployeeService {
     console.log(qualificationData)
     this.http.post(`${this.API_URL}payroll/${this.key}/qualifications/${employeeId}/`, qualificationData)
       .subscribe(response => {
-        console.log("Qualifications")
-        console.log(response)
-        console.log("=======")
-        this.notificationsService.full()
-        // this.router.navigate(['payroll/employee']);
 
       }, error => {
         console.log(error)
@@ -261,14 +259,10 @@ export class EmployeeService {
       account_number: accountNumber,
       bank: bankName
     };
-    console.log(paymentData)
     this.http.post(`${this.API_URL}payroll/${this.key}/salary_account_info/${employeeId}/`, paymentData)
       .subscribe(response => {
-        console.log("Payment details")
-        console.log(response)
-        console.log("=======")
         this.notificationsService.full()
-        // this.router.navigate(['payroll/employee']);
+        this.router.navigate(['payroll/employee']);
 
       }, error => {
         console.log(error)

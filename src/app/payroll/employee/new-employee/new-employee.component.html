@@ -91,6 +91,31 @@
 
 
           <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="h6 text-left mt-4 mb-1">Email</div>
+            <div class="input-group">
+              <div class="input-group-prepend bg-light" *ngIf="email.touched && email.valid">
+                <span class="input-group-text bg-white">
+                  <mat-icon class="text-green">done_all</mat-icon>
+                </span>
+              </div>
+              <input type="email" class="form-control form-control-lg" name="inputEmail" ngModel required email
+                minlength="7" autocomplete="off" placeholder="Email..." #email="ngModel">
+            </div>
+            <div class="alert alert-danger p-1 m-0" *ngIf="email.touched && !email.valid">
+              <div *ngIf="email.errors.required">
+                This field is required.
+              </div>
+              <div *ngIf="email.errors.minlength">
+                Minimum 7 characters needed.
+              </div>
+              <div *ngIf="email.errors.email">
+                Email characters needed.
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
             <div class="h6 text-left mt-4 mb-0">Date of Birth</div>
             <div class="input-group">
               <div class="input-group-prepend bg-light" *ngIf="dob.touched && dob.valid">
@@ -159,7 +184,7 @@
           </div>
 
 
-          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-6">
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
             <div [ngSwitch]="maritalMode" *ngIf="!loading">
               <div *ngSwitchCase="'add'">
 
@@ -211,7 +236,7 @@
           </div>
 
 
-          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-6">
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
             <div [ngSwitch]="viewMode" *ngIf="!loading">
               <div *ngSwitchCase="'add'">
 
@@ -337,22 +362,22 @@
           <div class="col-sm-12 col-md-6 col-lg-4 col-xl-6">
             <div class="h6 text-left mt-4 mb-1">Email</div>
             <div class="input-group">
-              <div class="input-group-prepend bg-light" *ngIf="email.touched && email.valid">
+              <div class="input-group-prepend bg-light" *ngIf="emailNok.touched && emailNok.valid">
                 <span class="input-group-text bg-white">
                   <mat-icon class="text-green">done_all</mat-icon>
                 </span>
               </div>
-              <input type="email" class="form-control form-control-lg" name="inputNokEmail" ngModel minlength="5" email
-                autocomplete="off" placeholder="Email..." #email="ngModel" required>
+              <input type="email" class="form-control form-control-lg" name="inputNokEmail" ngModel minlength="7" email
+                autocomplete="off" placeholder="Email..." #emailNok="ngModel" required>
             </div>
-            <div class="alert alert-danger p-1 m-0" *ngIf="email.touched && !email.valid">
-              <div *ngIf="email.errors.required">
+            <div class="alert alert-danger p-1 m-0" *ngIf="emailNok.touched && !emailNok.valid">
+              <div *ngIf="emailNok.errors.required">
                 This field is required.
               </div>
-              <div *ngIf="email.errors.minlength">
-                Minimum 7 numbers needed.
+              <div *ngIf="emailNok.errors.minlength">
+                Minimum 7 characters needed.
               </div>
-              <div *ngIf="email.errors.email">
+              <div *ngIf="emailNok.errors.email">
                 Email characters needed.
               </div>
             </div>

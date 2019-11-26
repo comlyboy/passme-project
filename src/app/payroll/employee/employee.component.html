@@ -53,25 +53,33 @@
           </tr>
         </thead>
         <tbody id="employee-table-list" class="bg-white">
-          <tr *ngFor="let employee of employees" [routerLink]="['/payroll/employee', employee.id]">
-            <td>{{ employee.id }}</td>
-            <td>{{ employee.firstname }} {{ employee.middlename | titlecase }} {{ employee.lastname }} </td>
-            <td>{{ employee.phone }}</td>
-            <td>{{ employee.dateofBirth }}</td>
-            <td>{{ employee.gender }}</td>
-            <td>{{ employee.date_created | date:'mediumDate' }}</td>
+          <tr *ngFor="let employee of employees">
+            <td [routerLink]="['/payroll/employee', employee.id]">{{ employee.id }}</td>
+            <td [routerLink]="['/payroll/employee', employee.id]">{{ employee.firstname }}
+              {{ employee.middlename | titlecase }} {{ employee.lastname }} </td>
+            <td [routerLink]="['/payroll/employee', employee.id]">{{ employee.phone }}</td>
+            <td [routerLink]="['/payroll/employee', employee.id]">{{ employee.dateofBirth }}</td>
+            <td [routerLink]="['/payroll/employee', employee.id]">{{ employee.gender }}</td>
+            <td [routerLink]="['/payroll/employee', employee.id]">{{ employee.date_created | date:'mediumDate' }}</td>
 
-            <!-- <td class="text-truncate" style="max-width: 150px;"> tyrhngfffggnfgdfdfs</td> -->
-            <td class="p-0">
-              <button type="button" matTooltip="Edit employee?" matTooltipPosition="left"
-                class="btn btn-sm btn-warning py-1 m-1 rounded-0">
-                <mat-icon>create</mat-icon>
-              </button>
-              <button (click)="onDeleteDialog(employee.id)" type="button"
-                class="btn btn-sm btn-danger py-1 m-1 rounded-0" matTooltip="Delete employee?"
-                matTooltipPosition="left">
-                <mat-icon>delete</mat-icon>
-              </button>
+
+            <td class="text-center">
+              <!-- <button type="button" matTooltip="View employee?"
+                matTooltipPosition="left" class="btn btn-sm btn-info py-1 ml-5 rounded-0">
+                <mat-icon>info</mat-icon>
+              </button> -->
+              <mat-icon matTooltip="View employee?" matTooltipPosition="left" [matMenuTriggerFor]="menu">more_vert
+              </mat-icon>
+              <mat-menu #menu="matMenu" xPosition="before">
+                <div class="font-weight-bold">
+                  <div class="list-group-item" mat-menu-item>
+                    <mat-icon>edit</mat-icon>Edit
+                  </div>
+                  <button (click)="onDeleteDialog(employee.id)" type class="list-group-item my-ppointer" mat-menu-item>
+                    <mat-icon>delete</mat-icon>Delete
+                  </button>
+                </div>
+              </mat-menu>
             </td>
           </tr>
         </tbody>

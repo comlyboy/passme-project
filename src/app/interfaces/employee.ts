@@ -3,6 +3,7 @@ export interface IEmployee {
     firstname: string;
     lastname: string;
     middlename: string;
+    email: string;
     dateofBirth: string;
     phone: string;
     country: string;

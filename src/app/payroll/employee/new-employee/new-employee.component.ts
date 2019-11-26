@@ -82,14 +82,15 @@ export class NewEmployeeComponent implements OnInit {
 
 
   onSubmitEmployee(form: NgForm) {
-    // if (form.invalid) {
-    //   return;
-    // }
+    if (form.invalid) {
+      return;
+    }
     this.employeeService.addEmployee
       (
         form.value.inputFirstName,
         form.value.inputLastName,
         form.value.inputMiddleName,
+        form.value.inputEmail,
         form.value.inputDOB,
         form.value.inputPhoneNumber,
         form.value.inputCountry,
@@ -111,43 +112,37 @@ export class NewEmployeeComponent implements OnInit {
         form.value.inputAccountNumber,
         form.value.inputBankName,
       );
-    console.log(form.value.inputDOB
-    )
+
   }
 
   initContent() {
     this.employeeService.getGenders()
     this.genderSub = this.employeeService.getAllGenderUpdateListener()
       .subscribe(genderData => {
-        console.log(genderData)
         this.genders = genderData.allGenders
       })
 
     this.employeeService.getMaritalStatus()
     this.maritalSub = this.employeeService.getAllMaritalStatusUpdateListener()
       .subscribe(maritalData => {
-        console.log(maritalData)
         this.marital_statuses = maritalData.allMaritals
       })
 
     this.employeeService.getRelationships()
     this.relatnSub = this.employeeService.getAllRelationshipStatusUpdateListener()
       .subscribe(relatnData => {
-        console.log(relatnData)
         this.relationship_types = relatnData.allRelationship
       })
 
     this.employeeService.getQualifications()
     this.qualificationSub = this.employeeService.getAllQualificationStatusUpdateListener()
       .subscribe(qualData => {
-        console.log(qualData)
         this.qualification_types = qualData.allQualifications
       })
 
     this.employeeService.getBanks()
     this.bankSub = this.employeeService.getAllBankStatusUpdateListener()
       .subscribe(bankData => {
-        console.log(bankData)
         this.bank_types = bankData.allBanks
       })
   }
