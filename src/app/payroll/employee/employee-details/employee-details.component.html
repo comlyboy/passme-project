@@ -16,10 +16,10 @@
 <div class="container-fluid mt-3" *ngIf='!loading'>
     <div class="row">
 
-        <div class="col-sm-12 col-md-4 col-lg-3 col-xl-2">
-            <div class="card text-muted pas-card my-2">
-                <img src="https://via.placeholder.com/150" alt="engineer_img">
-
+        <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3">
+            <div class="card text-muted pas-card text-center my-2">
+                <ngx-avatar [round]="false" class="text-center" size="180"
+                    name="{{employee?.firstname}} {{ employee?.lastname }}"></ngx-avatar>
                 <!-- <mat-icon class="text-info ml-auto mr-2" mat-icon-button matTooltip="Actions" matTooltipPosition="left"
                     [matMenuTriggerFor]="menu">expand_more</mat-icon>
                 <mat-menu #menu="matMenu" xPosition="before">
@@ -40,16 +40,47 @@
                     </div>
                 </mat-menu> -->
 
-                <div class="card-body text-muted py-2">
-                    <p class="h5 mt-2 text-center">{{ employee?.firstname | titlecase }}
+                <div class="card-body text-muted py-2 text-left">
+
+
+                    <p class="h4 mt-2 text-center font-weight-bold">{{ employee?.firstname | titlecase }}
                         {{ employee?.middlename | titlecase }}
                         {{ employee?.lastname | titlecase }}</p>
-                    <p class="mb-1">{{employee?.dateofBirth}}</p>
-                    <p class="mb-1">Date employed: {{ employee?.date_created | date:'mediumDate' }}</p>
+                    <dl class="row mt-2">
+
+                        <dt class="col-5 mb-0">Gender: </dt>
+                        <dd class="col-7">
+                            <span class="font-weight-normal ml-3">{{employee?.gender}}</span>
+                        </dd>
+                        <dt class="col-5 mb-0">Marital status: </dt>
+                        <dd class="col-7">
+                            <span class="font-weight-normal ml-3">{{employee?.marital_status}}</span>
+                        </dd>
+                        <dt class="col-5 mb-0">Date of Birth: </dt>
+                        <dd class="col-7">
+                            <span class="font-weight-normal ml-3">{{employee?.dateofBirth}}</span>
+                        </dd>
+                        <dt class="col-5 mb-0">Employed: </dt>
+                        <dd class="col-7">
+                            <span
+                                class="font-weight-normal ml-3">{{ employee?.date_created | date:'mediumDate' }}</span>
+                        </dd>
+
+
+                        <dt class="col-5 mb-0">Nationality: </dt>
+                        <dd class="col-7">
+                            <span class="font-weight-normal ml-3">{{employee?.country}}</span>
+                        </dd>
+
+
+                    </dl>
+
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item pt-3 px-0">
-                            <p class="small font-weight-bold mt-1 mb-0">CONTACTS</p>
+                            <p class="small font-weight-bold mt-1 mb-2">CONTACTS</p>
                             <p class="mb-1">0{{employee?.phone}}</p>
+                            <p class="mb-1">{{employee?.email}}</p>
+                            <p class="mb-1">{{employee?.address}}</p>
                         </li>
                     </ul>
                 </div>
@@ -57,37 +88,67 @@
 
         </div>
 
-        <div class="col-sm-12 col-md-8 col-lg-9 col-xl-10">
+        <div class="col-sm-12 col-md-8 col-lg-9 col-xl-9">
             <div class="row">
 
-                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <div class="card my-2 pas-card">
                         <div class="card-header bg-white text-muted px-4 h5">Next of Kins
                         </div>
-                        <div class="card-body">
-
+                        <div class="card-body pt-0">
+                            <table class="table mt-2 table-responsive-md table-bordered">
+                                <thead class="bg-green text-white text-center">
+                                    <tr>
+                                        <th scope="col">Full Name</th>
+                                        <th scope="col">Phone number</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Relationship</th>
+                                        <th scope="col">Address</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="employee-table-list" class="bg-white">
+                                    <tr *ngFor="let next_kin of next_kins">
+                                        <td>{{next_kin.name}}</td>
+                                        <td>{{next_kin.contact_number}}</td>
+                                        <td>{{next_kin.contact_email}}</td>
+                                        <td>{{next_kin.relationship_type}}</td>
+                                        <td>{{next_kin.address}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="h6 col-12 mt-3 text-muted font-italic d-flex align-items-center flex-column bd-highlight"
+                                *ngIf="next_kins.length <= 0">No next of Kin added yet</div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6">
-                    <div class="card my-2 pas-card">
-                        <div class="card-header bg-white text-muted px-4 h5">Payment
-                        </div>
-                        <div class="card-body">
 
-                        </div>
-                    </div>
-                </div>
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <div class="card my-2 pas-card">
                         <div class="card-header bg-white text-muted px-4 h5">Qualifications
                         </div>
-                        <div class="card-body">
-
+                        <div class="card-body pt-0">
+                            <table class="table mt-2 table-hover table-responsive-md table-bordered">
+                                <thead class="bg-green text-white text-center">
+                                    <tr>
+                                        <th scope="col">Institution</th>
+                                        <th scope="col">Qualification</th>
+                                        <th scope="col">Year of Graduation</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="employee-table-list" class="bg-white">
+                                    <tr *ngFor="let qualification of qualifications">
+                                        <td>{{qualification.institution_attended}}</td>
+                                        <td>{{qualification.qualification_type}}</td>
+                                        <td>{{qualification.year_of_graduation}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="h6 col-12 mt-3 text-muted font-italic d-flex align-items-center flex-column bd-highlight"
+                                *ngIf="qualifications.length <= 0">No qualification added yet</div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <!-- <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <div class="card my-2 pas-card">
                         <div class="card-header bg-white text-muted px-4 h5">Work Experience
                         </div>
@@ -95,8 +156,38 @@
 
                         </div>
                     </div>
-                </div>
+                </div> -->
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <div class="card my-2 pas-card">
+                        <div class="card-header bg-white text-muted px-4 h5">Bank Information
+                        </div>
+                        <div class="card-body pt-0">
+                            <table class="table mt-2 table-hover table-responsive-md table-bordered">
+                                <thead class="bg-green text-white text-center">
+                                    <tr>
+                                        <!-- <th scope="col">ID</th> -->
+                                        <!-- <th scope="col">Icon </th> -->
+                                        <th scope="col">Full Name</th>
+                                        <th scope="col">Phone number</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Relationship</th>
+                                        <th scope="col">Address</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="employee-table-list" class="bg-white">
+                                    <tr>
+                                        <td>sdfjkhss</td>
+                                        <td>sdfjkhss</td>
+                                        <td>sdfjkhss</td>
+                                        <td>sdfjkhss</td>
+                                        <td>sdfjkhss</td>
 
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

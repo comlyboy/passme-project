@@ -313,7 +313,7 @@ export class EmployeeService {
       `${this.API_URL}payroll/${this.key}/genders/`, newGenderData
     )
       .subscribe(response => {
-        this.notificationsService.bigSuccess(`${response.name} added!!!`);
+        this.notificationsService.success(`${response.name} added!!!`);
         this.getGenders()
       }, error => {
         console.log(error)
@@ -353,7 +353,7 @@ export class EmployeeService {
       `${this.API_URL}payroll/${this.key}/marital_status/`, newMaritalData
     )
       .subscribe(response => {
-        this.notificationsService.bigSuccess(`${response.name} added!!!`);
+        this.notificationsService.success(`${response.name} added!!!`);
         this.getMaritalStatus()
       }, error => {
         console.log(error)
@@ -393,7 +393,7 @@ export class EmployeeService {
       `${this.API_URL}payroll/${this.key}/relationship_types/`, newRelatnData
     )
       .subscribe(response => {
-        this.notificationsService.bigSuccess(`${response.name} added!!!`);
+        this.notificationsService.success(`${response.name} added!!!`);
         this.getRelationships()
       }, error => {
         console.log(error)
@@ -434,7 +434,7 @@ export class EmployeeService {
       `${this.API_URL}payroll/${this.key}/qualification_types/`, newQualData
     )
       .subscribe(response => {
-        this.notificationsService.bigSuccess(`${response.name} added!!!`);
+        this.notificationsService.success(`${response.name} added!!!`);
         this.getQualifications()
       }, error => {
         console.log(error)
@@ -475,7 +475,7 @@ export class EmployeeService {
       `${this.API_URL}organization/${this.key}/banks/`, newBankData
     )
       .subscribe(response => {
-        this.notificationsService.bigSuccess(`${response.name} added!!!`);
+        this.notificationsService.success(`${response.name} added!!!`);
         this.getBanks()
       }, error => {
         console.log(error)

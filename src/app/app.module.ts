@@ -13,6 +13,7 @@ import { ErrorInterceptor } from './error-interceptor';
 import { NgxChartsModule } from "@swimlane/ngx-charts";
 import { Angular4PaystackModule } from 'angular4-paystack';
 
+import { AvatarModule } from 'ngx-avatar';
 
 // Material
 import { ScrollingModule } from '@angular/cdk/scrolling';
@@ -88,7 +89,7 @@ import { NewLoanComponent } from './loan/loan-user/new-loan/new-loan.component';
 import { LoanRequestComponent } from './loan/loan-request/loan-request.component';
 import { RequestLoanComponent } from './loan/loan-request/request-loan/request-loan.component';
 import { LoanRepayedComponent } from './loan/loan-repayed/loan-repayed.component';
-import { LoanComponent } from './loan/loan.component';
+// import { LoanComponent } from '';
 
 import { AssetManagementComponent } from './asset-management/asset-management.component';
 import { AssetCategoryComponent } from './asset-management/asset-category/asset-category.component';
@@ -102,7 +103,8 @@ import { InventoryRoutingModule } from './inventory/inventory-routing.module';
 import { EmployeeDetailsComponent } from './payroll/employee/employee-details/employee-details.component';
 import { GenderComponent } from './gender/gender.component';
 import { NewGenderComponent } from './gender/new-gender/new-gender.component';
-
+import { CompensationComponent } from './payroll/compensation/compensation.component';
+import { LoanComponent } from './payroll/loan/loan.component';
 
 @NgModule({
   declarations: [
@@ -146,6 +148,7 @@ import { NewGenderComponent } from './gender/new-gender/new-gender.component';
     EmployeeComponent,
     NewEmployeeComponent,
     EmployeeDetailsComponent,
+    CompensationComponent,
 
     // Invoice
     InvoiceComponent,
@@ -155,11 +158,11 @@ import { NewGenderComponent } from './gender/new-gender/new-gender.component';
     NewInvoiceComponent,
 
     // Loan
-    LoanUserComponent,
-    NewLoanComponent,
-    LoanRequestComponent,
-    RequestLoanComponent,
-    LoanRepayedComponent,
+    // LoanUserComponent,
+    // NewLoanComponent,
+    // LoanRequestComponent,
+    // RequestLoanComponent,
+    // LoanRepayedComponent,
     LoanComponent,
 
     // Asset manage
@@ -182,7 +185,7 @@ import { NewGenderComponent } from './gender/new-gender/new-gender.component';
     BrowserAnimationsModule,
     InventoryRoutingModule,
     NgxChartsModule,
-
+    AvatarModule,
 
     // Materials
     MatInputModule,

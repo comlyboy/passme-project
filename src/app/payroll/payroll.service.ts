@@ -178,7 +178,7 @@ export class PayrollService {
 
   ) {
     const key = localStorage.getItem('key');
-    const employeeNokData: IEmployeeNok = {
+    const employeeNokData = {
       name: name,
       contact_number: number,
       contact_email: email,

@@ -11,6 +11,8 @@ import { PayrollService } from '../../payroll.service';
 export class EmployeeDetailsComponent implements OnInit {
   employeeId: string = "";
   employee: any;
+  next_kins: any[] = [];
+  qualifications: any[] = [];
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -22,8 +24,6 @@ export class EmployeeDetailsComponent implements OnInit {
     this.activatedRoute.paramMap
       .subscribe((paramMap: ParamMap) => {
         this.employeeId = paramMap.get('employeeId');
-        console.log(this.employeeId)
-
         this.payrollService.getEmployeeDetails(this.employeeId)
           .subscribe(employeeData => {
             console.log(employeeData)
@@ -37,12 +37,18 @@ export class EmployeeDetailsComponent implements OnInit {
               country: employeeData.country,
               date_created: employeeData.date_created,
               dateofBirth: employeeData.dateofBirth,
+              email: employeeData.email,
+              marital_status: employeeData.marital_status,
+              address: employeeData.address,
             };
+            this.next_kins = employeeData.nextofkin_set;
+            this.qualifications = employeeData.employeequalification_set;
+
           });
       });
   }
   ngOnInit() {
-this.initContents()
+    this.initContents()
   }
 
 }

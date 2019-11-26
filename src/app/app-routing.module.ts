@@ -9,7 +9,7 @@ import { AuthGuard } from './auth/auth-guard';
 import { InventoryComponent } from './inventory/inventory.component';
 import { PayrollComponent } from './payroll/payroll.component';
 import { InvoiceComponent } from './invoice/invoice.component';
-import { LoanComponent } from './loan/loan.component';
+// import { LoanComponent } from './loan/loan.component';
 import { AssetManagementComponent } from './asset-management/asset-management.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReportsComponent } from './reports/reports.component';
@@ -20,7 +20,8 @@ import { OnboardingComponent } from './pages/onboarding/onboarding.component';
 import { EmployeeComponent } from './payroll/employee/employee.component';
 import { NewEmployeeComponent } from './payroll/employee/new-employee/new-employee.component';
 import { EmployeeDetailsComponent } from './payroll/employee/employee-details/employee-details.component';
-
+import { CompensationComponent } from '../app/payroll/compensation/compensation.component';
+import { LoanComponent } from '../app/payroll/loan/loan.component';
 
 const routes: Routes = [
 
@@ -28,7 +29,7 @@ const routes: Routes = [
   { path: 'auth', component: LoginComponent },
 
   { path: 'onboarding', component: OnboardingComponent },
-  
+
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
 
   // {
@@ -56,6 +57,9 @@ const routes: Routes = [
   { path: 'payroll/employee', component: EmployeeComponent, canActivate: [AuthGuard] },
   { path: 'payroll/employee/new', component: NewEmployeeComponent, canActivate: [AuthGuard] },
   { path: 'payroll/employee/:employeeId', component: EmployeeDetailsComponent, canActivate: [AuthGuard] },
+  
+  { path: 'payroll/compensation', component: CompensationComponent, canActivate: [AuthGuard] },
+  { path: 'payroll/loan', component: LoanComponent, canActivate: [AuthGuard] },
 
 
 

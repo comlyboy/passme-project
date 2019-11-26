@@ -41,12 +41,12 @@
       <table class="table mt-2 table-hover table-responsive-md table-bordered">
         <thead class="bg-green text-white text-center">
           <tr>
-            <th scope="col">ID</th>
+            <!-- <th scope="col">ID</th> -->
+            <!-- <th scope="col">Icon </th> -->
             <th scope="col">Full Name</th>
             <th scope="col">Phone number</th>
             <th scope="col">Date of Birth</th>
             <th scope="col">Gender </th>
-            <!-- <th scope="col">Departments </th> -->
             <!-- <th scope="col">Employee Type </th> -->
             <th scope="col">Employ date</th>
             <th scope="col">Actions</th>
@@ -54,7 +54,7 @@
         </thead>
         <tbody id="employee-table-list" class="bg-white">
           <tr *ngFor="let employee of employees">
-            <td [routerLink]="['/payroll/employee', employee.id]">{{ employee.id }}</td>
+            <!-- <td [routerLink]="['/payroll/employee', employee.id]">{{ employee.id }}</td> -->
             <td [routerLink]="['/payroll/employee', employee.id]">{{ employee.firstname }}
               {{ employee.middlename | titlecase }} {{ employee.lastname }} </td>
             <td [routerLink]="['/payroll/employee', employee.id]">{{ employee.phone }}</td>
